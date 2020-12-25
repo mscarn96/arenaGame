@@ -1,4 +1,4 @@
-type Character = {
+interface Character {
     id:number
     name:string
     level: number
@@ -21,11 +21,14 @@ type Item = {
     description:string
 }
 
-type Champion = Character & {
-    class:string
+class Champion implements Character {
+    constructor(champClass:ChampClass, name:string){
+        super()
+
+    }
 }
 
-type State = {
+type GameState = {
     currentChamp:null | Champion
     gold:number
     inventory:null | Item[]
@@ -34,4 +37,10 @@ type State = {
 type ChampionAction = {
     type:string
     champion:Champion
+}
+
+enum ChampClass {
+    Warrior = 0,
+    Mage = 1,
+    Hunter = 2,
 }

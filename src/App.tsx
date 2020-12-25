@@ -1,9 +1,10 @@
 import React from 'react';
-import './App.css';
+import StartMenu from './components/startMenu/StartMenu'
 
 function App() {
   return (
     <div className="App">
+      <StartMenu />
     </div>
   );
 }
