@@ -26,7 +26,7 @@ interface Champion extends Character {
 }
 
 type GameState = {
-    currentChamp:null | Champion
+    currentChamp:Champion | null;
     gold:number
     inventory:null | Item[]
 }

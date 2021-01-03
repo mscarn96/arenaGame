@@ -5,6 +5,7 @@ const Practice = () => {
     return (
         <div>
             Practice
+            <button></button>
         </div>
     )
 }

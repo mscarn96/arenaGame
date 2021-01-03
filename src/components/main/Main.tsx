@@ -6,6 +6,8 @@ import {
     Link
   } from "react-router-dom";
 
+  import styled from 'styled-components';
+
 
 import Tower from './Tower';
 import Practice from './Practice';
@@ -13,6 +15,15 @@ import Market from './Market/Market'
 import Tavern from './Tavern';
 import Wild from './Wild';
 import Arena from './Arena';
+import BattleScreen from '../battleScreen/BattleScreen';
+
+const Navigation = styled.ul`
+display:flex;
+flex-direction:row;
+justify-content:space-between;
+margin:15px;
+`
+
 
 
 
@@ -20,15 +31,28 @@ const Main = () => {
     return (
         <Router>
         <div>
-            <ul>
+            <Navigation>
+                <li>
+                    <Link to="practice">practice</Link>
+                </li>
+                <li>
+                    <Link to="market">market</Link>
+                </li>
                 <li>
                     <Link to="tavern">tavern</Link>
                 </li>
-            </ul>
-            
-            
-            
-            
+                <li>
+                    <Link to="wild">wild</Link>
+                </li>
+                <li>
+                    <Link to="arena">arena</Link>
+                </li>
+                <li>
+                    <Link to="tower">tower</Link>
+                </li>
+            </Navigation>
+
+            <BattleScreen />
             
             <Switch>
             <Route path='/practice'>
