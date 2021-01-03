@@ -21,11 +21,8 @@ type Item = {
     description:string
 }
 
-class Champion implements Character {
-    constructor(champClass:ChampClass, name:string){
-        super()
-
-    }
+interface Champion extends Character {
+    champClass:ChampClass
 }
 
 type GameState = {
@@ -36,11 +33,16 @@ type GameState = {
 
 type ChampionAction = {
     type:string
-    champion:Champion
+    name:string
+    // champion:Champion
+    choosedClass?:ChampClass
 }
+
+type DispatchType = (args: ChampionAction) => ChampionAction
 
 enum ChampClass {
     Warrior = 0,
     Mage = 1,
     Hunter = 2,
+    notPicked = -1,
 }
