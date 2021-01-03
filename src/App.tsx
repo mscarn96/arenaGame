@@ -1,11 +1,12 @@
 import React from 'react';
-import StartMenu from './components/startMenu/StartMenu'
+import StartMenu from './components/startMenu/StartMenu';
 
 function App() {
   return (
     <div className="App">
-      <StartMenu />
+          <StartMenu />
     </div>
+
   );
 }
 
