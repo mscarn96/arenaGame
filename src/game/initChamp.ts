@@ -6,7 +6,15 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 name,
                 champClass,
                 level: 1,
-                hp:250,
+                hp:{
+                    currentHp:250,
+                    fullHp:250
+                },
+                res:{
+                    name:'rage',
+                    current:0,
+                    full:100
+                },
                 accuracy:60,
                 critChance:10,
                 attackDamage:60,
@@ -22,7 +30,15 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 name,
                 champClass,
                 level: 1,
-                hp:180,
+                hp:{
+                    currentHp:180,
+                    fullHp:180
+                },
+                res:{
+                    name:'mana',
+                    current:80,
+                    full:80
+                },
                 accuracy:70,
                 critChance:0,
                 attackDamage:40,
@@ -39,7 +55,15 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     name,
                     champClass,
                     level: 1,
-                    hp:200,
+                    hp:{
+                        currentHp:200,
+                        fullHp:200,
+                    },
+                    res:{
+                        name:'focus',
+                        current:100,
+                        full:100,
+                    },
                     accuracy:80,
                     critChance:20,
                     attackDamage:50,

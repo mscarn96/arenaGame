@@ -2,7 +2,15 @@ interface Character {
     id:number
     name:string
     level: number
-    hp:number
+    hp: {
+        currentHp:number
+        fullHp:number
+    }
+    res: {
+        name:string
+        current:number
+        full:number
+    }
     accuracy:number
     critChance:number
     attackDamage:number
