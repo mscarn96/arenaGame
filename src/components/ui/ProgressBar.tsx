@@ -9,6 +9,11 @@ interface Props {
     total:number
 }
 
+interface FillerProps {
+    bgcolor:string
+    completed:number
+}
+
 const Container = styled.div`
 height: 20px;
 width: 100%;
@@ -23,6 +28,16 @@ color:black;
 font-weight:bold;
 `
 
+const Filler = styled.div<FillerProps>`
+height: 100%;
+width: ${props => props.completed}%;
+background-color: ${props => props.bgcolor};
+border-radius: inherit;
+text-align: center;
+transition:width 1s ease-in-out;
+font-family:sans-serif;
+`
+
 
 const ProgressBar = (props: Props) => {
 
@@ -30,20 +45,9 @@ const ProgressBar = (props: Props) => {
 
     const completed = Math.round(current / total * 100);
 
-    const Filler = styled.div`
-height: 100%;
-width: ${completed}%;
-background-color: ${bgcolor};
-border-radius: inherit;
-text-align: center;
-transition:width 1s ease-in-out;
-font-family:sans-serif;
-`
-
-    
     return (
         <Container>
-      <Filler>
+      <Filler completed={completed} bgcolor={bgcolor}>
        <Label>{`${completed}%`}</Label>
       </Filler>
     </Container>

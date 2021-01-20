@@ -6,11 +6,6 @@ interface Character {
         currentHp:number
         fullHp:number
     }
-    res: {
-        name:string
-        current:number
-        full:number
-    }
     accuracy:number
     critChance:number
     attackDamage:number
@@ -31,10 +26,15 @@ type Item = {
 
 interface Champion extends Character {
     champClass:ChampClass
+    res: {
+        name:string
+        current:number
+        full:number
+    }
 }
 
 type GameState = {
-    currentChamp:Champion | null;
+    currentChamp:Champion;
     gold:number
     inventory:null | Item[]
 }
@@ -53,4 +53,21 @@ enum ChampClass {
     Mage = 1,
     Hunter = 2,
     notPicked = -1,
+}
+
+enum ResultStatus {
+    dodge = 0,
+    block = 1,
+    crit = 2
+}
+
+type Result = {
+    damage:number
+    statusText:string
+    statusCode:ResultStatus
+}
+
+type Place = {
+    name:string
+    image:string
 }

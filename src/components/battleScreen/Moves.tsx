@@ -1,11 +1,16 @@
 import React from 'react'
 
+import {basicAttack} from '../../game/battle'
 
+type Props = {
+    attacker:Champion | Character
+    defender:Character | Champion
+}
 
-const Moves = () => {
+const Moves = (props:Props) => {
     return (
         <div>
-            Moves
+            <button onClick={() => basicAttack(props.attacker, props.defender)}>Basic Attack</button>
         </div>
     )
 }

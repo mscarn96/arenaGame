@@ -79,4 +79,30 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
     }   
 }
 
+export const ghost:Champion = {
+    id:0,
+    name:'ghost',
+    champClass:-1,
+    level: 0,
+    hp:{
+        currentHp:1,
+        fullHp:1,
+    },
+    res:{
+        name:'focus',
+        current:0,
+        full:1,
+    },
+    accuracy:1,
+    critChance:1,
+    attackDamage:1,
+    magicPower:1,
+    blockChance:0,
+    armor:1,
+    magicDef:1,
+    dodgeChance:0,
+    skillset:[]
+
+}
+
 export default initChamp;

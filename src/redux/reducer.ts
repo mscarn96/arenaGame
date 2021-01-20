@@ -1,10 +1,10 @@
 import * as actionTypes from "./actionTypes"
 
-import initChamp from '../game/initChamp'
+import initChamp, {ghost} from '../game/initChamp'
 
 
 const initialState: GameState = {
-   currentChamp:null,
+   currentChamp:ghost,
    gold:0,
    inventory:null,
 }

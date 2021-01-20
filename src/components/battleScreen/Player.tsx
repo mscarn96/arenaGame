@@ -1,20 +1,45 @@
 import React from 'react'
 
-import { useSelector } from '../../redux/customHooks'
-
 import { getChampClass } from '../../game/gameVariousFuncs'
 
-import ProggresBar from '../ui/ProgressBar';
+import Inventory from './Inventory';
+import Moves from './Moves';
+import ProgressBar from '../ui/ProgressBar';
 
-const Player = () => {
+const getResBarColor = (champ:Champion | null ):string => {
+    let color:string = '';
+    switch (champ?.res.name){
+        case 'mana':
+           color = 'blue';
+            break;
+        case 'rage':
+            color = 'red';
+            break;
+        case 'focus':
+            color = 'yellow';
+            break;
+        default:
+            color = 'gray';
+    }
+    return color;
+}
 
-    const champ = useSelector(state => state.currentChamp)
+type Props = {
+    champ:Champion
+    enemy:Character | Champion
+}
+
+const Player = (props:Props) => {
+    const {champ} = props
     return (
         <div>
            <h3>{champ?.name}</h3>
            {getChampClass(champ?.champClass)}
            <p>Level : {champ?.level}</p>
-            <ProggresBar bgcolor={"red"} completed={45} />
+            <ProgressBar bgcolor={"green"} current={champ?.hp.currentHp ?? 0} total={champ?.hp.fullHp ?? 0} />
+            <ProgressBar bgcolor={getResBarColor(champ)} current={champ?.res.current ?? 0} total={champ?.res.full ?? 0} />
+            <Moves attacker={champ} defender={props.enemy}/>
+            <Inventory />
         </div>
     )
 }

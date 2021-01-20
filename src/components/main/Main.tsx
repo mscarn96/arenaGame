@@ -15,7 +15,6 @@ import Market from './Market/Market'
 import Tavern from './Tavern';
 import Wild from './Wild';
 import Arena from './Arena';
-import BattleScreen from '../battleScreen/BattleScreen';
 
 const Navigation = styled.ul`
 display:flex;
@@ -51,8 +50,6 @@ const Main = () => {
                     <Link to="tower">tower</Link>
                 </li>
             </Navigation>
-
-            <BattleScreen />
             
             <Switch>
             <Route path='/practice'>

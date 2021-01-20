@@ -1,11 +1,11 @@
 import React from 'react'
+import BattleScreen from '../battleScreen/BattleScreen'
 
 
 const Practice = () => {
     return (
         <div>
-            Practice
-            <button></button>
+            <BattleScreen />
         </div>
     )
 }
