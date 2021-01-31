@@ -4,16 +4,15 @@ import './index.css';
 import App from './App';
 
 import { Provider } from 'react-redux';
-import { createStore, Store } from "redux";
-import reducer from './redux/reducer';
+import { createStore, } from "redux";
+import {default as reducer} from './redux/reducer/reducer'
 
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
-const store: Store<GameState, ChampionAction> & {
-  dispatch: DispatchType
-} = createStore(
+const store = createStore(
   reducer,devToolsEnhancer({})
 );
+
 
 
 ReactDOM.render(

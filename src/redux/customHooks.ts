@@ -1,5 +1,5 @@
 import { createSelectorHook } from "react-redux"
 
-type RootState = GameState;
+import {RootState} from './reducer/reducer'
 
 export const useSelector = createSelectorHook<RootState>();

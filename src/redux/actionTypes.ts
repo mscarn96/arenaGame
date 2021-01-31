@@ -1,3 +1,0 @@
-export const CREATE_CHAMP = "CREATE_CHAMP"
-export const MODIFY_CHAMP = "MODIFY_CHAMP"
-

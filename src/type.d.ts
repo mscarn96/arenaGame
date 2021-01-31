@@ -33,20 +33,22 @@ interface Champion extends Character {
     }
 }
 
-type GameState = {
-    currentChamp:Champion;
-    gold:number
-    inventory:null | Item[]
+type Enemy = Character | Champion
+
+
+type ChampState = {currentChamp:Champion}
+type InventoryState = {
+    gold:number,
+    items:Item[]
+}
+type BattleState = {
+    champ:Champion
+    enemy:Enemy
+    place:Place
 }
 
-type ChampionAction = {
-    type:string
-    name:string
-    // champion:Champion
-    choosedClass?:ChampClass
-}
 
-type DispatchType = (args: ChampionAction) => ChampionAction
+type DispatchType = (args: CreateChampionAction | ChampionModifyAction) => CreateChampionAction | ModifyChampionAction
 
 enum ChampClass {
     Warrior = 0,
@@ -55,16 +57,16 @@ enum ChampClass {
     notPicked = -1,
 }
 
-enum ResultStatus {
+enum AttackResultStatus {
     dodge = 0,
     block = 1,
     crit = 2
 }
 
-type Result = {
+type AttackResult = {
     damage:number
     statusText:string
-    statusCode:ResultStatus
+    statusCode:AttackResultStatus
 }
 
 type Place = {

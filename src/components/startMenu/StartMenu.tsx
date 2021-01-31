@@ -7,7 +7,7 @@ import CreateChar from "./CreateChar"
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux'
-import { createChamp } from '../../redux/actionCreators';
+import { createChamp } from '../../redux/actions/initActionCreators'
 import Main from '../main/Main';
 
 
