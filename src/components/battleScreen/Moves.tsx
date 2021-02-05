@@ -4,9 +4,12 @@ import { useSelector } from '../../redux/customHooks'
 import { basicAttack } from '../../game/battle';
 import {damageEnemy} from '../../redux/actions/battleActionCreators'
 
+type Props = {
+    isPlayerTurn:boolean
+    setIsPlayerTurn:React.Dispatch<React.SetStateAction<boolean>>
+}
 
-
-const Moves = () => {
+const Moves = (props:Props) => {
     const dispatch = useDispatch();
     const champ = useSelector(state => state.battleState.champ)
     const enemy = useSelector(state => state.battleState.enemy)
@@ -17,13 +20,14 @@ const Moves = () => {
             const attackResult = basicAttack(champ,enemy)
             setAttackResultText(attackResult.statusText)
             dispatch(damageEnemy(attackResult.damage))
+            props.setIsPlayerTurn(false)
         } else console.warn("No Enemy!")
         
     }
     return (
         <div>
             <p>{attackResultText}</p>
-            <button onClick={() => attack()}>Basic Attack</button>
+            <button disabled={!props.isPlayerTurn} onClick={() => attack()}>Basic Attack</button>
         </div>
     )
 }

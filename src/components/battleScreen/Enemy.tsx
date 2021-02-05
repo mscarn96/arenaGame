@@ -4,16 +4,18 @@ import React from 'react'
 import ProgressBar from '../ui/ProgressBar';
 
 type Props = {
-    enemy:Enemy
+    enemy:Enemy,
+    attackResult:string
 }
 
 const Enemy = (props:Props) => {
-    const {enemy} = props;
+    const {enemy, attackResult} = props;
     return (
         <div>
            <h3>{enemy?.name}</h3>
            <p>Level : {enemy?.level}</p>
             <ProgressBar bgcolor={"green"} current={enemy?.hp.currentHp ?? 0} total={enemy?.hp.fullHp ?? 0} />
+            <p>{attackResult}</p>
         </div>
     )
 }

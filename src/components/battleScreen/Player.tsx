@@ -27,6 +27,8 @@ const getResBarColor = (champ:Champion | null ):string => {
 type Props = {
     champ:Champion
     enemy:Enemy
+    isPlayerTurn:boolean
+    setIsPlayerTurn:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Player = (props:Props) => {
@@ -38,7 +40,7 @@ const Player = (props:Props) => {
            <p>Level : {champ.level}</p>
             <ProgressBar bgcolor={"green"} current={champ.hp.currentHp ?? 0} total={champ.hp.fullHp ?? 0} />
             <ProgressBar bgcolor={getResBarColor(champ)} current={champ.res.current ?? 0} total={champ.res.full ?? 0} />
-            <Moves />
+            <Moves isPlayerTurn={props.isPlayerTurn} setIsPlayerTurn={props.setIsPlayerTurn}/>
             <Inventory />
         </div>
     )
