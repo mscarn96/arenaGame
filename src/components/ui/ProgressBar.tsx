@@ -3,10 +3,9 @@ import React from 'react'
 import styled from 'styled-components';
 
 
-interface Props {
-    bgcolor:string
-    current:number
-    total:number
+
+interface ContainterProps {
+    width:number
 }
 
 interface FillerProps {
@@ -14,9 +13,18 @@ interface FillerProps {
     completed:number
 }
 
-const Container = styled.div`
+interface OtherProps {
+    bgcolor:string
+    current:number
+    total:number
+}
+
+type Props = ContainterProps & OtherProps
+
+
+const Container = styled.div<ContainterProps>`
 height: 20px;
-width: 100%;
+width: ${props => props.width}%;
 background-color: #e0e0de;
 border: 1px solid black;
 border-radius: 50px;
@@ -41,12 +49,12 @@ font-family:sans-serif;
 
 const ProgressBar = (props: Props) => {
 
-    const { bgcolor, current, total } = props;
+    const { bgcolor, current, total, width } = props;
 
     const completed = Math.round(current / total * 100);
 
     return (
-        <Container>
+        <Container width={width}>
       <Filler completed={completed} bgcolor={bgcolor}>
        <Label>{`${completed}%`}</Label>
       </Filler>

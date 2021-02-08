@@ -14,7 +14,7 @@ const Enemy = (props:Props) => {
         <div>
            <h3>{enemy?.name}</h3>
            <p>Level : {enemy?.level}</p>
-            <ProgressBar bgcolor={"green"} current={enemy?.hp.currentHp ?? 0} total={enemy?.hp.fullHp ?? 0} />
+            <ProgressBar width={100} bgcolor={"green"} current={enemy?.hp.currentHp ?? 0} total={enemy?.hp.fullHp ?? 0} />
             <p>{attackResult}</p>
         </div>
     )

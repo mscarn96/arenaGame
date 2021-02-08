@@ -17,12 +17,31 @@ interface Character {
     skillset:object[]
 }
 
-type Item = {
-    id:number
-    name:string
-    value:number
-    description:string
+interface ItemValue {
+    accuracy?:number
+    critChance?:number
+    attackDamage?:number
+    magicPower?:number
+    blockChance?:number
+    armor?:number
+    magicDef?:number
+    dodgeChance?:number
 }
+
+type ItemType = 'head' | 'body' | 'legs' | 'feet' | 'neck' | 'rightHand' | 'leftHand'
+
+
+type Item = {
+    id:string
+    name:string
+    type:ItemType
+    value:ItemValue
+    description:string
+    isEquipped:boolean
+}
+
+
+
 
 interface Champion extends Character {
     champClass:ChampClass
@@ -30,6 +49,15 @@ interface Champion extends Character {
         name:string
         current:number
         full:number
+    }
+    itemSlots:{
+        head:Item | null
+        body:Item | null
+        legs:Item | null
+        feet:Item | null
+        neck:Item | null
+        rightHand:Item | null
+        leftHand:Item | null
     }
 }
 

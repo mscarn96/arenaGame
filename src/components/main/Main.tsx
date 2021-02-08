@@ -15,6 +15,7 @@ import Market from './Market/Market'
 import Tavern from './Tavern';
 import Wild from './Wild';
 import Arena from './Arena';
+import Character from './Character';
 
 const Navigation = styled.ul`
 display:flex;
@@ -31,6 +32,9 @@ const Main = () => {
         <Router>
         <div>
             <Navigation>
+                <li>
+                    <Link to="character">character</Link>
+                </li>
                 <li>
                     <Link to="practice">practice</Link>
                 </li>
@@ -52,6 +56,9 @@ const Main = () => {
             </Navigation>
             
             <Switch>
+            <Route path='/character'>
+                <Character />
+            </Route>
             <Route path='/practice'>
                 <Practice />
             </Route>

@@ -7,7 +7,7 @@ export const warriorGainRes = (warrior:Champion,number:number):void => {
 }
 
 
-export const warriorBasicAttack = (warrior:Champion, defender:Character | Champion):AttackResult => {
+export const warriorBasicAttack = (warrior:Champion, defender:Enemy):AttackResult => {
     const result = basicAttack(warrior,defender);
     if (result.damage > 0) {
         if (result.statusCode === 2) {
@@ -17,7 +17,7 @@ export const warriorBasicAttack = (warrior:Champion, defender:Character | Champi
     return result;
 }
 
-export const warriorSimpleCombo = (warrior:Champion, defender:Character | Champion):AttackResult => {
+export const warriorSimpleCombo = (warrior:Champion, defender:Enemy):AttackResult => {
     const result:AttackResult = {
         damage : 0,
         statusText : '3-Hit Combo!',

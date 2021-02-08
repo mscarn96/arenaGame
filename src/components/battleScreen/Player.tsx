@@ -38,8 +38,8 @@ const Player = (props:Props) => {
            <h3>{champ.name}</h3>
            {getChampClass(champ.champClass)}
            <p>Level : {champ.level}</p>
-            <ProgressBar bgcolor={"green"} current={champ.hp.currentHp ?? 0} total={champ.hp.fullHp ?? 0} />
-            <ProgressBar bgcolor={getResBarColor(champ)} current={champ.res.current ?? 0} total={champ.res.full ?? 0} />
+            <ProgressBar width={100} bgcolor={"green"} current={champ.hp.currentHp ?? 0} total={champ.hp.fullHp ?? 0} />
+            <ProgressBar width={100} bgcolor={getResBarColor(champ)} current={champ.res.current ?? 0} total={champ.res.full ?? 0} />
             <Moves isPlayerTurn={props.isPlayerTurn} setIsPlayerTurn={props.setIsPlayerTurn}/>
             <Inventory />
         </div>

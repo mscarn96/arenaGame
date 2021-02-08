@@ -5,7 +5,8 @@ export const END_BATTLE = "END_BATTLE"
 export const DAMAGE_CHAMPION = "DAMAGE_CHAMPION"
 export const HEAL_CHAMPION = "HEAL_CHAMPION"
 export const DAMAGE_ENEMY = "DAMAGE_ENEMY"
-
+export const ADD_ITEM = "ADD_ITEM"
+export const DELETE_ITEM = "DELETE_ITEM"
 
 interface CreateChampionAction {
     type:typeof CREATE_CHAMP
@@ -48,7 +49,19 @@ interface DamageEnemyAction {
 
 export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction
 
-export type StateAction = BattleAction | ChampionAction
+interface AddItemAction {
+    type:typeof ADD_ITEM
+    item:Item
+}
+
+interface DeleteItemAction {
+    type:typeof DELETE_ITEM
+    item:Item
+}
+
+export type ItemAction = AddItemAction | DeleteItemAction
+
+export type StateAction = BattleAction | ChampionAction | ItemAction
 
 
 // https://redux.js.org/recipes/usage-with-typescript

@@ -13,20 +13,30 @@ const battleReducer = (state = initialState, action: actionTypes.BattleAction): 
     const {champ} = state;
     switch (action.type) {
         case actionTypes.DAMAGE_CHAMPION:
-            if (action.damage < champ.hp.currentHp) {
                 const hpbefore:number = champ.hp.currentHp
-                return {
+                const {damage} = action
+                if (damage > 0){
+                    if (damage > hpbefore) {
+                        return {...state,
+                        champ:{
+                            ...champ,
+                            hp: {
+                                ...champ.hp,
+                                currentHp:0}
+                        }}
+                    } else return {
                     ...state,
                     champ: {
                         ...champ,
                         hp: {
                             ...champ.hp,
-                            currentHp: hpbefore - action.damage,
+                            currentHp: hpbefore - damage,
                         }
                     }
 
-                }
-            } else return { ...state };
+                }}else return {...state}
+                
+
 
         case actionTypes.HEAL_CHAMPION:
             if (action.heal + champ.hp.currentHp <= champ.hp.fullHp) {
@@ -53,18 +63,30 @@ const battleReducer = (state = initialState, action: actionTypes.BattleAction): 
 
             case actionTypes.DAMAGE_ENEMY:
                 if (state?.enemy?.hp !== undefined) {
-                    if (action.damage < state?.enemy?.hp.currentHp) {
-                        const {enemy} = state;
-                        return {...state,
+                    const {enemy} = state;
+                    const hpBefore = enemy.hp.currentHp
+                    const {damage} = action
+                    if (damage > 0){
+                        if (damage > hpBefore) {
+                            return {...state,
                             enemy:{
                                 ...enemy,
                                 hp:{
                                     ...enemy.hp,
-                                    currentHp:enemy.hp.currentHp - action.damage
+                                    currentHp:0
                                 }
+                            }}
+                        }
+                        return {...state,
+                        enemy:{
+                            ...enemy,
+                            hp:{
+                                ...enemy.hp,
+                                currentHp:enemy.hp.currentHp - damage
                             }
                         }
-                    } else return { ...state }  
+                    }
+                    } else return {...state}
                 } else return {...state}
 
                 case actionTypes.INIT_BATTLE: 
@@ -89,4 +111,4 @@ const battleReducer = (state = initialState, action: actionTypes.BattleAction): 
     
     }
 
-export default battleReducer
+export default battleReducer;
