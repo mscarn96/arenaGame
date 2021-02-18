@@ -15,6 +15,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     current:0,
                     full:100
                 },
+                exp:0,
                 itemSlots:{
                     head:null,
                     body:null,
@@ -48,6 +49,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     current:80,
                     full:80
                 },
+                exp:0,
                 itemSlots:{
                     head:null,
                     body:null,
@@ -82,6 +84,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                         current:100,
                         full:100,
                     },
+                    exp:0,
                     itemSlots:{
                         head:null,
                         body:null,
@@ -120,6 +123,7 @@ export const ghost:Champion = {
         current:0,
         full:1,
     },
+    exp:0,
     itemSlots:{
         head:null,
         body:null,

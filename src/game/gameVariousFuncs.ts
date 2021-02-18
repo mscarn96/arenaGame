@@ -36,9 +36,9 @@ export const getChampionWithEquippedItem = (champ:Champion, item:Item) => {
         default:
             return champToReplace;              
     }   
-    
-
     return champToReplace;
-       
-
 }
+
+// export const afterBattle = (champ:Champion,enemy:Enemy) => {
+
+// }
