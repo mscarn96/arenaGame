@@ -30,6 +30,7 @@ interface Props {
 
 
 
+
 const BattleScreen = (props:Props) => {
     const dispatch = useDispatch();
     const [isPlayerTurn,setIsPlayerTurn] = useState(true)
@@ -45,7 +46,7 @@ const BattleScreen = (props:Props) => {
 
     }
 
-    const DeleteBattleBtn = () => {
+    const EndBattleBtn = () => {
         const champToReplace = useSelector(state => state.battleState.champ)
         return (
             <DeleteButton onClick={() => deleteBattle(champToReplace)}>End</DeleteButton>
@@ -73,9 +74,13 @@ const BattleScreen = (props:Props) => {
 
     if (enemy !== undefined) {return (
         <BattleScreenWrapper>
-            <DeleteBattleBtn />
+            {props.isBattleOn 
+            ? <>
             <Player isPlayerTurn={isPlayerTurn} setIsPlayerTurn={setIsPlayerTurn} champ={champ} enemy={enemy}/>
             <Enemy enemy={enemy} attackResult={enemyAttackResultText}/>
+            </>
+            /// Ogarnij przesylanie obitego champa do global state
+            : <EndBattleBtn /> }
         </BattleScreenWrapper>
     )} else {return (
         <div>

@@ -9,22 +9,19 @@ import PracticeDummy from '../../game/monsters/PracticeDummy';
 
 
 const Practice = () => {
-    const [isBattleOn,setIsBattleOn] = useState(false)
-    const [practiceDummyLvl,setPracticeDummyLvl] = useState(1)
+    const [isBattleOn,setIsBattleOn] = useState(false);
+    const [practiceDummyLvl,setPracticeDummyLvl] = useState(1);
     const dispatch = useDispatch();
-    const enemy = PracticeDummy(practiceDummyLvl)
-    const champ = useSelector(state => state.champion.currentChamp)
-    const place = Graveyard
+    const enemy = PracticeDummy(practiceDummyLvl);
+    const champ = useSelector(state => state.champion.currentChamp);
+    const place = Graveyard;
 
-    const practiceDummyLvls = [1,2,3,4,5,6,7,8,9]
+    const practiceDummyLvls = [1,2,3,4,5,6,7,8,9];
 
     const startBattle = ():void => {
         setIsBattleOn(true);
         dispatch(initBattle(champ,enemy,place))
     }
-
-
-
 
     return (
         <div>

@@ -6,7 +6,7 @@ import {
     Link
   } from "react-router-dom";
 
-  import styled from 'styled-components';
+import styled from 'styled-components';
 
 
 import Tower from './Tower';
@@ -77,7 +77,7 @@ const Main = () => {
 	        <Route path='/tower'>
                 <Tower />
             </Route>
-    </Switch>
+            </Switch>
         </div>
         </Router>
     )
