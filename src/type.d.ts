@@ -14,7 +14,8 @@ interface Character {
     armor:number
     magicDef:number
     dodgeChance:number
-    skillset:object[]
+    expForWin:number
+    skillset:Skill[]
 }
 
 interface ItemValue {
@@ -50,6 +51,7 @@ interface Champion extends Character {
         current:number
         full:number
     }
+    exp:number,
     itemSlots:{
         head:Item | null
         body:Item | null
@@ -85,19 +87,38 @@ enum ChampClass {
     notPicked = -1,
 }
 
-enum AttackResultStatus {
-    dodge = 0,
-    block = 1,
-    crit = 2
+
+type TurnResult = {
+    statusText:string,
+    effectNumber?:number
 }
 
-type AttackResult = {
+type AttackResult = TurnResult & {
     damage:number
-    statusText:string
-    statusCode:AttackResultStatus
 }
+
+
 
 type Place = {
     name:string
     image:string
 }
+
+
+interface AttackSkill {
+    name:string,
+    id:number,
+    cost:number,
+    type:`DAMAGE`,
+    effect:((champ:Champion,defender:Enemy) => AttackResult),
+}
+
+interface EffectSkill {
+    name:string,
+    id:number,
+    cost:number,
+    type:`EFFECT`,
+    effect:((champ:Champion,defender:Enemy) => TurnResult),
+}
+
+type Skill = EffectSkill | AttackSkill
