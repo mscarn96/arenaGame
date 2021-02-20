@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import { useSelector } from '../../redux/customHooks'
 import ProgressBar from '../ui/ProgressBar';
+import {expToLvlUp} from '../../game/battle'
 import Items, {Item} from './Items';
 
 
@@ -34,6 +35,7 @@ const Character = () => {
         <p>Block chance:{champ.blockChance}</p>
         <p>Critical hit chance:{champ.critChance}</p>
         <p>Accuracy:{champ.accuracy}</p>
+        <p>Exp:{champ.exp} / {expToLvlUp[champ.level - 1]}</p>
         </div>)
     }
 

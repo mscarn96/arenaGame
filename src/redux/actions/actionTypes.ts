@@ -1,12 +1,16 @@
 export const CREATE_CHAMP = "CREATE_CHAMP"
 export const MODIFY_CHAMP = "MODIFY_CHAMP"
+
 export const INIT_BATTLE = "INIT_BATTLE"
 export const END_BATTLE = "END_BATTLE"
 export const DAMAGE_CHAMPION = "DAMAGE_CHAMPION"
 export const HEAL_CHAMPION = "HEAL_CHAMPION"
 export const DAMAGE_ENEMY = "DAMAGE_ENEMY"
+export const USE_RESOURCE = "USE_RESOURCE"
+
 export const ADD_ITEM = "ADD_ITEM"
 export const DELETE_ITEM = "DELETE_ITEM"
+
 
 interface CreateChampionAction {
     type:typeof CREATE_CHAMP
@@ -47,7 +51,12 @@ interface DamageEnemyAction {
     damage:number
 }
 
-export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction
+interface UseResourceAction {
+    type:typeof USE_RESOURCE
+    cost:number
+}
+
+export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction | UseResourceAction
 
 interface AddItemAction {
     type:typeof ADD_ITEM

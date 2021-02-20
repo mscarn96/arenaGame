@@ -61,7 +61,19 @@ const battleReducer = (state = initialState, action: actionTypes.BattleAction): 
                 }
             }
 
-            case actionTypes.DAMAGE_ENEMY:
+            case actionTypes.USE_RESOURCE:
+                 return {
+                     ...state,
+                     champ:{
+                         ...champ,
+                         res:{
+                             ...champ.res,
+                             current:champ.res.current - action.cost
+                         }
+                     }
+                 }
+
+        case actionTypes.DAMAGE_ENEMY:
                 if (state?.enemy?.hp !== undefined) {
                     const {enemy} = state;
                     const hpBefore = enemy.hp.currentHp
@@ -87,24 +99,24 @@ const battleReducer = (state = initialState, action: actionTypes.BattleAction): 
                         }
                     }
                     } else return {...state}
-                } else return {...state}
+            } else return {...state}
 
-                case actionTypes.INIT_BATTLE: 
+            case actionTypes.INIT_BATTLE: 
                     return {
                             ...state,
                             champ: action.champ,
                             enemy: action.enemy,
                             place: action.place
                         }             
-                case actionTypes.END_BATTLE:
+            case actionTypes.END_BATTLE:
                     return {
                         ...state,
                         champ:ghost,
                         enemy:ghost,
-                        place:Graveyard}
+                    place:Graveyard}
 
-            default:
-                return { ...state }    
+        default:
+            return { ...state }    
                 } 
                 
                 

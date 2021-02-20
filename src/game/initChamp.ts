@@ -1,3 +1,5 @@
+import * as mageMoves from './moves/mageMoves'
+
 const initChamp = (name:string, champClass:ChampClass):Champion => {
     switch (champClass) {
         case 0:
@@ -33,6 +35,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 armor:25,
                 magicDef:18,
                 dodgeChance:5,
+                expForWin:0,
                 skillset:[]}
         case 1:
             return {
@@ -61,13 +64,14 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 },
                 accuracy:70,
                 critChance:0,
-                attackDamage:40,
-                magicPower:20,
+                attackDamage:30,
+                magicPower:40,
                 blockChance:5,
                 armor:17,
                 magicDef:20,
                 dodgeChance:8,
-                skillset:[]
+                expForWin:0,
+                skillset:[mageMoves.Fireball,mageMoves.IceBlast]
             }
         case 2:
                 return {
@@ -102,6 +106,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     armor:20,
                     magicDef:15,
                     dodgeChance:20,
+                    expForWin:0,
                     skillset:[]
                 }    
         default:
@@ -141,6 +146,7 @@ export const ghost:Champion = {
     armor:1,
     magicDef:1,
     dodgeChance:0,
+    expForWin:0,
     skillset:[]
 
 }

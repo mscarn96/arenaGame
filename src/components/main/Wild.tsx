@@ -25,7 +25,6 @@ const Wild = () => {
     const [isBattleOn,setIsBattleOn] = useState<boolean>(false);
     const champ = useSelector(state => state.champion.currentChamp);
     const dispatch = useDispatch();
-     ////ZROB UNIWERSALNA FUNKCKJE
 
                 
     return (<div>

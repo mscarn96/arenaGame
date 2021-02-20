@@ -15,6 +15,7 @@ return {id:101,
     armor:6 + level * 5,
     magicDef:5 + level * 5,
     dodgeChance:10 + level * 2,
+    expForWin:0,
     skillset:[],
     }
 }

@@ -1,3 +1,11 @@
+enum ChampClass {
+    Warrior = 0,
+    Mage = 1,
+    Hunter = 2,
+    notPicked = -1,
+}
+
+
 export const getChampClass = (champClass:ChampClass | undefined):string =>
 {   
     if (champClass === 0) {
@@ -39,6 +47,7 @@ export const getChampionWithEquippedItem = (champ:Champion, item:Item) => {
     return champToReplace;
 }
 
-// export const afterBattle = (champ:Champion,enemy:Enemy) => {
-
-// }
+export const getNewSkill = (champ:Champion):Skill[] => {
+    const newSkillset = {...champ.skillset}
+    return newSkillset
+}

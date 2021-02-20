@@ -8,6 +8,14 @@ export const damageChamp = (damage:number) => {
     return action
 }
 
+export const consumeResource = (cost:number) => {
+    const action:actionTypes.BattleAction = {
+        type:actionTypes.USE_RESOURCE,
+        cost
+    }
+    return action
+}
+
 export const healChamp = (heal:number) => {
     const action:actionTypes.BattleAction = {
         type:actionTypes.HEAL_CHAMPION,
