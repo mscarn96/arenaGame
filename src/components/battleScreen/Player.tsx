@@ -29,6 +29,7 @@ type Props = {
     enemy:Enemy
     isPlayerTurn:boolean
     setIsPlayerTurn:React.Dispatch<React.SetStateAction<boolean>>
+    displayToast:(text:string) => void;
 }
 
 const Player = (props:Props) => {
@@ -40,7 +41,7 @@ const Player = (props:Props) => {
            <p>Level : {champ.level}</p>
             <ProgressBar width={100} bgcolor={"green"} current={champ.hp.currentHp ?? 0} total={champ.hp.fullHp ?? 0} />
             <ProgressBar width={100} bgcolor={getResBarColor(champ)} current={champ.res.current ?? 0} total={champ.res.full ?? 0} />
-            <Moves isPlayerTurn={props.isPlayerTurn} setIsPlayerTurn={props.setIsPlayerTurn}/>
+            <Moves isPlayerTurn={props.isPlayerTurn} setIsPlayerTurn={props.setIsPlayerTurn} displayToast={props.displayToast}/>
             <Inventory />
         </div>
     )

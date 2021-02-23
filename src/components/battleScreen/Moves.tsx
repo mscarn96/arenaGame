@@ -8,6 +8,7 @@ import {consumeResource, damageEnemy} from '../../redux/actions/battleActionCrea
 type Props = {
     isPlayerTurn:boolean
     setIsPlayerTurn:React.Dispatch<React.SetStateAction<boolean>>
+    displayToast:(text:string) => void;
 }
 
 const UseSkill = (
@@ -45,6 +46,7 @@ const Moves = (props:Props) => {
             const attackResult = basicAttack(champ,enemy)
             setAttackResultText(attackResult.statusText)
             dispatch(damageEnemy(attackResult.damage))
+            props.displayToast(attackResult.statusText)
             props.setIsPlayerTurn(false)
         } else console.warn("No Enemy!")
         

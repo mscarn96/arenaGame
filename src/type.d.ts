@@ -35,6 +35,7 @@ type ItemType = 'head' | 'body' | 'legs' | 'feet' | 'neck' | 'rightHand' | 'left
 type Item = {
     id:string
     name:string
+    cost:number
     type:ItemType
     value:ItemValue
     description:string

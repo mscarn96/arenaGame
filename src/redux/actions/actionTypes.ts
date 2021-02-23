@@ -1,5 +1,6 @@
 export const CREATE_CHAMP = "CREATE_CHAMP"
 export const MODIFY_CHAMP = "MODIFY_CHAMP"
+export const DELETE_CHAMP = "DELETE_CHAMP"
 
 export const INIT_BATTLE = "INIT_BATTLE"
 export const END_BATTLE = "END_BATTLE"
@@ -10,6 +11,9 @@ export const USE_RESOURCE = "USE_RESOURCE"
 
 export const ADD_ITEM = "ADD_ITEM"
 export const DELETE_ITEM = "DELETE_ITEM"
+export const CLEAR_INVENTORY = "CLEAR_INVENTORY"
+export const ADD_GOLD = "ADD_GOLD"
+export const SPEND_GOLD = "SPEND_GOLD"
 
 
 interface CreateChampionAction {
@@ -23,6 +27,12 @@ interface ModifyChampionAction {
     champ:Champion
 }
 
+interface DeleteChampionAction {
+    type:typeof DELETE_CHAMP
+}
+
+export type ChampionAction  = CreateChampionAction | ModifyChampionAction | DeleteChampionAction
+
 interface InitBattleAction {
     type:typeof INIT_BATTLE
     champ:Champion
@@ -33,8 +43,6 @@ interface InitBattleAction {
 interface EndBattleAction {
     type:typeof END_BATTLE
 }
-
-export type ChampionAction  = CreateChampionAction | ModifyChampionAction
 
 interface DamageChampionAction {
     type:typeof DAMAGE_CHAMPION
@@ -68,7 +76,21 @@ interface DeleteItemAction {
     item:Item
 }
 
-export type ItemAction = AddItemAction | DeleteItemAction
+interface ClearInventoryAction {
+    type:typeof CLEAR_INVENTORY
+}
+
+interface AddGoldAction {
+    type:typeof ADD_GOLD
+    gold:number
+}
+
+interface SpendGoldAction {
+    type:typeof SPEND_GOLD
+    gold:number
+}
+
+export type ItemAction = AddItemAction | DeleteItemAction | ClearInventoryAction | AddGoldAction | SpendGoldAction
 
 export type StateAction = BattleAction | ChampionAction | ItemAction
 

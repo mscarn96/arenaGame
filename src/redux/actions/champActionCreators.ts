@@ -16,3 +16,10 @@ export const modifyChamp = (champ:Champion) => {
     }
     return action
 }
+
+export const deleteChamp = () => {
+    const action:actionTypes.ChampionAction = {
+        type:actionTypes.DELETE_CHAMP
+    }
+    return action
+}

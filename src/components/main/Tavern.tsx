@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 
 import { useDispatch } from 'react-redux';
 import { useSelector } from '../../redux/customHooks';
-import { modifyChamp } from '../../redux/actions/initActionCreators';
+import { modifyChamp } from '../../redux/actions/champActionCreators';
 
 
 const fullHeal = (champ:Champion,dispatch:Dispatch<any>) => {

@@ -7,8 +7,9 @@ import CreateChar from "./CreateChar"
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux'
-import { createChamp } from '../../redux/actions/initActionCreators'
+import { createChamp } from '../../redux/actions/champActionCreators'
 import Main from '../main/Main';
+import { useSelector } from '../../redux/customHooks';
 
 
 const StartMenu = () => {
@@ -16,7 +17,7 @@ const StartMenu = () => {
     const [isCharSelected,setIsCharSelected] = useState<boolean>(false);
     const [classPicked, setClassPicked] = useState<ChampClass>(-1);
     const [name, setName] = useState<string>("");
-    const [isCharCreated, setIsCharCreated] = useState<boolean>(false);
+    const champ = useSelector(state => state.champion.currentChamp)
 
     const dispatch = useDispatch();
 
@@ -37,14 +38,16 @@ const StartMenu = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         dispatch(createChamp(name, classPicked));
-        setIsCharCreated(true);
     }
+
+    const checkChamp = () => champ.champClass === -1 ? false : true
+        
 
     
     return (
         <Router>
         <Route exact path="/">
-        {isCharCreated ?
+        {checkChamp() ?
          <Main/>
           : <div>
           <CreateChar name={name}

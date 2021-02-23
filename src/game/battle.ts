@@ -115,3 +115,7 @@ export const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion =
     return champToReplace
     
 }
+
+export const getGoldFromWin = (enemyLevel:number):number => {
+    return enemyLevel * Math.round(Math.random() * 11)
+}

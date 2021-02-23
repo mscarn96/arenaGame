@@ -36,6 +36,8 @@ const champReducer = (state:ChampState = initialState,
                     ...state,
                     currentChamp:action.champ
                 }
+            case actionTypes.DELETE_CHAMP:
+                return initialState
             default:
                 return {...state};
         }

@@ -15,3 +15,26 @@ export const deleteItem = (item:Item) => {
     }
     return action
 }
+
+export const clearInventory = () => {
+    const action:actionTypes.ItemAction = {
+        type:actionTypes.CLEAR_INVENTORY
+    }
+    return action
+}
+
+export const addGold = (gold:number) => {
+    const action:actionTypes.ItemAction = {
+        type:actionTypes.ADD_GOLD,
+        gold
+    }
+    return action
+}  
+
+export const spendGold = (gold:number) => {
+    const action:actionTypes.ItemAction = {
+        type:actionTypes.SPEND_GOLD,
+        gold
+    }
+    return action
+}   

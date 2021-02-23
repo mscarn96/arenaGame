@@ -1,5 +1,5 @@
 const fireBallEffect = (mage:Champion, defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 100);
+    const randomAttNum = Math.round(Math.random() * 120);
     const randomDefNum = Math.round(Math.random() * 100);
     let damage = (mage.magicPower * randomAttNum) / 40 - (defender.magicDef * randomDefNum) / 5;
     damage = Math.floor(damage)
@@ -15,7 +15,7 @@ const fireBallEffect = (mage:Champion, defender:Enemy):AttackResult => {
 }
 
 const iceBlastEffect = (mage:Champion,defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 100);
+    const randomAttNum = Math.round(Math.random() * 130);
     const randomDefNum = Math.round(Math.random() * 100);
     let damage = (mage.magicPower * randomAttNum) / 25 - (defender.magicDef * randomDefNum) / 50;
     damage = Math.floor(damage)

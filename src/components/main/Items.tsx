@@ -4,7 +4,7 @@ import {useDispatch} from 'react-redux'
 
 
 import {getChampionWithEquippedItem} from '../../game/gameVariousFuncs'
-import { modifyChamp } from '../../redux/actions/initActionCreators';
+import { modifyChamp } from '../../redux/actions/champActionCreators';
 import { addItem, deleteItem } from '../../redux/actions/itemActionCreators';
 
 function hasOwnProperty<O extends object, K extends PropertyKey>(
