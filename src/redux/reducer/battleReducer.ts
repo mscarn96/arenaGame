@@ -101,6 +101,16 @@ const battleReducer = (state = initialState, action: actionTypes.BattleAction): 
                     } else return {...state}
             } else return {...state}
 
+            case actionTypes.AFFECT_ENEMY:
+                const {stat,effect} = action;
+                const {enemy} = state;
+                return {...state,
+                enemy:{
+                    ...enemy,
+                    [stat]:enemy[stat] - effect,
+                }}
+
+
             case actionTypes.INIT_BATTLE: 
                     return {
                             ...state,

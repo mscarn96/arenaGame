@@ -3,7 +3,7 @@ import {Dispatch} from 'redux'
 import { useDispatch } from 'react-redux'
 import { useSelector } from '../../redux/customHooks'
 import { basicAttack } from '../../game/battle';
-import {consumeResource, damageEnemy} from '../../redux/actions/battleActionCreators'
+import {consumeResource, damageEnemy,affectEnemy} from '../../redux/actions/battleActionCreators'
 
 type Props = {
     isPlayerTurn:boolean
@@ -12,6 +12,7 @@ type Props = {
 }
 
 const UseSkill = (
+    ////named it by capital letter so eslint doesnt recognize this function as hook
     champ:Champion,
     enemy:Enemy,
     skill:Skill,
@@ -27,11 +28,11 @@ const UseSkill = (
         } else {
             const skillResult = skill.effect(champ,enemy)
             setAttackResultText(skillResult.statusText)
-            ///REDUCER??? zrobić funkcjonalnosc spelli oslabiajacych
+            if (skillResult.effectNumber) {
+                dispatch(affectEnemy(skill.stat, skillResult.effectNumber))}
+            dispatch(consumeResource(skill.cost))
             setIsPlayerTurn(false)
         }
-
-
     } 
 
 const Moves = (props:Props) => {
@@ -55,9 +56,10 @@ const Moves = (props:Props) => {
         <div>
             <p>{attackResultText}</p>
             <button disabled={!props.isPlayerTurn} onClick={() => attack()}>Basic Attack</button>
-            {skillset.map(skill => <button key={skill.id} disabled={champ.res.current < skill.cost} onClick={() => UseSkill(
-                champ,enemy,skill,dispatch,setAttackResultText,props.setIsPlayerTurn)}>{skill.name}</button>
-            )}
+            {skillset.map(skill => <button key={skill.id}
+            disabled={champ.res.current < skill.cost}
+            onClick={() => UseSkill(
+                champ, enemy, skill, dispatch, setAttackResultText, props.setIsPlayerTurn)}>{skill.name}</button>)}
         </div>
     )
 }

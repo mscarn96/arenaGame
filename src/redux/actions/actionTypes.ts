@@ -8,6 +8,7 @@ export const DAMAGE_CHAMPION = "DAMAGE_CHAMPION"
 export const HEAL_CHAMPION = "HEAL_CHAMPION"
 export const DAMAGE_ENEMY = "DAMAGE_ENEMY"
 export const USE_RESOURCE = "USE_RESOURCE"
+export const AFFECT_ENEMY = "AFFECT_ENEMY"
 
 export const ADD_ITEM = "ADD_ITEM"
 export const DELETE_ITEM = "DELETE_ITEM"
@@ -59,12 +60,18 @@ interface DamageEnemyAction {
     damage:number
 }
 
+interface AffectEnemyAction {
+    type:typeof AFFECT_ENEMY
+    stat:Stat
+    effect:number
+}
+
 interface UseResourceAction {
     type:typeof USE_RESOURCE
     cost:number
 }
 
-export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction | UseResourceAction
+export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction | UseResourceAction | AffectEnemyAction
 
 interface AddItemAction {
     type:typeof ADD_ITEM

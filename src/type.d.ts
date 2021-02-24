@@ -29,6 +29,8 @@ interface ItemValue {
     dodgeChance?:number
 }
 
+type Stat = 'accuracy' | `critChance` |`attackDamage`|`magicPower` | `blockChance` | `armor` |`magicDef` |`dodgeChance`
+
 type ItemType = 'head' | 'body' | 'legs' | 'feet' | 'neck' | 'rightHand' | 'leftHand'
 
 
@@ -79,7 +81,7 @@ type BattleState = {
 }
 
 
-type DispatchType = (args: CreateChampionAction | ChampionModifyAction) => CreateChampionAction | ModifyChampionAction
+// type DispatchType = (args: CreateChampionAction | ChampionModifyAction) => CreateChampionAction | ModifyChampionAction
 
 enum ChampClass {
     Warrior = 0,
@@ -118,6 +120,7 @@ interface EffectSkill {
     name:string,
     id:number,
     cost:number,
+    stat:Stat,
     type:`EFFECT`,
     effect:((champ:Champion,defender:Enemy) => TurnResult),
 }

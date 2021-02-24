@@ -32,6 +32,15 @@ export const damageEnemy = (damage:number) => {
     return action
 }
 
+export const affectEnemy = (stat:Stat,effect:number) => {
+    const action:actionTypes.BattleAction = {
+        type:actionTypes.AFFECT_ENEMY,
+        stat,
+        effect
+    }
+    return action
+}
+
 export const initBattle = (champ:Champion,enemy:Enemy, place:Place) => {
     const action:actionTypes.BattleAction = {
         type:actionTypes.INIT_BATTLE,

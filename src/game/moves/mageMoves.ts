@@ -34,20 +34,19 @@ const exhaustEffect = (mage:Champion,defender:Enemy):TurnResult => {
     const randomAttNum = Math.round(Math.random() * 100);
     const randomDefNum = Math.round(Math.random() * 100);
     const {magicDef} = defender;
-    let effectNumber = magicDef - (randomAttNum - randomDefNum);
-    effectNumber = Math.floor(effectNumber)
-    if (effectNumber < magicDef) {
-        if (effectNumber < 0)
+    const effectNumber = randomAttNum - randomDefNum
+    if (effectNumber > 0) {
+        if (effectNumber > magicDef)
          {return {
             statusText:`${mage.name} used Exhaust! ${defender.name}'s Magic Defence is now 0!`,
-            effectNumber:0,
+            effectNumber:magicDef,
          }} 
          else return {
-            statusText:`${mage.name} used Exhaust! ${defender.name}'s Magic Defence is now ${effectNumber}!`,
+            statusText:`${mage.name} used Exhaust! ${defender.name}'s Magic Defence is now ${magicDef - effectNumber}!`,
             effectNumber,
          }
     } else return {statusText:`${mage.name} tried to use Exhaust but it failed!`,
-    effectNumber:magicDef}
+    effectNumber:0}
 }
 
 export const Fireball:AttackSkill = {
@@ -70,6 +69,7 @@ export const Exhaust:EffectSkill = {
     id:113,
     type:`EFFECT`,
     name:`Exhaust`,
+    stat:`magicDef`,
     effect:exhaustEffect,
     cost:50
 }

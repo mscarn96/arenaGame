@@ -5,20 +5,20 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
 import { useSelector } from '../../redux/customHooks';
 import { useHistory } from "react-router-dom";
 
 
-import { basicAttack,addExpAndcheckLvlUp,getGoldFromWin} from '../../game/battle';
-import { damageChamp, endBattle } from '../../redux/actions/battleActionCreators';
-import { modifyChamp,deleteChamp} from '../../redux/actions/champActionCreators';
+import { basicAttack,deleteBattle} from '../../game/battle';
+import { damageChamp } from '../../redux/actions/battleActionCreators';
+import { deleteChamp } from '../../redux/actions/champActionCreators';
+import { clearInventory } from '../../redux/actions/itemActionCreators';
 import {displayEnemyToasts,displayPlayerToasts} from '../ui/toasts'
 
 import Enemy from './Enemy';
 import Player from './Player';
-import { addGold, clearInventory } from '../../redux/actions/itemActionCreators';
+
 
 
 const BattleScreenWrapper = styled.div`
@@ -27,27 +27,12 @@ display:flex;
 justify-content:space-around;
 `;
 
-const DeleteButton = styled.button`
-position:absolute;
-`;
 
 
 interface Props {
     isBattleOn: boolean,
     toggleBattle: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const deleteBattle = (champ: Champion,
-    dispatch: Dispatch<any>,
-    toggleBattle: React.Dispatch<React.SetStateAction<boolean>>,
-    enemy:Enemy): void => {
-    const champToReplace = addExpAndcheckLvlUp(champ,enemy.expForWin)
-    const goldWon = getGoldFromWin(enemy.level)
-    dispatch(addGold(goldWon))
-    dispatch(modifyChamp(champToReplace));
-    toggleBattle(false);
-    dispatch(endBattle());
-};
 
 
 
@@ -75,17 +60,6 @@ const BattleScreen = (props: Props) => {
             enemy)}, [dispatch, toggleBattle,enemy]);
 
 
-    const EndBattleBtn = () => {
-        const champToReplace = useSelector(state => state.battleState.champ);
-        return (
-            <DeleteButton onClick={() => deleteBattle(
-                champToReplace,
-                dispatch,
-                toggleBattle,
-                enemy)}>End</DeleteButton>
-        );
-    };
-    
     useEffect(() => {
         const enemyTurn = setTimeout(() => {
             const playerWin = enemy.hp.currentHp <= 0
@@ -132,7 +106,7 @@ const BattleScreen = (props: Props) => {
                         <Player isPlayerTurn={isPlayerTurn} setIsPlayerTurn={setIsPlayerTurn} champ={champ} enemy={enemy} displayToast={displayPlayerToasts}/>
                         <Enemy enemy={enemy} attackResult={enemyAttackResultText} />
                     </>
-                    : <EndBattleBtn />}
+                    : null}
             </BattleScreenWrapper>
             </>
         );

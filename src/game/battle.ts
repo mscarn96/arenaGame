@@ -1,11 +1,15 @@
+import { Dispatch } from 'redux';
+
+import { endBattle } from '../redux/actions/battleActionCreators';
+import { modifyChamp} from '../redux/actions/champActionCreators';
+import { addGold} from '../redux/actions/itemActionCreators';
+
 enum ChampClass {
     Warrior = 0,
     Mage = 1,
     Hunter = 2,
     notPicked = -1,
 }
-
-
 
 
 export const basicAttack = (attacker:Champion | Enemy, defender:Champion | Enemy):AttackResult => {
@@ -27,30 +31,23 @@ export const basicAttack = (attacker:Champion | Enemy, defender:Champion | Enemy
         return result
     }
 
-    let critModifier:number = 1;
 
-    if (randomAttNum < attacker.critChance) {
-        critModifier = 2;
-    }
+    let isCrit = Math.round(Math.random() * 100) < attacker.critChance
 
     if (attacker.level > defender.level ? true : false) {
-        result.damage = randomAttNum * critModifier - (defender.armor / 2)
+        result.damage = randomAttNum * (isCrit ? 2 : 1) - (defender.armor / 2)
     } else {
-        result.damage = randomAttNum * critModifier - defender.armor
+        result.damage = randomAttNum * (isCrit ? 2 : 1)  - defender.armor
     }
 
     result.damage = Math.floor(result.damage)
 
-    if(critModifier === 2) { result.statusText = `Critical strike! Dealt ${result.damage} damage!`} else {
-        result.statusText = `Attack dealt ${result.damage} damage!`
-    }
+    if(isCrit) { result.statusText = `Critical strike! Dealt ${result.damage} damage!`}
+     else {result.statusText = `Attack dealt ${result.damage} damage!`}
 
-    if (result.damage <= 0) {
-        result.statusText = 'Attack blocked!'
+    if (result.damage <= 0) {result.statusText = 'Attack blocked!'
         return result
     }
-    
-
     
     return result;
 
@@ -106,16 +103,28 @@ const lvlUp = (champ:Champion,expToLvlUp:number):Champion => {
     }
 }
 
-export const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion => {
+const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion => {
     let champToReplace = {...champ};
     champToReplace.exp = champ.exp + expFromWin
     if (champToReplace.exp < expToLvlUp[champ.level - 1]) return champToReplace
-
     champToReplace = lvlUp(champToReplace,expToLvlUp[champ.level - 1])
     return champToReplace
     
 }
 
-export const getGoldFromWin = (enemyLevel:number):number => {
+const getGoldFromWin = (enemyLevel:number):number => {
     return enemyLevel * Math.round(Math.random() * 11)
 }
+
+export const deleteBattle = (
+    champ: Champion,
+    dispatch: Dispatch<any>,
+    toggleBattle: React.Dispatch<React.SetStateAction<boolean>>,
+    enemy:Enemy): void => {
+
+    dispatch( addGold( getGoldFromWin (enemy.level)))
+    dispatch( modifyChamp( addExpAndcheckLvlUp (champ,enemy.expForWin)));
+    toggleBattle(false);
+    dispatch(endBattle());
+
+};

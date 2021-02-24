@@ -71,7 +71,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 magicDef:20,
                 dodgeChance:8,
                 expForWin:0,
-                skillset:[mageMoves.Fireball,mageMoves.IceBlast]
+                skillset:[mageMoves.Fireball,mageMoves.Exhaust]
             }
         case 2:
                 return {
