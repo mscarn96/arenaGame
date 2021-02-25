@@ -102,17 +102,20 @@ const lvlUp = (champ:Champion,expToLvlUp:number):Champion => {
             return champToReplace;
     }
 }
+export const willLvlUp = (champ:Champion,expFromWin:number):boolean => {
+    if (champ.exp + expFromWin > expToLvlUp[champ.level - 1]) return true
+    return false
+}
 
 const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion => {
     let champToReplace = {...champ};
     champToReplace.exp = champ.exp + expFromWin
-    if (champToReplace.exp < expToLvlUp[champ.level - 1]) return champToReplace
-    champToReplace = lvlUp(champToReplace,expToLvlUp[champ.level - 1])
+    if (willLvlUp(champ,expFromWin)) return lvlUp(champToReplace,expToLvlUp[champ.level - 1])
     return champToReplace
     
 }
 
-const getGoldFromWin = (enemyLevel:number):number => {
+export const getGoldFromWin = (enemyLevel:number):number => {
     return enemyLevel * Math.round(Math.random() * 11)
 }
 
@@ -120,9 +123,10 @@ export const deleteBattle = (
     champ: Champion,
     dispatch: Dispatch<any>,
     toggleBattle: React.Dispatch<React.SetStateAction<boolean>>,
-    enemy:Enemy): void => {
+    enemy:Enemy,
+    goldEarned?:number): void => {
 
-    dispatch( addGold( getGoldFromWin (enemy.level)))
+    if (goldEarned) dispatch( addGold( goldEarned))
     dispatch( modifyChamp( addExpAndcheckLvlUp (champ,enemy.expForWin)));
     toggleBattle(false);
     dispatch(endBattle());

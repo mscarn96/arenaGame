@@ -10,14 +10,16 @@ import { useSelector } from '../../redux/customHooks';
 import { useHistory } from "react-router-dom";
 
 
-import { basicAttack,deleteBattle} from '../../game/battle';
+import { basicAttack,deleteBattle, willLvlUp,getGoldFromWin} from '../../game/battle';
 import { damageChamp } from '../../redux/actions/battleActionCreators';
 import { deleteChamp } from '../../redux/actions/champActionCreators';
 import { clearInventory } from '../../redux/actions/itemActionCreators';
 import {displayEnemyToasts,displayPlayerToasts} from '../ui/toasts'
+import {ResultInfo} from '../battleScreen/BattleResult'
 
 import Enemy from './Enemy';
 import Player from './Player';
+import BattleResult from './BattleResult';
 
 
 
@@ -37,9 +39,12 @@ interface Props {
 
 
 
+
 const BattleScreen = (props: Props) => {
     const dispatch = useDispatch();
-    const [isPlayerTurn, setIsPlayerTurn] = useState(true);
+    const [isPlayerTurn, setPlayerTurn] = useState(true);
+    const [isBattleResultVisible,setBattleResultVisible] = useState(false)
+    const [battleResultInfo,setBattleResultInfo] = useState<ResultInfo>()
     const [enemyAttackResultText, setEnemyAttackResultText] = useState('');
     const champ = useSelector(state => state.battleState.champ);
     const enemy = useSelector(state => state.battleState.enemy);
@@ -57,7 +62,9 @@ const BattleScreen = (props: Props) => {
             champ,
             dispatch,
             toggleBattle,
-            enemy)}, [dispatch, toggleBattle,enemy]);
+            enemy
+            //setBattleResultInfo = przekaz do funkcji w battle.ts 
+            )}, [dispatch, toggleBattle,enemy]);
 
 
     useEffect(() => {
@@ -65,20 +72,38 @@ const BattleScreen = (props: Props) => {
             const playerWin = enemy.hp.currentHp <= 0
             const enemyWin = champ.hp.currentHp <= 0
             if (enemyWin) {
-                handleDeleteBattle(champ);
-                toggleBattle(false);
-                gameOver();
+                setBattleResultInfo({
+                    playerWon:false,
+                    didLevelUp:false,
+                })
+                setBattleResultVisible(true)
             } else if (playerWin) {
-                const champToReplace = { ...champ };
-                champToReplace.exp = champ.exp + enemy.expForWin;
-                handleDeleteBattle(champToReplace);
-                toggleBattle(false);
+                const goldEarned = getGoldFromWin(enemy.level)
+                if (willLvlUp(champ,enemy.expForWin))
+                {
+                    setBattleResultInfo({
+                        playerWon:true,
+                        didLevelUp:true,
+                        expGained:enemy.expForWin,
+                        goldEarned
+                    })
+                    
+                } else {
+                    setBattleResultInfo({
+                        playerWon:true,
+                        didLevelUp:false,
+                        expGained:enemy.expForWin,
+                        goldEarned
+                    })
+
+                }
+                setBattleResultVisible(true)
             }else if (!isPlayerTurn) {
                 const attackResult = basicAttack(enemy, champ);
                 setEnemyAttackResultText(attackResult.statusText);
                 displayEnemyToasts(attackResult.statusText)
                 dispatch(damageChamp(attackResult.damage));
-                setIsPlayerTurn(true);
+                setPlayerTurn(true);
             }
         }, 1000);
         return () => {
@@ -90,6 +115,17 @@ const BattleScreen = (props: Props) => {
     if (enemy !== undefined) {
         return (
             <>
+            {isBattleResultVisible && battleResultInfo
+             ? <BattleResult 
+            resultInfo={battleResultInfo}
+            setVisible={setBattleResultVisible}
+            gameOver={gameOver}
+            deleteBattle={handleDeleteBattle}
+            champ={champ}
+            expForWin={enemy.expForWin}
+            toggleBattle={toggleBattle}
+             /> 
+             : null}
             <ToastContainer
                             position="bottom-left"
                             autoClose={5000}
@@ -103,7 +139,7 @@ const BattleScreen = (props: Props) => {
             <BattleScreenWrapper>
                 {props.isBattleOn
                     ? <>
-                        <Player isPlayerTurn={isPlayerTurn} setIsPlayerTurn={setIsPlayerTurn} champ={champ} enemy={enemy} displayToast={displayPlayerToasts}/>
+                        <Player isPlayerTurn={isPlayerTurn} setIsPlayerTurn={setPlayerTurn} champ={champ} enemy={enemy} displayToast={displayPlayerToasts}/>
                         <Enemy enemy={enemy} attackResult={enemyAttackResultText} />
                     </>
                     : null}
