@@ -31,7 +31,7 @@ interface ItemValue {
 
 type Stat = 'accuracy' | `critChance` |`attackDamage`|`magicPower` | `blockChance` | `armor` |`magicDef` |`dodgeChance`
 
-type ItemType = 'head' | 'body' | 'legs' | 'feet' | 'neck' | 'rightHand' | 'leftHand'
+type ItemType = 'head' | 'body' | 'feet' | 'neck' | 'rightHand' | 'leftHand'
 
 
 type Item = {
@@ -58,7 +58,6 @@ interface Champion extends Character {
     itemSlots:{
         head:Item | null
         body:Item | null
-        legs:Item | null
         feet:Item | null
         neck:Item | null
         rightHand:Item | null
@@ -126,3 +125,10 @@ interface EffectSkill {
 }
 
 type Skill = EffectSkill | AttackSkill
+
+interface ResultInfo {
+    playerWon:boolean
+    didLevelUp:boolean
+    goldEarned?:number
+    expGained?:number
+}

@@ -15,7 +15,6 @@ import { damageChamp } from '../../redux/actions/battleActionCreators';
 import { deleteChamp } from '../../redux/actions/champActionCreators';
 import { clearInventory } from '../../redux/actions/itemActionCreators';
 import {displayEnemyToasts,displayPlayerToasts} from '../ui/toasts'
-import {ResultInfo} from '../battleScreen/BattleResult'
 
 import Enemy from './Enemy';
 import Player from './Player';
@@ -127,21 +126,21 @@ const BattleScreen = (props: Props) => {
              /> 
              : null}
             <ToastContainer
-                            position="bottom-left"
-                            autoClose={5000}
-                            hideProgressBar
-                            closeOnClick={false}
-                            closeButton={false}
-                            rtl={false}
-                            pauseOnFocusLoss={false}
-                            draggable={false}
-                            pauseOnHover/>      
+            position="bottom-left"
+            autoClose={5000}
+            hideProgressBar
+            closeOnClick={false}
+            closeButton={false}
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable={false}
+            pauseOnHover/>      
             <BattleScreenWrapper>
                 {props.isBattleOn
-                    ? <>
+                    ?   <>
                         <Player isPlayerTurn={isPlayerTurn} setIsPlayerTurn={setPlayerTurn} champ={champ} enemy={enemy} displayToast={displayPlayerToasts}/>
                         <Enemy enemy={enemy} attackResult={enemyAttackResultText} />
-                    </>
+                        </>
                     : null}
             </BattleScreenWrapper>
             </>

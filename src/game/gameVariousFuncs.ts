@@ -26,9 +26,6 @@ export const getChampionWithEquippedItem = (champ:Champion, item:Item) => {
         case 'body':
             champToReplace.itemSlots.body = item;
             break;
-        case 'legs':
-            champToReplace.itemSlots.legs = item;
-            break;
         case 'feet':
             champToReplace.itemSlots.feet = item;
             break;

@@ -21,7 +21,6 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 itemSlots:{
                     head:null,
                     body:null,
-                    legs:null,
                     feet:null,
                     neck:null,
                     rightHand:null,
@@ -56,7 +55,6 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 itemSlots:{
                     head:null,
                     body:null,
-                    legs:null,
                     feet:null,
                     neck:null,
                     rightHand:null,
@@ -92,7 +90,6 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     itemSlots:{
                         head:null,
                         body:null,
-                        legs:null,
                         feet:null,
                         neck:null,
                         rightHand:null,
@@ -132,7 +129,6 @@ export const ghost:Champion = {
     itemSlots:{
         head:null,
         body:null,
-        legs:null,
         feet:null,
         neck:null,
         rightHand:null,

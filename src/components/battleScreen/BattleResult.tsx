@@ -1,11 +1,5 @@
 import styled from 'styled-components'
 
-export interface ResultInfo {
-    playerWon:boolean
-    didLevelUp:boolean
-    goldEarned?:number
-    expGained?:number
-}
 interface Props {
     resultInfo:ResultInfo
     setVisible:React.Dispatch<React.SetStateAction<boolean>>
@@ -39,7 +33,8 @@ top: 50%;
 left: 50%;
 z-index:2;
 `
-const closeBattleAndSendInfoToStore = (setVisible:React.Dispatch<React.SetStateAction<boolean>>,
+const closeBattleAndSendInfoToStore = (
+    setVisible:React.Dispatch<React.SetStateAction<boolean>>,
     champ:Champion,
     deleteBattle:(champ:Champion) => void,
     toggleBattle: React.Dispatch<React.SetStateAction<boolean>>,
