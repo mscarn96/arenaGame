@@ -1,10 +1,9 @@
 import * as actionTypes from '../actions/actionTypes'
-import {Bandana, BrodieHelmet,HeavyHelmet,BlackKnightHelmet,SamuraiHelmet} from '../../game/items/helmets'
-import {Robe,NinjaArmor,BreastPlate} from '../../game/items/armors'
+
 
 const initialState:InventoryState = {
     gold:0,
-    items:[BrodieHelmet(),Bandana(),Robe(),SamuraiHelmet(),BreastPlate(),NinjaArmor(),HeavyHelmet(),BlackKnightHelmet()]
+    items:[]
 }
 
 const itemReducer = (state = initialState, action: actionTypes.ItemAction):InventoryState => {

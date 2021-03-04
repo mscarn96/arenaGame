@@ -44,7 +44,8 @@ export const getChampionWithEquippedItem = (champ:Champion, item:Item) => {
     return champToReplace;
 }
 
-export const getNewSkill = (champ:Champion):Skill[] => {
-    const newSkillset = {...champ.skillset}
+export const getNewSkill = (champ:Champion,skill:Skill):Skill[] => {
+    const newSkillset = [...champ.skillset]
+    newSkillset.push(skill)
     return newSkillset
 }

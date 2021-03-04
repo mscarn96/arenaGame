@@ -31,8 +31,7 @@ export const basicAttack = (attacker:Champion | Enemy, defender:Champion | Enemy
         return result
     }
 
-
-    let isCrit = Math.round(Math.random() * 100) < attacker.critChance
+    const isCrit = Math.round(Math.random() * 100) < attacker.critChance
 
     if (attacker.level > defender.level ? true : false) {
         result.damage = randomAttNum * (isCrit ? 2 : 1) - (defender.armor / 2)
@@ -42,12 +41,14 @@ export const basicAttack = (attacker:Champion | Enemy, defender:Champion | Enemy
 
     result.damage = Math.floor(result.damage)
 
+    if (result.damage <= 0) {
+        result.statusText = 'Attack blocked!'
+        return result;
+    }
+
     if(isCrit) { result.statusText = `Critical strike! Dealt ${result.damage} damage!`}
      else {result.statusText = `Attack dealt ${result.damage} damage!`}
 
-    if (result.damage <= 0) {result.statusText = 'Attack blocked!'
-        return result
-    }
     
     return result;
 
@@ -102,6 +103,8 @@ const lvlUp = (champ:Champion,expToLvlUp:number):Champion => {
             return champToReplace;
     }
 }
+
+//checks if champion will lvl up after win
 export const willLvlUp = (champ:Champion,expFromWin:number):boolean => {
     if (champ.exp + expFromWin > expToLvlUp[champ.level - 1]) return true
     return false
@@ -118,7 +121,7 @@ const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion => {
 export const getGoldFromWin = (enemyLevel:number):number => {
     return enemyLevel * Math.round(Math.random() * 11)
 }
-
+///end battle
 export const deleteBattle = (
     champ: Champion,
     dispatch: Dispatch<any>,

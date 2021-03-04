@@ -42,6 +42,7 @@ type Item = {
     value:ItemValue
     description:string
     isEquipped:boolean
+    // imgPath:string
 }
 
 

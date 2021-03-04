@@ -1,65 +1,60 @@
-import React from 'react'
+import React from "react";
 
-import styled from 'styled-components';
-
-
+import styled from "styled-components";
 
 interface ContainterProps {
-    width:number
+  width: number;
 }
 
 interface FillerProps {
-    bgcolor:string
-    completed:number
+  bgcolor: string;
+  completed: number;
 }
 
 interface OtherProps {
-    bgcolor:string
-    current:number
-    total:number
+  bgcolor: string;
+  current: number;
+  total: number;
 }
 
-type Props = ContainterProps & OtherProps
-
+type Props = ContainterProps & OtherProps;
 
 const Container = styled.div<ContainterProps>`
-height: 20px;
-width: ${props => props.width}%;
-background-color: #e0e0de;
-border: 1px solid black;
-border-radius: 50px;
-margin: 50px;
-`
+  height: 20px;
+  width: ${(props) => props.width}%;
+  background-color: #e0e0de;
+  border: 1px solid black;
+  border-radius: 50px;
+  margin: 50px;
+`;
 const Label = styled.span`
-padding:5px;
-color:black;
-font-weight:bold;
-`
+  padding: 5px;
+  color: black;
+  font-weight: bold;
+`;
 
 const Filler = styled.div<FillerProps>`
-height: 100%;
-width: ${props => props.completed}%;
-background-color: ${props => props.bgcolor};
-border-radius: inherit;
-text-align: center;
-transition:width 1s ease-in-out;
-font-family:sans-serif;
-`
-
+  height: 100%;
+  width: ${(props) => props.completed}%;
+  background-color: ${(props) => props.bgcolor};
+  border-radius: inherit;
+  text-align: center;
+  transition: width 1s ease-in-out;
+  font-family: sans-serif;
+`;
 
 const ProgressBar = (props: Props) => {
+  const { bgcolor, current, total, width } = props;
 
-    const { bgcolor, current, total, width } = props;
+  const completed = Math.round((current / total) * 100);
 
-    const completed = Math.round(current / total * 100);
-
-    return (
-        <Container width={width}>
+  return (
+    <Container width={width}>
       <Filler completed={completed} bgcolor={bgcolor}>
-       <Label>{`${completed}%`}</Label>
+        <Label>{`${completed}%`}</Label>
       </Filler>
     </Container>
-    )
-}
+  );
+};
 
-export default ProgressBar
+export default ProgressBar;

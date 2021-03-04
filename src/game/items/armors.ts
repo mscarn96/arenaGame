@@ -1,5 +1,27 @@
 import { v4 as uuidv4 } from 'uuid';
 
+// const armorSvgs = require.context( '../../images/items/armorImages', true, /\.svg$/ )
+
+// const allArmorFilepaths = armorSvgs.keys();
+
+// const imagePath = allArmorFilepaths[0]
+// const image = armorSvgs(imagePath).default
+
+// const getIcons = (svgs: __WebpackModuleApi.RequireContext) => {
+//     const icons:any[] = [];
+//     const allIconsFilepaths = svgs.keys()
+//     allIconsFilepaths.forEach((svg, index) => {
+//         icons.push(svgs(svg).default)
+//     })
+//     return icons
+
+// }
+
+//THIS WORKS ^^
+//ZROB OGOLNA FUNKCJE I DOPASUJ DO ITEMKOW
+
+
+
 export const MailShirt = ():Item => {
     const id = uuidv4();
     return {
