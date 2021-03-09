@@ -35,7 +35,7 @@ export const MailShirt = ():Item => {
         description:'Small metal rings tied together to form a protective layer on top of the skin.. Armor +6',
         isEquipped:false,
     }}
-//https://game-icons.net/1x1/lorc/mail-shirt.html
+// https://game-icons.net/1x1/lorc/mail-shirt.html
 
 export const LeatherArmor = ():Item => {
     const id = uuidv4();
@@ -50,7 +50,7 @@ export const LeatherArmor = ():Item => {
         description:'A chest protection for all kind of warriors with a small utility belt. Armor +10',
         isEquipped:false,
     }}
-//https://game-icons.net/1x1/delapouite/leather-armor.html
+// https://game-icons.net/1x1/delapouite/leather-armor.html
 
 export const Loincloth = ():Item => {
     const id = uuidv4();

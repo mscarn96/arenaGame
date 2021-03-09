@@ -96,7 +96,7 @@ const BattleScreen = (props: Props) => {
         dispatch(damageChamp(attackResult.damage));
         setPlayerTurn(true);
       }
-    }, 1000);
+    }, 2000);
     return () => {
       clearTimeout(enemyTurn);
     };
@@ -126,7 +126,7 @@ const BattleScreen = (props: Props) => {
         ) : null}
         <ToastContainer
           position="bottom-left"
-          autoClose={5000}
+          autoClose={2000}
           hideProgressBar
           closeOnClick={false}
           closeButton={false}

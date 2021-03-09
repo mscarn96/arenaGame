@@ -1,17 +1,23 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { useSelector } from "../../redux/customHooks";
 import { buyItem } from "../main/Market/Market";
 
 // const armorSvgs = require.context( '../../images/items/armorImages', true, /\.svg$/ )
 
-interface Props {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   item: Item;
+  buyable: boolean;
 }
 
 interface InfoProps {
   showInfo: boolean;
   name: string;
   description: string;
+  item: Item;
+  buyable: boolean;
+  setShowInfo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ItemContainer = styled.div`
@@ -33,52 +39,76 @@ const ItemInfoContainer = styled.div<{ visible: boolean }>`
   position: fixed;
 `;
 
-const ItemInfo = ({ showInfo, name, description }: InfoProps): JSX.Element => {
+const ItemInfo = ({
+  item,
+  buyable,
+  showInfo,
+  name,
+  description,
+  setShowInfo,
+}: InfoProps): JSX.Element => {
+  const gold = useSelector((state) => state.InventoryState.gold);
+  const dispatch = useDispatch();
+
   return (
     <ItemInfoContainer visible={showInfo}>
       <h1>{name}</h1>
       <p>{description}</p>
+      {buyable ? (
+        <button onClick={() => buyItem(gold, item, setShowInfo, dispatch)}>
+          Buy Item
+        </button>
+      ) : null}
     </ItemInfoContainer>
   );
 };
 
-////////zrob zeby klik poza wylaczal itemek
-
-function useOutsideAlerter(ref: React.RefObject<Element>) {
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Element)) {
-        console.log("You clicked outside of me!");
-      }
+const checkChildren = (ref: HTMLDivElement, event: MouseEvent) => {
+  const elements = [].slice.call(ref.children);
+  for (let element of elements) {
+    if (element === event.target) {
+      return true;
     }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
-}
-
-////zrob rozdzielenie refa na pojedynczy item
-/// https://stackoverflow.com/questions/54940399/how-target-dom-with-react-useref-in-map/55105849
-
-const Item = ({ item }: Props) => {
+  }
+};
+const Item = (props: Props) => {
+  const { item, buyable } = props;
   const [showInfo, setShowInfo] = useState(false);
-  const itemRef = useRef(null);
-  useOutsideAlerter(itemRef);
+  const itemRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      let flag = false;
+      if (itemRef.current !== null) {
+        if (itemRef.current === event.target) {
+          flag = true;
+        } else if (checkChildren(itemRef.current, event)) {
+          flag = true;
+        } else if (itemRef.current.lastElementChild instanceof HTMLDivElement) {
+          if (checkChildren(itemRef.current.lastElementChild, event)) {
+            flag = true;
+          }
+        }
+      }
+      if (!flag) setShowInfo(false);
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [showInfo]);
 
   return (
-    <ItemContainer
-      ref={itemRef}
-      // onMouseEnter={e => {setShowInfo(true)}}
-      // onMouseLeave={e => {setShowInfo(false)}}
-    >
+    <ItemContainer id={item.id} ref={itemRef}>
       <ItemButton onClick={(e) => setShowInfo((prev) => !prev)} />
       <p>{item.name}</p>
       <ItemInfo
+        item={item}
+        buyable={buyable}
         showInfo={showInfo}
         name={item.name}
         description={item.description}
+        setShowInfo={setShowInfo}
       />
     </ItemContainer>
   );

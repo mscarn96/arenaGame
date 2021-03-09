@@ -3,7 +3,7 @@ import {toast} from 'react-toastify'
 export const displayPlayerToasts = (text:string) => {
     toast.warn(text, {
         position: "bottom-left",
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
@@ -15,7 +15,7 @@ export const displayPlayerToasts = (text:string) => {
 export const displayEnemyToasts = (text:string) => {
     toast.error(text, {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,

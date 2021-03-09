@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ArmorShop from "./ArmorShop";
 import WeaponShop from "./WeaponShop";
-import UseablesShop from "./WeaponShop";
+import Item from "../../ui/Item";
 import { addItem, spendGold } from "../../../redux/actions/itemActionCreators";
 
 const Navigation = styled.ul`
@@ -18,15 +18,22 @@ const Navigation = styled.ul`
 `;
 const notify = (text: string) => toast.dark(text);
 
+export const renderItem = (itemF: () => Item): JSX.Element => {
+  const item = itemF();
+  return <Item key={item.id} item={item} buyable={true} />;
+};
+
 export const buyItem = (
   currentGold: number,
   item: Item,
+  setShowInfo: React.Dispatch<React.SetStateAction<boolean>>,
   dispatch: Dispatch<any>
 ) => {
   if (currentGold >= item.cost) {
     dispatch(addItem(item));
     dispatch(spendGold(item.cost));
     notify(`You just bought ${item.name} for ${item.cost} gold!`);
+    setShowInfo(false);
   } else notify(`Not enough gold!`);
 };
 
@@ -40,9 +47,6 @@ const Market = () => {
           </li>
           <li>
             <Link to="weaponShop">Weapon Shop</Link>
-          </li>
-          <li>
-            <Link to="useablesShop">Useables Shop</Link>
           </li>
         </Navigation>
         <ToastContainer
@@ -63,9 +67,6 @@ const Market = () => {
           </Route>
           <Route path="/weaponShop">
             <WeaponShop />
-          </Route>
-          <Route path="/useablesShop">
-            <UseablesShop />
           </Route>
         </Switch>
       </div>

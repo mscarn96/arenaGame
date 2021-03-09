@@ -7,15 +7,17 @@ import { initBattle } from "../../redux/actions/battleActionCreators";
 
 import BattleScreen from "../battleScreen/BattleScreen";
 import graveyardMobs from "../../game/monsters/graveyardMobs";
+import forestMobs from "../../game/monsters/forestMobs";
 import Graveyard from "../../game/places/Graveyard";
 
 const startBattle = (
   dispatch: Dispatch<any>,
   setIsBattleOn: React.Dispatch<React.SetStateAction<boolean>>,
-  champ: Champion
+  champ: Champion,
+  mobs: Character[]
 ) => {
   ///get random enemy from given set
-  const enemy = graveyardMobs[Math.floor(Math.random() * graveyardMobs.length)];
+  const enemy = mobs[Math.floor(Math.random() * graveyardMobs.length)];
   const place = Graveyard;
   setIsBattleOn(true);
   dispatch(initBattle(champ, enemy, place));
@@ -32,10 +34,20 @@ const Wild = () => {
         <BattleScreen isBattleOn={isBattleOn} toggleBattle={setIsBattleOn} />
       ) : (
         <div>
-          <button onClick={() => startBattle(dispatch, setIsBattleOn, champ)}>
+          <button
+            onClick={() =>
+              startBattle(dispatch, setIsBattleOn, champ, graveyardMobs)
+            }
+          >
             Explore Graveyard - Levels 1 - 3
           </button>
-          <button>Explore Forest - Levels 3 - 5</button>
+          <button
+            onClick={() =>
+              startBattle(dispatch, setIsBattleOn, champ, forestMobs)
+            }
+          >
+            Explore Forest - Levels 3 - 5
+          </button>
         </div>
       )}
     </div>
