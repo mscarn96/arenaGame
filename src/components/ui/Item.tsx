@@ -70,6 +70,7 @@ const checkChildren = (ref: HTMLDivElement, event: MouseEvent) => {
       return true;
     }
   }
+  return false;
 };
 const Item = (props: Props) => {
   const { item, buyable } = props;
@@ -78,19 +79,21 @@ const Item = (props: Props) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      let flag = false;
+      let isClickedInside = false;
       if (itemRef.current !== null) {
-        if (itemRef.current === event.target) {
-          flag = true;
-        } else if (checkChildren(itemRef.current, event)) {
-          flag = true;
-        } else if (itemRef.current.lastElementChild instanceof HTMLDivElement) {
-          if (checkChildren(itemRef.current.lastElementChild, event)) {
-            flag = true;
-          }
+        if (
+          itemRef.current === event.target ||
+          checkChildren(itemRef.current, event)
+        ) {
+          isClickedInside = true;
+        } else if (
+          itemRef.current.lastElementChild instanceof HTMLDivElement &&
+          checkChildren(itemRef.current.lastElementChild, event)
+        ) {
+          isClickedInside = true;
         }
       }
-      if (!flag) setShowInfo(false);
+      if (!isClickedInside) setShowInfo(false);
     };
 
     document.addEventListener("click", handleClickOutside);

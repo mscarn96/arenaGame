@@ -11,6 +11,26 @@ import { createChamp } from "../../redux/actions/champActionCreators";
 import Main from "../main/Main";
 import { useSelector } from "../../redux/customHooks";
 
+import styled from "styled-components";
+import { ButtonStyles } from "../ui/globalStyles";
+
+const StartMenuWrapper = styled.div`
+  div {
+    display: grid;
+    justify-items: center;
+  }
+`;
+
+const HelpButton = styled.button`
+  ${ButtonStyles};
+  position: fixed;
+  margin: 5px;
+  top: 0%;
+  right: 0%;
+  font-family: "Cormorant Unicase", sans-serif;
+  font-size: 1.2rem;
+`;
+
 const StartMenu = () => {
   const [isHelpActive, setIsHelpActive] = useState<boolean>(false);
   const [isCharSelected, setIsCharSelected] = useState<boolean>(false);
@@ -55,7 +75,8 @@ const StartMenu = () => {
         {checkChamp() ? (
           <Main />
         ) : (
-          <div>
+          <StartMenuWrapper>
+            <h1>Create New Character</h1>
             <CreateChar
               name={name}
               handleNameChange={handleNameChange}
@@ -64,9 +85,9 @@ const StartMenu = () => {
               handleClassChange={handleClassChange}
               isCharSelected={isCharSelected}
             />
-            <button onClick={handleHelpButton}>Help</button>
+            <HelpButton onClick={handleHelpButton}>Help</HelpButton>
             {isHelpActive ? <Help /> : null}
-          </div>
+          </StartMenuWrapper>
         )}
       </Route>
     </Router>

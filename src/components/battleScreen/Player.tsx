@@ -7,21 +7,16 @@ import Moves from "./Moves";
 import ProgressBar from "../ui/ProgressBar";
 
 const getResBarColor = (champ: Champion | null): string => {
-  let color: string = "";
   switch (champ?.res.name) {
     case "mana":
-      color = "blue";
-      break;
+      return "blue";
     case "rage":
-      color = "red";
-      break;
+      return "red";
     case "focus":
-      color = "yellow";
-      break;
+      return "yellow";
     default:
-      color = "gray";
+      return "gray";
   }
-  return color;
 };
 
 type Props = {
