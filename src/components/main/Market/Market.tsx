@@ -2,8 +2,7 @@ import { Link, Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import styled from "styled-components";
 import { Dispatch } from "redux";
 
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 import ArmorShop from "./ArmorShop";
 import WeaponShop from "./WeaponShop";
@@ -18,9 +17,18 @@ const Navigation = styled.ul`
 `;
 const notify = (text: string) => toast.dark(text);
 
-export const renderItem = (itemF: () => Item): JSX.Element => {
+export const renderItem = (itemF: () => Item, champ: Champion): JSX.Element => {
   const item = itemF();
-  return <Item key={item.id} item={item} buyable={true} />;
+  return (
+    <Item
+      key={item.id}
+      champ={champ}
+      item={item}
+      buyable={true}
+      sellable={false}
+      wearable={false}
+    />
+  );
 };
 
 export const buyItem = (
@@ -49,17 +57,6 @@ const Market = () => {
             <Link to="weaponShop">Weapon Shop</Link>
           </li>
         </Navigation>
-        <ToastContainer
-          position="bottom-left"
-          autoClose={5000}
-          hideProgressBar
-          closeOnClick={false}
-          closeButton={false}
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable={false}
-          pauseOnHover
-        />
 
         <Switch>
           <Route path="/armorShop">

@@ -1,9 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/customHooks";
 import { useHistory } from "react-router-dom";
@@ -124,17 +121,6 @@ const BattleScreen = (props: Props) => {
             toggleBattle={toggleBattle}
           />
         ) : null}
-        <ToastContainer
-          position="bottom-left"
-          autoClose={2000}
-          hideProgressBar
-          closeOnClick={false}
-          closeButton={false}
-          rtl={false}
-          pauseOnFocusLoss={false}
-          draggable={false}
-          pauseOnHover
-        />
         <BattleScreenWrapper>
           {props.isBattleOn ? (
             <>

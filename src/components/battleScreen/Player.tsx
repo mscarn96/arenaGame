@@ -6,7 +6,7 @@ import Inventory from "./Inventory";
 import Moves from "./Moves";
 import ProgressBar from "../ui/ProgressBar";
 
-const getResBarColor = (champ: Champion | null): string => {
+export const getResBarColor = (champ: Champion | null): string => {
   switch (champ?.res.name) {
     case "mana":
       return "blue";

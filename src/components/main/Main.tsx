@@ -1,4 +1,3 @@
-import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import styled from "styled-components";
@@ -10,12 +9,30 @@ import Tavern from "./Tavern";
 import Wild from "./Wild";
 import Arena from "./Arena";
 import Character from "./Character";
+import { colors } from "../ui/globalStyles";
 
 const Navigation = styled.ul`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin: 15px;
+  flex-wrap: wrap;
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 0;
+  justify-content: space-around;
+  list-style: none;
+  text-decoration: none;
+  color: ${colors.lighterBlue};
+
+  li a {
+    color: ${colors.lighterBlue};
+    text-decoration: none;
+    margin: 5px;
+  }
+
+  li a:visited {
+    color: ${colors.lighterBlue};
+    text-decoration: none;
+  }
 `;
 
 const Main = () => {
@@ -24,25 +41,25 @@ const Main = () => {
       <div>
         <Navigation>
           <li>
-            <Link to="character">character</Link>
+            <Link to="character">Character</Link>
           </li>
           <li>
-            <Link to="practice">practice</Link>
+            <Link to="practice">Practice</Link>
           </li>
           <li>
-            <Link to="market">market</Link>
+            <Link to="market">Market</Link>
           </li>
           <li>
-            <Link to="tavern">tavern</Link>
+            <Link to="tavern">Tavern</Link>
           </li>
           <li>
-            <Link to="wild">wild</Link>
+            <Link to="wild">Wild</Link>
           </li>
           <li>
-            <Link to="arena">arena</Link>
+            <Link to="arena">Arena</Link>
           </li>
           <li>
-            <Link to="tower">tower</Link>
+            <Link to="tower">Tower</Link>
           </li>
         </Navigation>
 

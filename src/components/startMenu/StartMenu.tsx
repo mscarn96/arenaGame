@@ -13,11 +13,16 @@ import { useSelector } from "../../redux/customHooks";
 
 import styled from "styled-components";
 import { ButtonStyles } from "../ui/globalStyles";
+import { toast } from "react-toastify";
 
 const StartMenuWrapper = styled.div`
   div {
     display: grid;
     justify-items: center;
+  }
+  h1 {
+    font-size: 1.8rem;
+    text-align: center;
   }
 `;
 
@@ -46,7 +51,7 @@ const StartMenu = () => {
 
   const handleClassChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setClassPicked(Number(event.target.value));
-    if (name.length > 3) {
+    if (name.length > 2) {
       setIsCharSelected(true);
     } else {
       setIsCharSelected(false);
@@ -55,7 +60,7 @@ const StartMenu = () => {
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
-    if (name.length > 3 && classPicked !== -1) {
+    if (name.length > 2 && classPicked !== -1) {
       setIsCharSelected(true);
     } else {
       setIsCharSelected(false);
@@ -64,7 +69,15 @@ const StartMenu = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(createChamp(name, classPicked));
+    if (isCharSelected) {
+      dispatch(createChamp(name, classPicked));
+    } else {
+      if (name.length <= 3) {
+        toast.error("Name must contain at least 3 characters");
+      } else {
+        toast.error("Please choose class!");
+      }
+    }
   };
 
   const checkChamp = () => (champ.champClass === -1 ? false : true);
@@ -87,6 +100,7 @@ const StartMenu = () => {
             />
             <HelpButton onClick={handleHelpButton}>Help</HelpButton>
             {isHelpActive ? <Help /> : null}
+            {}
           </StartMenuWrapper>
         )}
       </Route>

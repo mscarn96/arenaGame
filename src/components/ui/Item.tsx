@@ -1,14 +1,93 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
+
 import styled from "styled-components";
+
+import { Dispatch } from "redux";
+import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/customHooks";
+
 import { buyItem } from "../main/Market/Market";
+import { getChampionWithEquippedItem } from "../../game/gameVariousFuncs";
+
+import { modifyChamp } from "../../redux/actions/champActionCreators";
+import { addItem, deleteItem } from "../../redux/actions/itemActionCreators";
 
 // const armorSvgs = require.context( '../../images/items/armorImages', true, /\.svg$/ )
+
+///checks if the object has this specific property,
+//so typescript will pass the loop through champion properties
+function hasOwnProperty<O extends object, K extends PropertyKey>(
+  obj: O,
+  key: K
+): obj is O & Record<K, unknown> {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+//checks if click target is one of a children of given div
+const checkChildren = (ref: HTMLDivElement, event: MouseEvent) => {
+  const elements = [].slice.call(ref.children);
+  for (let element of elements) {
+    if (element === event.target) {
+      return true;
+    }
+  }
+  return false;
+};
+
+const addStatsFromItem = (champ: Champion, item: Item) => {
+  const properties = Object.entries(item.value);
+
+  properties.forEach(([key, value]) => {
+    if (hasOwnProperty(champ, key)) {
+      champ[key] = champ[key] + value;
+    }
+  });
+};
+
+const removeStatsFromItem = (champ: Champion, item: Item) => {
+  const properties = Object.entries(item.value);
+
+  properties.forEach(([key, value]) => {
+    if (hasOwnProperty(champ, key)) {
+      const currentValue = champ[key];
+      if (typeof currentValue === "number") {
+        champ[key] = currentValue - value;
+      }
+    }
+  });
+};
+
+const unequipItem = (champ: Champion, item: Item, dispatch: Dispatch) => {
+  const champToReplace = { ...champ };
+  item.isEquipped = false;
+  champToReplace.itemSlots[item.type] = null;
+  removeStatsFromItem(champToReplace, item);
+  dispatch(addItem(item));
+  dispatch(modifyChamp(champToReplace));
+};
+
+const equipItem = (champ: Champion, item: Item, dispatch: Dispatch) => {
+  const itemToInventory = champ.itemSlots[item.type];
+  let champToReplace = { ...champ };
+  if (itemToInventory !== null) {
+    itemToInventory.isEquipped = false;
+    champToReplace.itemSlots[itemToInventory.type] = null;
+    removeStatsFromItem(champToReplace, itemToInventory);
+    dispatch(addItem(itemToInventory));
+  }
+  item.isEquipped = true;
+  addStatsFromItem(champToReplace, item);
+  champToReplace = getChampionWithEquippedItem(champToReplace, item);
+  dispatch(modifyChamp(champToReplace));
+  dispatch(deleteItem(item));
+};
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   item: Item;
   buyable: boolean;
+  sellable: boolean;
+  wearable: boolean;
+  champ: Champion;
 }
 
 interface InfoProps {
@@ -17,6 +96,8 @@ interface InfoProps {
   description: string;
   item: Item;
   buyable: boolean;
+  sellable: boolean;
+  wearable: boolean;
   setShowInfo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -48,6 +129,7 @@ const ItemInfo = ({
   setShowInfo,
 }: InfoProps): JSX.Element => {
   const gold = useSelector((state) => state.InventoryState.gold);
+  const champ = useSelector((state) => state.champion.currentChamp);
   const dispatch = useDispatch();
 
   return (
@@ -59,23 +141,24 @@ const ItemInfo = ({
           Buy Item
         </button>
       ) : null}
+      {item.isEquipped ? (
+        <button onClick={() => unequipItem(champ, item, dispatch)}>
+          Unequip Item
+        </button>
+      ) : (
+        <button onClick={() => equipItem(champ, item, dispatch)}>
+          Equip Item
+        </button>
+      )}
     </ItemInfoContainer>
   );
 };
 
-const checkChildren = (ref: HTMLDivElement, event: MouseEvent) => {
-  const elements = [].slice.call(ref.children);
-  for (let element of elements) {
-    if (element === event.target) {
-      return true;
-    }
-  }
-  return false;
-};
 const Item = (props: Props) => {
-  const { item, buyable } = props;
+  const { item, buyable, sellable, wearable } = props;
   const [showInfo, setShowInfo] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -108,6 +191,8 @@ const Item = (props: Props) => {
       <ItemInfo
         item={item}
         buyable={buyable}
+        sellable={sellable}
+        wearable={wearable}
         showInfo={showInfo}
         name={item.name}
         description={item.description}

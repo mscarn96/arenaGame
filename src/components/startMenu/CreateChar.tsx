@@ -55,10 +55,7 @@ const CreateChar = (props: Props) => {
           <option value={1}>Mage</option>
           <option value={2}>Hunter</option>
         </select>
-        <button disabled={!props.isCharSelected} type="submit">
-          {" "}
-          Start Game
-        </button>
+        <button type="submit"> Start Game</button>
       </form>
     </CreateCharContainer>
   );

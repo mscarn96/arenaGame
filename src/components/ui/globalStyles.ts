@@ -23,7 +23,6 @@ background: transparent;
 `
  
 const GlobalStyle = createGlobalStyle`
-  
   body {
     margin: 0;
     padding: 0;
@@ -31,12 +30,12 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
   background-size:auto;
   background-position: top center;
-    
+    overflow:hidden;
   }
-  #root {
+  .App {
     padding:5%;
-    width: 75%;
-    height: 75%;
+    width: 90%;
+    height: 90%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -46,7 +45,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Redressed', serif;
     font-size:18px;
     box-shadow: 0px 0px 10px 5px rgba(59, 63, 68, 0.8);
-
+    overflow:hidden;
+  }
+  .Toastify__toast {
+    margin:15px;
+    width:75%;
   }
 `;
  
