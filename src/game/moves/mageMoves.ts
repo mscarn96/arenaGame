@@ -49,6 +49,41 @@ const exhaustEffect = (mage:Champion,defender:Enemy):TurnResult => {
     effectNumber:0}
 }
 
+const magicBarrierEffect = (mage:Champion,defender:Enemy):TurnResult => {
+    const randomAttNum = Math.round(Math.random() * 100);
+    const randomDefNum = Math.round(Math.random() * 100);
+    const {attackDamage} = defender;
+    const effectNumber = randomAttNum - randomDefNum
+    if (effectNumber > 0) {
+        if (effectNumber > attackDamage)
+         {return {
+            statusText:`${mage.name} used Magic Barrier! ${defender.name}'s Attack Damage is now ${Math.floor(attackDamage / 2)}!`,
+            effectNumber:Math.floor(attackDamage / 2),
+         }} 
+         else return {
+            statusText:`${mage.name} used Magic Barrier! ${defender.name}'s Attack Damage is now ${Math.floor(attackDamage - attackDamage / 3)}!`,
+            effectNumber,
+         }
+    } else return {statusText:`${mage.name} tried to use Magic Barrier but it failed!`,
+    effectNumber:0}
+}
+
+const lightningBoltEffect = (mage:Champion,defender:Enemy):AttackResult => {
+    const randomAttNum = Math.round(Math.random() * 160);
+    const randomDefNum = Math.round(Math.random() * 100);
+    let damage = (mage.magicPower * randomAttNum) / 25 - (defender.magicDef * randomDefNum) / 50;
+    damage = Math.floor(damage)
+    const isDamagePositive = damage > 1;
+    const statusText = `${mage.name} used Lightning Bolt! It dealt ${isDamagePositive ? damage : 1} damage!`
+    if (isDamagePositive) {return {
+        statusText,
+        damage
+    }} else return {
+        statusText,
+        damage:1
+    }
+}
+
 export const Fireball:AttackSkill = {
     id:111,
     type:`DAMAGE`,
@@ -72,4 +107,21 @@ export const Exhaust:EffectSkill = {
     stat:`magicDef`,
     effect:exhaustEffect,
     cost:50
+}
+
+export const MagicBarrier:EffectSkill = {
+    id:114,
+    type:`EFFECT`,
+    name:`Magic Barrier`,
+    stat:`attackDamage`,
+    effect:magicBarrierEffect,
+    cost:60
+}
+
+export const LightningBolt:AttackSkill = {
+    id:115,
+    type:`DAMAGE`,
+    name:`Lightning Bolt`,
+    effect:lightningBoltEffect,
+    cost:100,
 }

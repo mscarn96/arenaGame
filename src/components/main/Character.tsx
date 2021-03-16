@@ -4,10 +4,10 @@ import { useSelector } from "../../redux/customHooks";
 
 import ProgressBar from "../ui/ProgressBar";
 import { expToLvlUp } from "../../game/battle";
-import Item from "../ui/Item";
+import Item from "../battleScreen/Item";
 import { getResBarColor } from "../battleScreen/Player";
 import { colors } from "../ui/globalStyles";
-import Inventory from "../ui/Inventory";
+import Inventory from "../battleScreen/Inventory";
 
 const CharacterWrapper = styled.div`
   display: grid;

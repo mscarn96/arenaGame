@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import ArmorShop from "./ArmorShop";
 import WeaponShop from "./WeaponShop";
-import Item from "../../ui/Item";
+import Item from "../../battleScreen/Item";
 import { addItem, spendGold } from "../../../redux/actions/itemActionCreators";
 
 const Navigation = styled.ul`

@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 import { useSelector } from "../../redux/customHooks";
-import { colors } from "./globalStyles";
+import { colors } from "../ui/globalStyles";
 import Item from "./Item";
 
 interface Props {

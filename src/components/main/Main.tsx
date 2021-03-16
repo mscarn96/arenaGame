@@ -7,7 +7,6 @@ import Practice from "./Practice";
 import Market from "./Market/Market";
 import Tavern from "./Tavern";
 import Wild from "./Wild";
-import Arena from "./Arena";
 import Character from "./Character";
 import { colors } from "../ui/globalStyles";
 
@@ -56,9 +55,6 @@ const Main = () => {
             <Link to="wild">Wild</Link>
           </li>
           <li>
-            <Link to="arena">Arena</Link>
-          </li>
-          <li>
             <Link to="tower">Tower</Link>
           </li>
         </Navigation>
@@ -78,9 +74,6 @@ const Main = () => {
           </Route>
           <Route path="/wild">
             <Wild />
-          </Route>
-          <Route path="/arena">
-            <Arena />
           </Route>
           <Route path="/tower">
             <Tower />

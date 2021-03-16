@@ -11,7 +11,7 @@ import { getChampionWithEquippedItem } from "../../game/gameVariousFuncs";
 
 import { modifyChamp } from "../../redux/actions/champActionCreators";
 import { addItem, deleteItem } from "../../redux/actions/itemActionCreators";
-import { colors } from "./globalStyles";
+import { colors } from "../ui/globalStyles";
 
 // const armorSvgs = require.context( '../../images/items/armorImages', true, /\.svg$/ )
 

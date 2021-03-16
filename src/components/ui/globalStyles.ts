@@ -28,8 +28,8 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     background-image:url(${backgroundImg});
     background-repeat: no-repeat;
-  background-size:auto;
-  background-position: top center;
+    background-size:auto;
+    background-position: top center;
     overflow:hidden;
   }
   .App {

@@ -1,5 +1,9 @@
 ## TODO
 
+-do limit of 12 items in inventory
+
+-sell items function
+
 -item icons
 
 -game images:
@@ -14,5 +18,7 @@
 -tower mobs and bg
 
 -tavern
+
+-css for bigger screens
 
 ## THATS IT FOR NOW
