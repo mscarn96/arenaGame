@@ -11,6 +11,7 @@ import { getChampionWithEquippedItem } from "../../game/gameVariousFuncs";
 
 import { modifyChamp } from "../../redux/actions/champActionCreators";
 import { addItem, deleteItem } from "../../redux/actions/itemActionCreators";
+import { colors } from "./globalStyles";
 
 // const armorSvgs = require.context( '../../images/items/armorImages', true, /\.svg$/ )
 
@@ -113,12 +114,45 @@ const ItemButton = styled.button`
 `;
 const ItemInfoContainer = styled.div<{ visible: boolean }>`
   display: ${(props) => (props.visible ? "block" : "none")};
-  background-color: black;
+  background-color: black !important;
   color: white;
-  width: 200px;
-  height: 200px;
+  width: 250px !important;
+  height: 250px !important;
   position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  button {
+    margin: 15px;
+    background-color: ${colors.darkBlue};
+    color: ${colors.lighterBlue};
+    border: 1px solid ${colors.lighterBlue};
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+
+  #closeBtn {
+    position: fixed;
+    top: 0%;
+    right: 5%;
+  }
+  h1 {
+    margin: 10px;
+  }
+  p {
+    margin: 10px;
+  }
 `;
+
+const TradeItemButton = (item: Item, champ: Champion, dispatch: Dispatch) =>
+  item.isEquipped ? (
+    <button onClick={() => unequipItem(champ, item, dispatch)}>
+      Unequip Item
+    </button>
+  ) : (
+    <button onClick={() => equipItem(champ, item, dispatch)}>Equip Item</button>
+  );
 
 const ItemInfo = ({
   item,
@@ -127,29 +161,25 @@ const ItemInfo = ({
   name,
   description,
   setShowInfo,
+  wearable,
 }: InfoProps): JSX.Element => {
   const gold = useSelector((state) => state.InventoryState.gold);
   const champ = useSelector((state) => state.champion.currentChamp);
   const dispatch = useDispatch();
 
   return (
-    <ItemInfoContainer visible={showInfo}>
+    <ItemInfoContainer visible={showInfo} id={`info`}>
       <h1>{name}</h1>
       <p>{description}</p>
+      <button id={`closeBtn`} onClick={() => setShowInfo(false)}>
+        X
+      </button>
       {buyable ? (
         <button onClick={() => buyItem(gold, item, setShowInfo, dispatch)}>
           Buy Item
         </button>
       ) : null}
-      {item.isEquipped ? (
-        <button onClick={() => unequipItem(champ, item, dispatch)}>
-          Unequip Item
-        </button>
-      ) : (
-        <button onClick={() => equipItem(champ, item, dispatch)}>
-          Equip Item
-        </button>
-      )}
+      {wearable ? TradeItemButton(item, champ, dispatch) : null}
     </ItemInfoContainer>
   );
 };
@@ -158,9 +188,9 @@ const Item = (props: Props) => {
   const { item, buyable, sellable, wearable } = props;
   const [showInfo, setShowInfo] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
-  const dispatch = useDispatch();
 
   useEffect(() => {
+    //close item window when clicked outside of it
     const handleClickOutside = (event: MouseEvent) => {
       let isClickedInside = false;
       if (itemRef.current !== null) {
@@ -187,7 +217,6 @@ const Item = (props: Props) => {
   return (
     <ItemContainer id={item.id} ref={itemRef}>
       <ItemButton onClick={(e) => setShowInfo((prev) => !prev)} />
-      <p>{item.name}</p>
       <ItemInfo
         item={item}
         buyable={buyable}

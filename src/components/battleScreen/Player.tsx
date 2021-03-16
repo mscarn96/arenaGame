@@ -2,7 +2,6 @@ import React from "react";
 
 import { getChampClass } from "../../game/gameVariousFuncs";
 
-import Inventory from "./Inventory";
 import Moves from "./Moves";
 import ProgressBar from "../ui/ProgressBar";
 
@@ -51,7 +50,6 @@ const Player = (props: Props) => {
         setIsPlayerTurn={props.setIsPlayerTurn}
         displayToast={props.displayToast}
       />
-      <Inventory />
     </div>
   );
 };

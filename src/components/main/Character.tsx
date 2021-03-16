@@ -7,6 +7,7 @@ import { expToLvlUp } from "../../game/battle";
 import Item from "../ui/Item";
 import { getResBarColor } from "../battleScreen/Player";
 import { colors } from "../ui/globalStyles";
+import Inventory from "../ui/Inventory";
 
 const CharacterWrapper = styled.div`
   display: grid;
@@ -16,6 +17,8 @@ const CharacterWrapper = styled.div`
     "name level"
     "bars equipment"
     "stats inventory";
+  margin-bottom: 5px;
+  height: 80vh;
 
   h1 {
     grid-area: name;
@@ -234,7 +237,7 @@ const Character = () => {
       </div>
       {ChampionEquipment(champ)}
       {Stats(champ)}
-      {/* <Items items={inventory.items} champ={champ} wearable={true} /> */}
+      <Inventory inventory={inventory} />
     </CharacterWrapper>
   );
 };
