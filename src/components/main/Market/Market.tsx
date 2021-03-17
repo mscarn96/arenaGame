@@ -4,6 +4,8 @@ import { Dispatch } from "redux";
 
 import { toast } from "react-toastify";
 
+import { v4 as uuidv4 } from "uuid";
+
 import ArmorShop from "./ArmorShop";
 import WeaponShop from "./WeaponShop";
 import Item from "../../battleScreen/Item";
@@ -48,7 +50,11 @@ export const buyItem = (
     return;
   }
   if (currentGold >= item.cost) {
-    dispatch(addItem(item));
+    //generate unique ID when buying item
+    const itemToBuy = { ...item };
+    itemToBuy.id = uuidv4();
+
+    dispatch(addItem(itemToBuy));
     dispatch(spendGold(item.cost));
     notify(`You just bought ${item.name} for ${item.cost} gold!`);
     setShowInfo(false);

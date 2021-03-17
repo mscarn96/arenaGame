@@ -2,8 +2,6 @@
 
 -TEST NEW SKILLS
 
--fix bug:when buying same items in shop id duplicates!
-
 -item icons
 
 -game images:
