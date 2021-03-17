@@ -8,6 +8,7 @@ import {
   damageEnemy,
   affectEnemy,
 } from "../../redux/actions/battleActionCreators";
+import { warriorBasicAttack } from "../../game/moves/warriorMoves";
 
 type Props = {
   isPlayerTurn: boolean;
@@ -54,7 +55,10 @@ const Moves = (props: Props) => {
 
   const attack = () => {
     if (enemy !== undefined) {
-      const attackResult = basicAttack(champ, enemy);
+      const attackResult =
+        champ.champClass === ChampClass.Warrior
+          ? warriorBasicAttack(champ, enemy, dispatch)
+          : basicAttack(champ, enemy);
       setAttackResultText(attackResult.statusText);
       dispatch(damageEnemy(attackResult.damage));
       props.displayToast(attackResult.statusText);

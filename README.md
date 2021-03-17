@@ -1,8 +1,8 @@
 ## TODO
 
--do limit of 12 items in inventory
+-TEST NEW SKILLS
 
--sell items function
+-fix bug:when buying same items in shop id duplicates!
 
 -item icons
 
@@ -19,6 +19,9 @@
 
 -tavern
 
+-css for mobile battle screen
+
 -css for bigger screens
+
 
 ## THATS IT FOR NOW

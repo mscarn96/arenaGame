@@ -16,6 +16,14 @@ export const consumeResource = (cost:number) => {
     return action
 }
 
+export const gainResource = (amount:number) => {
+    const action:actionTypes.BattleAction = {
+        type:actionTypes.GAIN_RESOURCE,
+        amount
+    }
+    return action
+}
+
 export const healChamp = (heal:number) => {
     const action:actionTypes.BattleAction = {
         type:actionTypes.HEAL_CHAMPION,

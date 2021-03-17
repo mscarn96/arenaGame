@@ -8,6 +8,7 @@ export const DAMAGE_CHAMPION = "DAMAGE_CHAMPION"
 export const HEAL_CHAMPION = "HEAL_CHAMPION"
 export const DAMAGE_ENEMY = "DAMAGE_ENEMY"
 export const USE_RESOURCE = "USE_RESOURCE"
+export const GAIN_RESOURCE = "GAIN_RESOURCE"
 export const AFFECT_ENEMY = "AFFECT_ENEMY"
 
 export const ADD_ITEM = "ADD_ITEM"
@@ -71,7 +72,12 @@ interface UseResourceAction {
     cost:number
 }
 
-export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction | UseResourceAction | AffectEnemyAction
+interface GainResourceAction {
+    type:typeof GAIN_RESOURCE
+    amount:number
+}
+
+export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction | UseResourceAction | GainResourceAction | AffectEnemyAction
 
 interface AddItemAction {
     type:typeof ADD_ITEM

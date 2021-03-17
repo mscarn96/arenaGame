@@ -6,7 +6,7 @@ import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/customHooks";
 
-import { buyItem } from "../main/Market/Market";
+import { buyItem, sellItem } from "../main/Market/Market";
 import { getChampionWithEquippedItem } from "../../game/gameVariousFuncs";
 
 import { modifyChamp } from "../../redux/actions/champActionCreators";
@@ -145,7 +145,7 @@ const ItemInfoContainer = styled.div<{ visible: boolean }>`
   }
 `;
 
-const TradeItemButton = (item: Item, champ: Champion, dispatch: Dispatch) =>
+const EquipItemButton = (item: Item, champ: Champion, dispatch: Dispatch) =>
   item.isEquipped ? (
     <button onClick={() => unequipItem(champ, item, dispatch)}>
       Unequip Item
@@ -157,6 +157,7 @@ const TradeItemButton = (item: Item, champ: Champion, dispatch: Dispatch) =>
 const ItemInfo = ({
   item,
   buyable,
+  sellable,
   showInfo,
   name,
   description,
@@ -165,6 +166,9 @@ const ItemInfo = ({
 }: InfoProps): JSX.Element => {
   const gold = useSelector((state) => state.InventoryState.gold);
   const champ = useSelector((state) => state.champion.currentChamp);
+  const amountOfItemsInInventory = useSelector(
+    (state) => state.InventoryState.items.length
+  );
   const dispatch = useDispatch();
 
   return (
@@ -175,11 +179,20 @@ const ItemInfo = ({
         X
       </button>
       {buyable ? (
-        <button onClick={() => buyItem(gold, item, setShowInfo, dispatch)}>
+        <button
+          onClick={() =>
+            buyItem(gold, item, setShowInfo, dispatch, amountOfItemsInInventory)
+          }
+        >
           Buy Item
         </button>
       ) : null}
-      {wearable ? TradeItemButton(item, champ, dispatch) : null}
+      {sellable ? (
+        <button onClick={() => sellItem(item, setShowInfo, dispatch)}>
+          Sell Item
+        </button>
+      ) : null}
+      {wearable ? EquipItemButton(item, champ, dispatch) : null}
     </ItemInfoContainer>
   );
 };

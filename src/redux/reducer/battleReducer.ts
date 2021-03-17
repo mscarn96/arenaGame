@@ -72,6 +72,17 @@ const battleReducer = (state = initialState, action: actionTypes.BattleAction): 
                          }
                      }
                  }
+            case actionTypes.GAIN_RESOURCE:
+                 return {
+                     ...state,
+                     champ:{
+                         ...champ,
+                         res:{
+                             ...champ.res,
+                             current:champ.res.current + action.amount
+                         }
+                     }
+                 }
 
         case actionTypes.DAMAGE_ENEMY:
                 if (state?.enemy?.hp !== undefined) {

@@ -7,7 +7,12 @@ import { toast } from "react-toastify";
 import ArmorShop from "./ArmorShop";
 import WeaponShop from "./WeaponShop";
 import Item from "../../battleScreen/Item";
-import { addItem, spendGold } from "../../../redux/actions/itemActionCreators";
+import {
+  addGold,
+  addItem,
+  deleteItem,
+  spendGold,
+} from "../../../redux/actions/itemActionCreators";
 
 const Navigation = styled.ul`
   display: flex;
@@ -35,14 +40,30 @@ export const buyItem = (
   currentGold: number,
   item: Item,
   setShowInfo: React.Dispatch<React.SetStateAction<boolean>>,
-  dispatch: Dispatch<any>
+  dispatch: Dispatch<any>,
+  amountOfItemsInInventory: number
 ) => {
+  if (amountOfItemsInInventory >= 12) {
+    notify(`You can only have maximum 12 items in Inventory!`);
+    return;
+  }
   if (currentGold >= item.cost) {
     dispatch(addItem(item));
     dispatch(spendGold(item.cost));
     notify(`You just bought ${item.name} for ${item.cost} gold!`);
     setShowInfo(false);
   } else notify(`Not enough gold!`);
+};
+
+export const sellItem = (
+  item: Item,
+  setShowInfo: React.Dispatch<React.SetStateAction<boolean>>,
+  dispatch: Dispatch<any>
+) => {
+  dispatch(deleteItem(item));
+  dispatch(addGold(item.cost / 2));
+  notify(`You just sold ${item.name} for ${item.cost / 2} gold!`);
+  setShowInfo(false);
 };
 
 const Market = () => {
