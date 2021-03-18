@@ -1,9 +1,9 @@
-import GraveyardImg from './GraveyardImg.jpg'
+import image from './GraveyardImg.jpg'
 
 
 const Graveyard:Place = {
     name:'Graveyard',
-    image:GraveyardImg
+    image,
 
 }
 

@@ -1,5 +1,5 @@
 const ForestWolf:Character =
-{id:101,
+{id:201,
     name:'Forest Wolf',
     level: 3,
     hp: {
@@ -19,7 +19,7 @@ const ForestWolf:Character =
     }
 
 const GoldenDeer:Character =
-{id:101,
+{id:202,
     name:'Golden Deer',
     level: 4,
     hp: {
@@ -39,7 +39,7 @@ const GoldenDeer:Character =
     }
 
 const ForestProtector:Character =
-    {id:101,
+    {id:203,
         name:'Forest Protector',
         level: 4,
         hp: {
@@ -59,24 +59,25 @@ const ForestProtector:Character =
         }
 
 const ForestLord:Character =
-        {id:101,
-            name:'Forest Protector',
-            level: 5,
-            hp: {
-                currentHp:360,
-                fullHp:360,
-            },
-            accuracy:58,
-            critChance:10,
-            attackDamage:60,
-            magicPower:0,
-            blockChance:12,
-            armor:18,
-            magicDef:10,
-            dodgeChance:5,
-            expForWin:100,
-            skillset:[],
-            }
+    {
+        id:204,
+        name:'Forest Protector',
+        level: 5,
+        hp: {
+            currentHp:360,
+            fullHp:360,
+        },
+        accuracy:58,
+        critChance:10,
+        attackDamage:60,
+        magicPower:0,
+        blockChance:12,
+        armor:18,
+        magicDef:10,
+        dodgeChance:5,
+        expForWin:100,
+        skillset:[],
+        }
 const forestMobs = [ForestWolf, GoldenDeer,ForestProtector,ForestLord]
 
 export default forestMobs
