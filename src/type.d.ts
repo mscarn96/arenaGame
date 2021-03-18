@@ -42,7 +42,7 @@ type Item = {
     value:ItemValue
     description:string
     isEquipped:boolean
-    // imgPath:string
+    imgPath:string
 }
 
 
@@ -79,9 +79,6 @@ type BattleState = {
     enemy:Enemy
     place:Place
 }
-
-
-// type DispatchType = (args: CreateChampionAction | ChampionModifyAction) => CreateChampionAction | ModifyChampionAction
 
 enum ChampClass {
     Warrior = 0,

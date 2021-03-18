@@ -1,4 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
+import getIcons from '../../components/ui/getIcons';
+
+const icons = getIcons(require.context( '../../images/items/offhandImages', true, /\.svg$/ ))
+
 
 export const Quiver = ():Item => {
     const id = uuidv4();
@@ -13,8 +17,8 @@ export const Quiver = ():Item => {
         },
         description:'A box carried by bowmen in their back containing a supply of arrows to practice archery. Accuracy +6, Critical Chance +3',
         isEquipped:false,
+        imgPath:icons[4],
     }}
-//https://game-icons.net/1x1/delapouite/quiver.html
 
 export const LuckyCoin = ():Item => {
     const id = uuidv4();
@@ -29,8 +33,8 @@ export const LuckyCoin = ():Item => {
         },
         description:'Medieval cash, with no real money value nowadays but with high importance for museums. Accuracy +6, Critical Chance +3',
         isEquipped:false,
+        imgPath:icons[0],
     }}
-//https://game-icons.net/1x1/lorc/crown-coin.html
 
 
 export const DeathNote = ():Item => {
@@ -46,8 +50,8 @@ export const DeathNote = ():Item => {
         },
         description:'A bad omen written on a paper. Magic Power +25, Block Chance +10',
         isEquipped:false,
+        imgPath:icons[1],
     }}
-//https://game-icons.net/1x1/lorc/death-note.html
 
 export const EnlightmentBook = ():Item => {
     const id = uuidv4();
@@ -62,8 +66,8 @@ export const EnlightmentBook = ():Item => {
         },
         description:'All the bright knowledge and secret formulas of this rich book are finally exposed to the fortunate reader. Magic Power +25, Dodge Chance +10',
         isEquipped:false,
+        imgPath:icons[3],
     }}
-//https://game-icons.net/1x1/lorc/enlightenment.html
 
 export const TemplarShield = ():Item => {
     const id = uuidv4();
@@ -78,8 +82,8 @@ export const TemplarShield = ():Item => {
         },
         description:'To protect knights going on a crusade. Block Chance +15, Accuracy +8',
         isEquipped:false,
+        imgPath:icons[5],
     }}
-//https://game-icons.net/1x1/delapouite/templar-shield.html
 
 export const DragonShield = ():Item => {
     const id = uuidv4();
@@ -94,5 +98,5 @@ export const DragonShield = ():Item => {
         },
         description:'Can this protection sustain the fire-breath of a dragon? Only a mighty adventurer may prove it. Block Chance +15, Critical Chance +8',
         isEquipped:false,
+        imgPath:icons[2],
     }}
-//https://game-icons.net/1x1/delapouite/dragon-shield.html

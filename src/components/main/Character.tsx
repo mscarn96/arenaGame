@@ -8,6 +8,7 @@ import Item from "../battleScreen/Item";
 import { getResBarColor } from "../battleScreen/Player";
 import { colors } from "../ui/globalStyles";
 import Inventory from "../battleScreen/Inventory";
+import { getChampClass } from "../../game/gameVariousFuncs";
 
 const CharacterWrapper = styled.div`
   display: grid;
@@ -190,6 +191,7 @@ const ChampionEquipment = (champ: Champion) => {
 const Stats = (champ: Champion) => {
   return (
     <div>
+      <b>Class : {getChampClass(champ.champClass)}</b>
       <p>Level: {champ.level}</p>
       <p>Health points: {champ.hp.fullHp}</p>
       <p>Attack damage:{champ.attackDamage}</p>

@@ -1,24 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import getIcons from '../../components/ui/getIcons'
 
-// const armorSvgs = require.context( '../../images/items/armorImages', true, /\.svg$/ )
-
-// const allArmorFilepaths = armorSvgs.keys();
-
-// const imagePath = allArmorFilepaths[0]
-// const image = armorSvgs(imagePath).default
-
-// const getIcons = (svgs: __WebpackModuleApi.RequireContext) => {
-//     const icons:any[] = [];
-//     const allIconsFilepaths = svgs.keys()
-//     allIconsFilepaths.forEach((svg, index) => {
-//         icons.push(svgs(svg).default)
-//     })
-//     return icons
-
-// }
-
-//THIS WORKS ^^
-//ZROB OGOLNA FUNKCJE I DOPASUJ DO ITEMKOW
+const icons = getIcons(require.context( '../../images/items/armorImages', true, /\.svg$/ ))
 
 
 
@@ -34,8 +17,8 @@ export const MailShirt = ():Item => {
         },
         description:'Small metal rings tied together to form a protective layer on top of the skin.. Armor +6',
         isEquipped:false,
+        imgPath:icons[5],
     }}
-// https://game-icons.net/1x1/lorc/mail-shirt.html
 
 export const LeatherArmor = ():Item => {
     const id = uuidv4();
@@ -49,8 +32,8 @@ export const LeatherArmor = ():Item => {
         },
         description:'A chest protection for all kind of warriors with a small utility belt. Armor +10',
         isEquipped:false,
+        imgPath:icons[3],
     }}
-// https://game-icons.net/1x1/delapouite/leather-armor.html
 
 export const Loincloth = ():Item => {
     const id = uuidv4();
@@ -65,8 +48,8 @@ export const Loincloth = ():Item => {
         },
         description:'Piece of leather attach to a belt and hanging between the legs to protect weak points. Armor +12, Dodge Chance +3',
         isEquipped:false,
+        imgPath:icons[4],
     }}
-//https://game-icons.net/1x1/delapouite/loincloth.html
 
 export const CapeArmor = ():Item => {
     const id = uuidv4();
@@ -81,8 +64,8 @@ export const CapeArmor = ():Item => {
         },
         description:'This metal armor is a suitable for a mage, but does not allow to fly. Armor +14, Magic Power +35',
         isEquipped:false,
+        imgPath:icons[1],
     }}
-//https://game-icons.net/1x1/delapouite/cape-armor.html
 
 
 export const PirateCoat = ():Item => {
@@ -99,8 +82,8 @@ export const PirateCoat = ():Item => {
         },
         description:'A long coat with ample sleeves and lots of attach on the front. It protects from sea surf. Armor +10, Dodge Chance +5, Critical Chance +5',
         isEquipped:false,
+        imgPath:icons[7],
     }}
-//https://game-icons.net/1x1/delapouite/pirate-coat.html
 
 export const Lamellar = ():Item => {
     const id = uuidv4();
@@ -115,8 +98,8 @@ export const Lamellar = ():Item => {
         },
         description:'Lots of metal layers that imitate fish scales on this warrior chest. Armor +20, Block Chance +5',
         isEquipped:false,
+        imgPath:icons[2],
     }}
-//https://game-icons.net/1x1/lorc/lamellar.html
 
 
 export const Robe = ():Item => {
@@ -132,8 +115,8 @@ export const Robe = ():Item => {
         },
         description:'An acolyte costume with a masking hood and a long cloak covering the all body like a druid. Armor +25, Magic Power +70',
         isEquipped:false,
+        imgPath:icons[8],
     }}
-//https://game-icons.net/1x1/lorc/robe.html
 
 export const BreastPlate = ():Item => {
     const id = uuidv4();
@@ -148,8 +131,8 @@ export const BreastPlate = ():Item => {
         },
         description:'A metal chest to protect a knight organs in his thorax. Armor +35, Block Chance +10',
         isEquipped:false,
+        imgPath:icons[0],
     }}
-//https://game-icons.net/1x1/lorc/breastplate.html
 
 export const NinjaArmor = ():Item => {
     const id = uuidv4();
@@ -165,5 +148,5 @@ export const NinjaArmor = ():Item => {
         },
         description:'A long reinforced robe which is better suited than a simple kimono during combats with blades.  Armor +22, Dodge Chance +7, Critical Chance +7',
         isEquipped:false,
+        imgPath:icons[6],
     }}
-//https://game-icons.net/1x1/delapouite/ninja-armor.html

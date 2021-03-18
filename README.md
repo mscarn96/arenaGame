@@ -1,8 +1,6 @@
 ## TODO
 
--TEST NEW SKILLS
-
--item icons
+-//TEST NEW SKILLS
 
 -game images:
 --mobs
@@ -20,6 +18,5 @@
 -css for mobile battle screen
 
 -css for bigger screens
-
 
 ## THATS IT FOR NOW

@@ -1,4 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import getIcons from '../../components/ui/getIcons';
+
+const icons = getIcons(require.context( '../../images/items/helmetImages', true, /\.svg$/ ))
 
 export const BrodieHelmet = ():Item => {
     const id = uuidv4();
@@ -13,9 +16,9 @@ export const BrodieHelmet = ():Item => {
         },
         description:'Basic head item. Armor +5, Magic Defence +3',
         isEquipped:false,
+        imgPath:icons[2],
     }}
 
-//https://game-icons.net/1x1/skoll/brodie-helmet.html
 
 export const Bandana = ():Item => {
     const id = uuidv4();
@@ -30,9 +33,9 @@ export const Bandana = ():Item => {
             },
         description:'A cloth put on the top of the head. Armor +3, Dodge Chance +3',
         isEquipped:false,
+        imgPath:icons[0],
         }}
 
-//https://game-icons.net/1x1/delapouite/bandana.html
     
 export const Cowl = ():Item => {
     const id = uuidv4();
@@ -46,9 +49,9 @@ export const Cowl = ():Item => {
             dodgeChance:4,
         },
         description:'A cowl to hide a head under. Armor +5, Dodge Chance +4',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[4],
     }}
-//https://game-icons.net/1x1/lorc/cowled.html
 
 export const BrutalHelmet = ():Item => {
     const id = uuidv4();
@@ -62,7 +65,8 @@ export const BrutalHelmet = ():Item => {
             blockChance:3,
         },
         description:'Long horns on each side of this helmet. Armor +14, Block Chance +4',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[3],
     }}
 
 export const DwarfHelmet = ():Item => {
@@ -77,9 +81,9 @@ export const DwarfHelmet = ():Item => {
             blockChance:5,
         },
         description:'Dwarves deserve thick helmets to protect them from falling stones while mining. Armor +10, Block Chance +5',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[5],
     }}
-//https://game-icons.net/1x1/kier-heyl/dwarf-helmet.html
 
 
 export const BlackKnightHelmet = ():Item => {
@@ -94,9 +98,9 @@ export const BlackKnightHelmet = ():Item => {
             blockChance:4,
         },
         description:'A solid helmet to protect from flesh wounds and scratches.. Armor +18, Block Chance +4',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[1],
     }}
-//https://game-icons.net/1x1/delapouite/black-knight-helm.html
 
 export const ElfHelmet = ():Item => {
     const id = uuidv4();
@@ -110,9 +114,9 @@ export const ElfHelmet = ():Item => {
             magicPower:20,
         },
         description:'A long helm with wing-shaped protections on the side and a narrow star for the noise. Armor +8, Magic Power +20',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[6],
     }}
-//https://game-icons.net/1x1/kier-heyl/elf-helmet.html
 
 export const SamuraiHelmet = ():Item => {
     const id = uuidv4();
@@ -126,9 +130,9 @@ export const SamuraiHelmet = ():Item => {
             critChance:10,
         },
         description:'This medieval Japanese protection was the inspiration for Darth Vader helmet. Armor +24, Critical Chance +10',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[8],
     }}
-//https://game-icons.net/1x1/delapouite/samurai-helmet.html
 
 
 
@@ -144,9 +148,9 @@ export const HeavyHelmet = ():Item => {
             blockChance:10,
         },
         description:'This helmet has horns, like Vikings. Armor +30, Block Chance +10',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[7],
     }}
-//https://game-icons.net/1x1/lorc/heavy-helm.html
 
 export const WarlockHood = ():Item => {
     const id = uuidv4();
@@ -160,6 +164,6 @@ export const WarlockHood = ():Item => {
             magicPower:50,
         },
         description:'Lots of mysteries in this nebulous face where aging seems controlled by dark magic. Armor +22, Magic Power +50',
-        isEquipped:false
+        isEquipped:false,
+        imgPath:icons[9],
     }}
-//https://game-icons.net/1x1/delapouite/warlock-hood.html

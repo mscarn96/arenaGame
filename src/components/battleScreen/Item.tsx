@@ -13,8 +13,6 @@ import { modifyChamp } from "../../redux/actions/champActionCreators";
 import { addItem, deleteItem } from "../../redux/actions/itemActionCreators";
 import { colors } from "../ui/globalStyles";
 
-// const armorSvgs = require.context( '../../images/items/armorImages', true, /\.svg$/ )
-
 ///checks if the object has this specific property,
 //so typescript will pass the loop through champion properties
 function hasOwnProperty<O extends object, K extends PropertyKey>(
@@ -93,8 +91,6 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 interface InfoProps {
   showInfo: boolean;
-  name: string;
-  description: string;
   item: Item;
   buyable: boolean;
   sellable: boolean;
@@ -102,7 +98,8 @@ interface InfoProps {
   setShowInfo: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const ItemContainer = styled.div`
+const ItemContainer = styled.div<{ imgPath: string }>`
+  background-image: url(${(props) => props.imgPath});
   width: 50px;
   height: 50px;
   display: inline-block;
@@ -111,6 +108,15 @@ const ItemButton = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
+  background: transparent;
+
+  &:active {
+    border: 2px solid ${colors.lighterBlue};
+  }
+  &:focus {
+    border: 2px solid ${colors.lighterBlue};
+    outline: none;
+  }
 `;
 const ItemInfoContainer = styled.div<{ visible: boolean }>`
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -159,8 +165,6 @@ const ItemInfo = ({
   buyable,
   sellable,
   showInfo,
-  name,
-  description,
   setShowInfo,
   wearable,
 }: InfoProps): JSX.Element => {
@@ -173,8 +177,9 @@ const ItemInfo = ({
 
   return (
     <ItemInfoContainer visible={showInfo} id={`info`}>
-      <h1>{name}</h1>
-      <p>{description}</p>
+      <h1>{item.name}</h1>
+      <p>{item.description}</p>
+      <p>Cost : {item.cost}</p>
       <button id={`closeBtn`} onClick={() => setShowInfo(false)}>
         X
       </button>
@@ -228,7 +233,7 @@ const Item = (props: Props) => {
   }, [showInfo]);
 
   return (
-    <ItemContainer id={item.id} ref={itemRef}>
+    <ItemContainer id={item.id} ref={itemRef} imgPath={item.imgPath}>
       <ItemButton onClick={(e) => setShowInfo((prev) => !prev)} />
       <ItemInfo
         item={item}
@@ -236,8 +241,6 @@ const Item = (props: Props) => {
         sellable={sellable}
         wearable={wearable}
         showInfo={showInfo}
-        name={item.name}
-        description={item.description}
         setShowInfo={setShowInfo}
       />
     </ItemContainer>

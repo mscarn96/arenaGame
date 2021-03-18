@@ -1,4 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import getIcons from '../../components/ui/getIcons';
+
+const icons = getIcons(require.context( '../../images/items/weaponImages', true, /\.svg$/ ))
 
 export const SheperdsCrook = ():Item => {
     const id = uuidv4();
@@ -13,8 +16,8 @@ export const SheperdsCrook = ():Item => {
         },
         description:'A wooden stick used to show the way to sheep. Attack Damage +5, Magic Power +15',
         isEquipped:false,
+        imgPath:icons[9],
     }}
-//https://game-icons.net/1x1/generalace135/shepherds-crook.html
 
 
 export const WizardStaff = ():Item => {
@@ -30,8 +33,8 @@ export const WizardStaff = ():Item => {
         },
         description:'A stick made of wood to cast magic. Attack Damage +8, Magic Power +30',
         isEquipped:false,
+        imgPath:icons[11],
     }}
-//https://game-icons.net/1x1/lorc/wizard-staff.html
 
 export const FairyWand = ():Item => {
     const id = uuidv4();
@@ -46,9 +49,9 @@ export const FairyWand = ():Item => {
         },
         description:'A woman is a witch if she weights the same as a duck. No need to carry any magical rod to prove it to merciless folks. Attack Damage +15, Magic Power +60',
         isEquipped:false,
+        imgPath:icons[4],
     }}
 
-//https://game-icons.net/1x1/lorc/fairy-wand.html
 
 export const CrystalWand = ():Item => {
     const id = uuidv4();
@@ -63,9 +66,9 @@ export const CrystalWand = ():Item => {
         },
         description:'A scepter with a mineral on its end. Attack Damage +30, Magic Power +100',
         isEquipped:false,
+        imgPath:icons[3],
     }}
 
-//https://game-icons.net/1x1/lorc/crystal-wand.html
 
 
 export const PocketBow = ():Item => {
@@ -81,8 +84,8 @@ export const PocketBow = ():Item => {
         },
         description:'Ready to fire by a sneaky archer at any moment of the day. Attack Damage +7, Accuracy +3',
         isEquipped:false,
+        imgPath:icons[7],
     }}
-//https://game-icons.net/1x1/lorc/pocket-bow.html
 
 export const Crossbow = ():Item => {
     const id = uuidv4();
@@ -97,9 +100,9 @@ export const Crossbow = ():Item => {
         },
         description:'The Middle-Ages version of automatic riffles is much more powerful than a simple bow. Attack Damage +10, Accuracy +5',
         isEquipped:false,
+        imgPath:icons[2],
     }}
 
-//https://game-icons.net/1x1/carl-olsen/crossbow.html
 
 export const Shuriken = ():Item => {
     const id = uuidv4();
@@ -115,8 +118,8 @@ export const Shuriken = ():Item => {
         },
         description:'A Japanese weapon made of steel and thrown on moving targets. Attack Damage +20, Accuracy +8, Critical Chance +4',
         isEquipped:false,
+        imgPath:icons[10],
     }}
-//https://game-icons.net/1x1/lorc/shuriken.html
 
 export const LightningBow = ():Item => {
     const id = uuidv4();
@@ -132,8 +135,8 @@ export const LightningBow = ():Item => {
         },
         description:'Used by Zeus to show its wrath over humans.. Attack Damage +36, Accuracy +12, Critical Chance +8',
         isEquipped:false,
+        imgPath:icons[6],
     }}
-//https://game-icons.net/1x1/lorc/lightning-bow.html
 
 export const Gladius = ():Item => {
     const id = uuidv4();
@@ -148,8 +151,8 @@ export const Gladius = ():Item => {
         },
         description:'Small sword used by foot soldiers of the Roman Empire. Attack Damage +10, Block Chance +2',
         isEquipped:false,
+        imgPath:icons[5],
     }}
-//https://game-icons.net/1x1/skoll/gladius.html
 
 export const BattleAxe = ():Item => {
     const id = uuidv4();
@@ -164,8 +167,8 @@ export const BattleAxe = ():Item => {
         },
         description:'The right blade to cut on the way down but also on the way up. Attack Damage +18, Critical Chance +3',
         isEquipped:false,
+        imgPath:icons[0],
     }}
-//https://game-icons.net/1x1/lorc/battle-axe.html
 
 export const CrocSword = ():Item => {
     const id = uuidv4();
@@ -180,8 +183,8 @@ export const CrocSword = ():Item => {
         },
         description:'A sword with sharp teeth to inflict deadly and painful injuries. Attack Damage +25, Critical Chance +8',
         isEquipped:false,
+        imgPath:icons[1],
     }}
-//https://game-icons.net/1x1/lorc/croc-sword.html
 
 export const RelicBlade = ():Item => {
     const id = uuidv4();
@@ -197,5 +200,5 @@ export const RelicBlade = ():Item => {
         },
         description:'A sword with sharp teeth to inflict deadly and painful injuries. Attack Damage +25, Critical Chance +8, Block Chance +5',
         isEquipped:false,
+        imgPath:icons[8],
     }}
-//https://game-icons.net/1x1/lorc/relic-blade.html

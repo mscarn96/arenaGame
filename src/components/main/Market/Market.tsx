@@ -55,8 +55,8 @@ export const buyItem = (
     itemToBuy.id = uuidv4();
 
     dispatch(addItem(itemToBuy));
-    dispatch(spendGold(item.cost));
-    notify(`You just bought ${item.name} for ${item.cost} gold!`);
+    dispatch(spendGold(itemToBuy.cost));
+    notify(`You just bought ${itemToBuy.name} for ${itemToBuy.cost} gold!`);
     setShowInfo(false);
   } else notify(`Not enough gold!`);
 };

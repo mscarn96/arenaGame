@@ -9,6 +9,14 @@ import {
   affectEnemy,
 } from "../../redux/actions/battleActionCreators";
 import { warriorBasicAttack } from "../../game/moves/warriorMoves";
+import { displayPlayerToasts } from "../ui/toasts";
+
+enum ChampClass {
+  Warrior = 0,
+  Mage = 1,
+  Hunter = 2,
+  notPicked = -1,
+}
 
 type Props = {
   isPlayerTurn: boolean;
@@ -30,6 +38,7 @@ const UseSkill = (
     ///if skill has damage type dispatch it to state
     const skillResult = skill.effect(champ, enemy);
     setAttackResultText(skillResult.statusText);
+    displayPlayerToasts(skillResult.statusText);
     dispatch(damageEnemy(skillResult.damage));
     dispatch(consumeResource(skill.cost));
     setIsPlayerTurn(false);
@@ -37,6 +46,7 @@ const UseSkill = (
     //dispatch skill effect to state
     const skillResult = skill.effect(champ, enemy);
     setAttackResultText(skillResult.statusText);
+    displayPlayerToasts(skillResult.statusText);
     if (skillResult.effectNumber) {
       dispatch(affectEnemy(skill.stat, skillResult.effectNumber));
     }

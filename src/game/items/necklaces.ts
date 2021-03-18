@@ -1,4 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
+import getIcons from '../../components/ui/getIcons';
+
+const icons = getIcons(require.context( '../../images/items/necklaceImages', true, /\.svg$/ ))
 
 export const FeatherNecklace = ():Item => {
     const id = uuidv4();
@@ -15,8 +18,8 @@ export const FeatherNecklace = ():Item => {
         },
         description:'A light piece of bird is supposed to protect the person wearing this necklace. Accuracy +3, Armor +5, Dodge Chance +2, Critical Chance +3',
         isEquipped:false,
+        imgPath:icons[2],
     }}
-//https://game-icons.net/1x1/delapouite/feather-necklace.html
 
 export const EmeraldNecklace = ():Item => {
     const id = uuidv4();
@@ -32,8 +35,9 @@ export const EmeraldNecklace = ():Item => {
         },
         description:'The string is thing but the precious mineral is well suited. Attack Damage +7, Magic Power +16, Critical Chance +3',
         isEquipped:false,
+        imgPath:icons[1],
     }}
-//https://game-icons.net/1x1/delapouite/emerald-necklace.html
+
 
 export const DoubleNecklace = ():Item => {
     const id = uuidv4();
@@ -51,8 +55,8 @@ export const DoubleNecklace = ():Item => {
         },
         description:'Beautiful pears attached to a precious lace. Attack Damage +8, Magic Power +20, Armor +6, Dodge Chance +4, Accuracy +3',
         isEquipped:false,
+        imgPath:icons[0],
     }}
-//https://game-icons.net/1x1/delapouite/double-necklace.html
 
 export const IntricateNecklace = ():Item => {
     const id = uuidv4();
@@ -67,8 +71,9 @@ export const IntricateNecklace = ():Item => {
         },
         description:'This artifact has an hexagonal gem in its pivot point. Magic Power +60, Armor +10',
         isEquipped:false,
+        imgPath:icons[3],
     }}
-//https://game-icons.net/1x1/delapouite/intricate-necklace.html
+
 
 export const PrimitiveNecklace = ():Item => {
     const id = uuidv4();
@@ -84,8 +89,9 @@ export const PrimitiveNecklace = ():Item => {
         },
         description:'A shaman decoration to perform rituals around the fire and save the tribe. Attack Damage +25, Armor +15, Block Chance +5',
         isEquipped:false,
+        imgPath:icons[5],
     }}
-//https://game-icons.net/1x1/delapouite/primitive-necklace.html
+
 
 export const tribalPendant = ():Item => {
     const id = uuidv4();
@@ -101,8 +107,9 @@ export const tribalPendant = ():Item => {
         },
         description:'A doomed necklace made from animal horns and teeth. Attack Damage +15,Crit Chance +10, Accuracy +6',
         isEquipped:false,
+        imgPath:icons[6],
     }}
-//https://game-icons.net/1x1/delapouite/tribal-pendant.html
+
 
 export const TheNecklace = ():Item => {
     const id = uuidv4();
@@ -122,5 +129,5 @@ export const TheNecklace = ():Item => {
         },
         description:'A shuriken resting on your chest. Accuracy +, Armor 15, Attack Damage +30, Block Chance +5, Critical Chance +5, Dodge Chance +5, Magic Power +70',
         isEquipped:false,
+        imgPath:icons[4],
     }}
-//https://game-icons.net/1x1/lucasms/necklace.html

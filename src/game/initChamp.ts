@@ -1,4 +1,5 @@
 import * as mageMoves from './moves/mageMoves'
+import * as warriorMoves from './moves/warriorMoves'
 
 const initChamp = (name:string, champClass:ChampClass):Champion => {
     switch (champClass) {
@@ -35,7 +36,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 magicDef:18,
                 dodgeChance:5,
                 expForWin:0,
-                skillset:[]}
+                skillset:[warriorMoves.Execution,warriorMoves.ThreeHitCombo]}
         case 1:
             return {
                 id:0,
@@ -69,7 +70,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 magicDef:20,
                 dodgeChance:8,
                 expForWin:0,
-                skillset:[mageMoves.Fireball,mageMoves.Exhaust]
+                skillset:[mageMoves.Fireball,mageMoves.Exhaust,mageMoves.IceBlast,mageMoves.LightningBolt,mageMoves.MagicBarrier]
             }
         case 2:
                 return {
