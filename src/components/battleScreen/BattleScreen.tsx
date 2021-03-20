@@ -20,7 +20,12 @@ import Enemy from "./Enemy";
 import Player from "./Player";
 import BattleResult from "./BattleResult";
 
-const BattleScreenWrapper = styled.div`
+interface BattleScreenProps {
+  placeImg: string;
+}
+
+const BattleScreenWrapper = styled.div<BattleScreenProps>`
+  background-image: url(${(props) => props.placeImg});
   width: 90vw;
   margin-bottom: 250px;
   display: flex;
@@ -40,6 +45,7 @@ const BattleScreen = (props: Props) => {
   const [enemyAttackResultText, setEnemyAttackResultText] = useState("");
   const champ = useSelector((state) => state.battleState.champ);
   const enemy = useSelector((state) => state.battleState.enemy);
+  const place = useSelector((state) => state.battleState.place);
   const { toggleBattle } = props;
   const history = useHistory();
 
@@ -122,7 +128,7 @@ const BattleScreen = (props: Props) => {
             toggleBattle={toggleBattle}
           />
         ) : null}
-        <BattleScreenWrapper>
+        <BattleScreenWrapper placeImg={place.image}>
           {props.isBattleOn ? (
             <>
               <Player

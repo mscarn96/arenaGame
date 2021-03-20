@@ -4,6 +4,7 @@ import { getChampClass } from "../../game/gameVariousFuncs";
 
 import Moves from "./Moves";
 import ProgressBar from "../ui/ProgressBar";
+import styled from "styled-components";
 
 export const getResBarColor = (champ: Champion | null): string => {
   switch (champ?.res.name) {
@@ -26,12 +27,19 @@ type Props = {
   displayToast: (text: string) => void;
 };
 
+const PlayerContainer = styled.div`
+  img {
+    max-width: 200px;
+  }
+`;
+
 const Player = (props: Props) => {
   const { champ } = props;
   return (
-    <div>
+    <PlayerContainer>
       <h3>{champ.name}</h3>
       {getChampClass(champ.champClass)}
+      <img src={champ.image} alt={`img of ${champ.name}`} />
       <p>Level : {champ.level}</p>
       <ProgressBar
         width={100}
@@ -50,7 +58,7 @@ const Player = (props: Props) => {
         setIsPlayerTurn={props.setIsPlayerTurn}
         displayToast={props.displayToast}
       />
-    </div>
+    </PlayerContainer>
   );
 };
 

@@ -8,17 +8,20 @@ import { initBattle } from "../../redux/actions/battleActionCreators";
 import BattleScreen from "../battleScreen/BattleScreen";
 import graveyardMobs from "../../game/monsters/graveyardMobs";
 import forestMobs from "../../game/monsters/forestMobs";
+import frostlandMobs from "../../game/monsters/frostlandMobs";
 import Graveyard from "../../game/places/Graveyard";
+import Forest from "../../game/places/Forest";
+import Frostland from "../../game/places/Frostland";
 
 const startBattle = (
   dispatch: Dispatch<any>,
   setIsBattleOn: React.Dispatch<React.SetStateAction<boolean>>,
   champ: Champion,
+  place: Place,
   mobs: Character[]
 ) => {
   ///get random enemy from given set
   const enemy = mobs[Math.floor(Math.random() * mobs.length)];
-  const place = Graveyard;
   setIsBattleOn(true);
   dispatch(initBattle(champ, enemy, place));
 };
@@ -36,17 +39,36 @@ const Wild = () => {
         <div>
           <button
             onClick={() =>
-              startBattle(dispatch, setIsBattleOn, champ, graveyardMobs)
+              startBattle(
+                dispatch,
+                setIsBattleOn,
+                champ,
+                Graveyard,
+                graveyardMobs
+              )
             }
           >
             Explore Graveyard - Levels 1 - 3
           </button>
           <button
             onClick={() =>
-              startBattle(dispatch, setIsBattleOn, champ, forestMobs)
+              startBattle(dispatch, setIsBattleOn, champ, Forest, forestMobs)
             }
           >
             Explore Forest - Levels 3 - 5
+          </button>
+          <button
+            onClick={() =>
+              startBattle(
+                dispatch,
+                setIsBattleOn,
+                champ,
+                Frostland,
+                frostlandMobs
+              )
+            }
+          >
+            Explore Frostland - Levels 6 - 9
           </button>
         </div>
       )}
