@@ -1,6 +1,10 @@
 import * as mageMoves from './moves/mageMoves'
 import * as warriorMoves from './moves/warriorMoves'
 
+import hunterImg from '../images/champs/HunterImg.jpg'
+import mageImg from '../images/champs/MageImg.jpg'
+import warriorImg from '../images/champs/WarriorImg.jpg'
+
 const initChamp = (name:string, champClass:ChampClass):Champion => {
     switch (champClass) {
         case 0:
@@ -36,6 +40,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 magicDef:18,
                 dodgeChance:5,
                 expForWin:0,
+                image:warriorImg,
                 skillset:[warriorMoves.Execution,warriorMoves.ThreeHitCombo]}
         case 1:
             return {
@@ -70,6 +75,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 magicDef:20,
                 dodgeChance:8,
                 expForWin:0,
+                image:mageImg,
                 skillset:[mageMoves.Fireball,mageMoves.Exhaust,mageMoves.IceBlast,mageMoves.LightningBolt,mageMoves.MagicBarrier]
             }
         case 2:
@@ -105,6 +111,8 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     magicDef:15,
                     dodgeChance:20,
                     expForWin:0,
+                    image:hunterImg,
+                    imgCred:`Sicarius8`,
                     skillset:[]
                 }    
         default:
@@ -144,6 +152,7 @@ export const ghost:Champion = {
     magicDef:1,
     dodgeChance:0,
     expForWin:0,
+    image:mageImg,
     skillset:[]
 
 }

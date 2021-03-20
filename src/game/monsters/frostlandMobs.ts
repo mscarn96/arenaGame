@@ -1,3 +1,10 @@
+import FrostWormImg from '../../images/mobs/frostland/FrostWormImg.jpg'
+import FrostWolfImg from '../../images/mobs/frostland/FrostWolfImg.jpg'
+import FrostQueenImg from '../../images/mobs/frostland/FrostQueenImg.jpg'
+import FrostDragonImg from '../../images/mobs/frostland/FrostDragonImg.jpg'
+
+
+
 const FrostWorm:Character =
     {
         id:301,
@@ -17,6 +24,9 @@ const FrostWorm:Character =
         dodgeChance:6,
         expForWin:125,
         skillset:[],
+        image:FrostWormImg,
+        imgCred:`Wizards of the Coast`,
+
         }
 
 const FrostWolf:Character =
@@ -38,6 +48,7 @@ const FrostWolf:Character =
         dodgeChance:7,
         expForWin:150,
         skillset:[],
+        image:FrostWolfImg
         }
 
 const FrostQueen:Character =
@@ -59,6 +70,7 @@ const FrostQueen:Character =
         dodgeChance:8,
         expForWin:200,
         skillset:[],
+        image:FrostQueenImg
         }
 
 const FrostDragon:Character =
@@ -80,6 +92,7 @@ const FrostDragon:Character =
         dodgeChance:10,
         expForWin:300,
         skillset:[],
+        image:FrostDragonImg,
         }
 
 const frostlandMobs = [FrostDragon,FrostQueen,FrostWolf,FrostWorm]

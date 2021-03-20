@@ -17,7 +17,7 @@ const startBattle = (
   mobs: Character[]
 ) => {
   ///get random enemy from given set
-  const enemy = mobs[Math.floor(Math.random() * graveyardMobs.length)];
+  const enemy = mobs[Math.floor(Math.random() * mobs.length)];
   const place = Graveyard;
   setIsBattleOn(true);
   dispatch(initBattle(champ, enemy, place));

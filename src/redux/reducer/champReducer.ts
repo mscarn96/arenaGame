@@ -3,7 +3,7 @@ import * as actionTypes from "../actions/actionTypes"
 import initChamp, {ghost} from '../../game/initChamp'
 
 
-export const initialState:ChampState = {currentChamp: ghost}
+export const initialState:ChampState = {currentChamp: ghost,towerBossesDefeated: 0}
 
 const champReducer = (state:ChampState = initialState,
     action:actionTypes.ChampionAction):ChampState => {
@@ -38,6 +38,11 @@ const champReducer = (state:ChampState = initialState,
                 }
             case actionTypes.DELETE_CHAMP:
                 return initialState
+            case actionTypes.DEFEAT_TOWER_BOSS:
+                return {
+                    ...state,
+                    towerBossesDefeated:state.towerBossesDefeated + 1
+                }
             default:
                 return {...state};
         }

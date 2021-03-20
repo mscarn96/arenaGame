@@ -23,3 +23,11 @@ export const deleteChamp = () => {
     }
     return action
 }
+
+export const defeatTowerBoss = () => {
+    const action:actionTypes.ChampionAction = {
+        type:actionTypes.DEFEAT_TOWER_BOSS
+    }
+    return action;
+}
+

@@ -9,11 +9,9 @@
 
 -invent and implement skills (5 each class)
 
--frostland
+-skills css
 
--tower mobs and bg
-
--tavern
+-game result css
 
 -css for mobile battle screen
 

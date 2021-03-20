@@ -1,3 +1,9 @@
+import UndeadLionImg from '../../images/mobs/graveyard/UndeadLionImg.jpg'
+import SkeletonMageImg from '../../images/mobs/graveyard/SkeletonMageImg.jpg'
+import SkeletonKnightImg from '../../images/mobs/graveyard/SkeletonKnightImg.jpg'
+import GrimReaperImg from '../../images/mobs/graveyard/GrimReaperImg.jpg'
+
+
 const UndeadLion:Character =
 {id:101,
     name:'Undead Lion',
@@ -16,6 +22,7 @@ const UndeadLion:Character =
     dodgeChance:10,
     expForWin:20,
     skillset:[],
+    image:UndeadLionImg,
     }
 
 const SkeletonKnight:Character =
@@ -36,6 +43,8 @@ const SkeletonKnight:Character =
     dodgeChance:5,
     expForWin:25,
     skillset:[],
+    image:SkeletonKnightImg,
+    imgCred:`Andrew Kuzinskiy`,
     }
 
 
@@ -57,6 +66,7 @@ const SkeletonMage:Character =
     dodgeChance:6,
     expForWin:25,
     skillset:[],
+    image:SkeletonMageImg,
     }
 
     
@@ -78,6 +88,8 @@ const GrimReaper:Character =
     dodgeChance:8,
     expForWin:50,
     skillset:[],
+    image:GrimReaperImg,
+    imgCred:`Anton Fort`
     }
 
 const graveyardMobs = [UndeadLion,SkeletonKnight,SkeletonMage,GrimReaper]

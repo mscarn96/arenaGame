@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/customHooks";
-import { useHistory } from "react-router-dom";
+import { Prompt, useHistory } from "react-router-dom";
 
 import {
   basicAttack,
@@ -21,6 +21,7 @@ import Player from "./Player";
 import BattleResult from "./BattleResult";
 
 const BattleScreenWrapper = styled.div`
+  width: 90vw;
   margin-bottom: 250px;
   display: flex;
   justify-content: space-around;
@@ -135,6 +136,10 @@ const BattleScreen = (props: Props) => {
             </>
           ) : null}
         </BattleScreenWrapper>
+        <Prompt
+          when={props.isBattleOn && !isBattleResultVisible}
+          message="Are you sure you want to run from this fight?"
+        />
       </>
     );
   } else {

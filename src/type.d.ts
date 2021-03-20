@@ -16,6 +16,8 @@ interface Character {
     dodgeChance:number
     expForWin:number
     skillset:Skill[]
+    image:string
+    imgCred?:string
 }
 
 interface ItemValue {
@@ -69,7 +71,7 @@ interface Champion extends Character {
 type Enemy = Character | Champion
 
 
-type ChampState = {currentChamp:Champion}
+type ChampState = {currentChamp:Champion,towerBossesDefeated:number}
 type InventoryState = {
     gold:number,
     items:Item[]
@@ -102,6 +104,7 @@ type AttackResult = TurnResult & {
 type Place = {
     name:string
     image:string
+    imgCred?:string
 }
 
 

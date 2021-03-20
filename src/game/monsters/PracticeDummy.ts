@@ -1,3 +1,6 @@
+import PracticeDummyImg from '../../images/mobs/PracticeDummyImg.jpg'
+
+
 const PracticeDummy = (level:number):Character =>
 { 
 return {id:101,
@@ -17,6 +20,8 @@ return {id:101,
     dodgeChance:10 + level * 2,
     expForWin:0,
     skillset:[],
+    image:PracticeDummyImg,
+    imgCred:`Paul Carstens`
     }
 }
 

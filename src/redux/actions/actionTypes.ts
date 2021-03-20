@@ -1,6 +1,7 @@
 export const CREATE_CHAMP = "CREATE_CHAMP"
 export const MODIFY_CHAMP = "MODIFY_CHAMP"
 export const DELETE_CHAMP = "DELETE_CHAMP"
+export const DEFEAT_TOWER_BOSS = "DEFEAT_TOWER_BOSS"
 
 export const INIT_BATTLE = "INIT_BATTLE"
 export const END_BATTLE = "END_BATTLE"
@@ -10,6 +11,7 @@ export const DAMAGE_ENEMY = "DAMAGE_ENEMY"
 export const USE_RESOURCE = "USE_RESOURCE"
 export const GAIN_RESOURCE = "GAIN_RESOURCE"
 export const AFFECT_ENEMY = "AFFECT_ENEMY"
+
 
 export const ADD_ITEM = "ADD_ITEM"
 export const DELETE_ITEM = "DELETE_ITEM"
@@ -33,7 +35,12 @@ interface DeleteChampionAction {
     type:typeof DELETE_CHAMP
 }
 
-export type ChampionAction  = CreateChampionAction | ModifyChampionAction | DeleteChampionAction
+
+interface DefeatTowerBossAction {
+    type:typeof DEFEAT_TOWER_BOSS
+}
+
+export type ChampionAction  = CreateChampionAction | ModifyChampionAction | DeleteChampionAction | DefeatTowerBossAction
 
 interface InitBattleAction {
     type:typeof INIT_BATTLE
@@ -77,7 +84,7 @@ interface GainResourceAction {
     amount:number
 }
 
-export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction | UseResourceAction | GainResourceAction | AffectEnemyAction
+export type BattleAction = DamageChampionAction | DamageEnemyAction | HealChampionAction | InitBattleAction | EndBattleAction | UseResourceAction | GainResourceAction | AffectEnemyAction 
 
 interface AddItemAction {
     type:typeof ADD_ITEM

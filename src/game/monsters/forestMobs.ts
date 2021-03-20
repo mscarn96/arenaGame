@@ -1,3 +1,12 @@
+import ForestWolfImg from '../../images/mobs/forest/ForestWolfImg.jpg'
+import GoldenDeerImg from '../../images/mobs/forest/GoldenDeerImg.jpg'
+import ForestProtectorImg from '../../images/mobs/forest/ForestProtectorImg.jpg'
+import ForestLordImg from '../../images/mobs/forest/ForestLordImg.jpg'
+
+
+
+
+
 const ForestWolf:Character =
 {id:201,
     name:'Forest Wolf',
@@ -16,6 +25,7 @@ const ForestWolf:Character =
     dodgeChance:10,
     expForWin:50,
     skillset:[],
+    image:ForestWolfImg,
     }
 
 const GoldenDeer:Character =
@@ -36,6 +46,8 @@ const GoldenDeer:Character =
     dodgeChance:5,
     expForWin:80,
     skillset:[],
+    image:GoldenDeerImg,
+    imgCred:`Sickbrush`
     }
 
 const ForestProtector:Character =
@@ -56,6 +68,7 @@ const ForestProtector:Character =
         dodgeChance:3,
         expForWin:80,
         skillset:[],
+        image:ForestProtectorImg,
         }
 
 const ForestLord:Character =
@@ -77,6 +90,8 @@ const ForestLord:Character =
         dodgeChance:5,
         expForWin:100,
         skillset:[],
+        image:ForestLordImg,
+        imgCred:`Ivan Sevic`
         }
 const forestMobs = [ForestWolf, GoldenDeer,ForestProtector,ForestLord]
 

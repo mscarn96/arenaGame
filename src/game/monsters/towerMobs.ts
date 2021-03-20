@@ -1,3 +1,8 @@
+import ThunderLordImg from '../../images/mobs/arena/ThunderlordImg.jpg'
+import DarkKnightImg from '../../images/mobs/arena/DarkKnightImg.jpg'
+import ArchangelImg from '../../images/mobs/arena/ArchangelImg.jpg'
+
+
 const ThunderLord:Character =
     {
         id:401,
@@ -17,6 +22,7 @@ const ThunderLord:Character =
         dodgeChance:25,
         expForWin:500,
         skillset:[],
+        image:ThunderLordImg,
         }
 
 const DarkKnight:Character =
@@ -38,6 +44,8 @@ const DarkKnight:Character =
         dodgeChance:20,
         expForWin:500,
         skillset:[],
+        image:DarkKnightImg,
+        imgCred:`Conor Durke`
         }
 
 const Archangel:Character =
@@ -59,8 +67,9 @@ const Archangel:Character =
         dodgeChance:25,
         expForWin:1000,
         skillset:[],
+        image:ArchangelImg,
         }
 
-const arenaMobs = [ThunderLord]
+const towerMobs = [ThunderLord,Archangel,DarkKnight]
 
-export default arenaMobs
+export default towerMobs
