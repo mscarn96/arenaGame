@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { colors, ButtonStyles } from "../ui/globalStyles";
+import { colors, ButtonStyles } from "../../game/ui/globalStyles";
 
 interface Props {
   name: string;

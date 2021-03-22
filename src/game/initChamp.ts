@@ -41,7 +41,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 dodgeChance:5,
                 expForWin:0,
                 image:warriorImg,
-                skillset:[warriorMoves.Execution,warriorMoves.ThreeHitCombo]}
+                skillset:[warriorMoves.Execution,warriorMoves.ThreeHitCombo,warriorMoves.Disarm,warriorMoves.Shockwave,warriorMoves.WeaponThrow]}
         case 1:
             return {
                 id:0,

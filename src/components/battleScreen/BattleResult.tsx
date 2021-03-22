@@ -68,9 +68,12 @@ const BattleResult = (props: Props) => {
     <>
       <BattleResultBackground />
       <BattleResultContainer>
-        <h1>{resultInfo.playerWon ? `You Win! ` : `You Lose...`}</h1>
+        <h1>{resultInfo.playerWon ? `You Win! ` : `You Lose. Game Over`}</h1>
         {resultInfo.didLevelUp ? (
           <h2>{`Level up! You're now level ${champ.level + 1}`}</h2>
+        ) : null}
+        {resultInfo.goldEarned ? (
+          <h3>{`You earned ${resultInfo.goldEarned} gold from win.`}</h3>
         ) : null}
         <button
           onClick={() =>
@@ -84,7 +87,7 @@ const BattleResult = (props: Props) => {
             )
           }
         >
-          End battle
+          {resultInfo.playerWon ? `End battle` : `Go to main menu`}
         </button>
       </BattleResultContainer>
     </>

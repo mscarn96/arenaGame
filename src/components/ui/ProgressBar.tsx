@@ -23,7 +23,7 @@ const Container = styled.div<ContainterProps>`
   background-color: #e0e0de;
   border: 1px solid black;
   border-radius: 50px;
-  margin: 50px;
+  margin: 10px;
 `;
 const Label = styled.span`
   padding: 5px;

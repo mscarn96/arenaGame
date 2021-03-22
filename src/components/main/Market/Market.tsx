@@ -15,6 +15,7 @@ import {
   deleteItem,
   spendGold,
 } from "../../../redux/actions/itemActionCreators";
+import { useSelector } from "../../../redux/customHooks";
 
 const Navigation = styled.ul`
   display: flex;
@@ -73,9 +74,12 @@ export const sellItem = (
 };
 
 const Market = () => {
+  const gold = useSelector((state) => state.InventoryState.gold);
+
   return (
     <Router>
       <div>
+        <p>Gold : ${gold}</p>
         <Navigation>
           <li>
             <Link to="armorShop">Armor Shop</Link>

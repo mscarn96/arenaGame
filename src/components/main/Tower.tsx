@@ -32,7 +32,11 @@ const Tower = () => {
   return (
     <div>
       {isBattleOn ? (
-        <BattleScreen isBattleOn={isBattleOn} toggleBattle={setIsBattleOn} />
+        <BattleScreen
+          isBattleOn={isBattleOn}
+          toggleBattle={setIsBattleOn}
+          towerFight={true}
+        />
       ) : (
         <button
           onClick={() =>

@@ -12,7 +12,7 @@ import Main from "../main/Main";
 import { useSelector } from "../../redux/customHooks";
 
 import styled from "styled-components";
-import { ButtonStyles } from "../ui/globalStyles";
+import { ButtonStyles } from "../../game/ui/globalStyles";
 import { toast } from "react-toastify";
 
 const StartMenuWrapper = styled.div`

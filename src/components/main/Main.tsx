@@ -8,7 +8,7 @@ import Market from "./Market/Market";
 import Tavern from "./Tavern";
 import Wild from "./Wild";
 import Character from "./Character";
-import { colors } from "../ui/globalStyles";
+import { colors } from "../../game/ui/globalStyles";
 
 const Navigation = styled.ul`
   display: flex;

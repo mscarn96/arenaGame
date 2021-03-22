@@ -1,7 +1,6 @@
 import {basicAttack} from '../battle'
 import {Dispatch} from 'redux'
 import { gainResource } from '../../redux/actions/battleActionCreators';
-import Enemy from '../../components/battleScreen/Enemy';
 
 const warriorGainRes = (warrior:Champion,number:number,dispatch:Dispatch):void => {
         const {current} = warrior.res
@@ -43,6 +42,60 @@ const executionEffect = (warrior:Champion,defender:Enemy):AttackResult => {
     }
 }
 
+const weaponThrowEffect = (warrior:Champion,defender:Enemy):AttackResult => {
+    const randomAttNum = Math.round(Math.random() * 120);
+    const randomDefNum = Math.round(Math.random() * 100);
+    let damage = (warrior.magicPower * randomAttNum) / 40 - (defender.armor * randomDefNum) / 5;
+    damage = Math.floor(damage)
+    const isDamagePositive = damage > 1;
+    const statusText = `${warrior.name} used Weapon Throw! It dealt ${isDamagePositive ? damage : 1} damage!`
+    if (isDamagePositive) {return {
+        statusText,
+        damage
+    }} else return {
+        statusText,
+        damage:1
+    }
+}
+
+const disarmEffect = (warrior:Champion,defender:Enemy):TurnResult => {
+    const randomAttNum = Math.round(Math.random() * 130);
+    const randomDefNum = Math.round(Math.random() * 100);
+    const {blockChance} = defender;
+    const effectNumber = randomAttNum - randomDefNum
+    if (effectNumber > 0) {
+        if (effectNumber > blockChance)
+         {return {
+            statusText:`${warrior.name} used Disarm! ${defender.name}'s Block Chance is now ${Math.floor(blockChance / 2)}!`,
+            effectNumber:Math.floor(blockChance / 2),
+         }} 
+         else return {
+            statusText:`${warrior.name} used Disarm! ${defender.name}'s Block Chance is now ${Math.floor(blockChance - blockChance / 3)}!`,
+            effectNumber:Math.floor(blockChance / 3),
+         }
+    } else return {statusText:`${warrior.name} tried to use Disarm but it failed!`,
+    effectNumber:0}
+}
+
+const shockwaveEffect = (warrior:Champion,defender:Enemy):TurnResult => {
+    const randomAttNum = Math.round(Math.random() * 130);
+    const randomDefNum = Math.round(Math.random() * 100);
+    const {dodgeChance} = defender;
+    const effectNumber = randomAttNum - randomDefNum
+    if (effectNumber > 0) {
+        if (effectNumber > dodgeChance)
+         {return {
+            statusText:`${warrior.name} used Shockwave! ${defender.name}'s Dodge Chance is now ${Math.floor(dodgeChance / 2)}!`,
+            effectNumber:Math.floor(dodgeChance / 2),
+         }} 
+         else return {
+            statusText:`${warrior.name} used Shockwave! ${defender.name}'s Dodge Chance is now ${Math.floor(dodgeChance - dodgeChance / 3)}!`,
+            effectNumber:Math.floor(dodgeChance / 3),
+         }
+    } else return {statusText:`${warrior.name} tried to use Shockwave but it failed!`,
+    effectNumber:0}
+}
+
 export const ThreeHitCombo:AttackSkill = {
     id:211,
     type:`DAMAGE`,
@@ -57,4 +110,30 @@ export const Execution:AttackSkill = {
     name:`Execution`,
     effect:executionEffect,
     cost:70
+}
+
+export const WeaponThrow:AttackSkill = {
+    id:213,
+    type:`DAMAGE`,
+    name:`Weapon Throw`,
+    effect:weaponThrowEffect,
+    cost:30
+}
+
+export const Disarm:EffectSkill = {
+    id:214,
+    type:`EFFECT`,
+    name:`Disarm`,
+    stat:`blockChance`,
+    effect:disarmEffect,
+    cost:20
+}
+
+export const Shockwave:EffectSkill = {
+    id:214,
+    type:`EFFECT`,
+    name:`Shockwave`,
+    stat:`dodgeChance`,
+    effect:shockwaveEffect,
+    cost:20
 }

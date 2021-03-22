@@ -70,6 +70,6 @@ const Archangel:Character =
         image:ArchangelImg,
         }
 
-const towerMobs = [ThunderLord,Archangel,DarkKnight]
+const towerMobs = [ThunderLord,DarkKnight,Archangel]
 
 export default towerMobs

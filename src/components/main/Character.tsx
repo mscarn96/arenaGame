@@ -6,7 +6,7 @@ import ProgressBar from "../ui/ProgressBar";
 import { expToLvlUp } from "../../game/battle";
 import Item from "../battleScreen/Item";
 import { getResBarColor } from "../battleScreen/Player";
-import { colors } from "../ui/globalStyles";
+import { colors } from "../../game/ui/globalStyles";
 import Inventory from "../battleScreen/Inventory";
 import { getChampClass } from "../../game/gameVariousFuncs";
 

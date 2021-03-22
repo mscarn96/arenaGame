@@ -110,7 +110,7 @@ export const willLvlUp = (champ:Champion,expFromWin:number):boolean => {
     return false
 }
 
-const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion => {
+export const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion => {
     let champToReplace = {...champ};
     champToReplace.exp = champ.exp + expFromWin
     if (willLvlUp(champ,expFromWin)) return lvlUp(champToReplace,expToLvlUp[champ.level - 1])

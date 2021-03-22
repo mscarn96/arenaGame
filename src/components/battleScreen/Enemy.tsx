@@ -9,25 +9,57 @@ type Props = {
 };
 
 const EnemyContainer = styled.div`
-  img {
-    max-width: 200px;
+  h3,
+  p {
+    margin: 10px;
+    text-align: center;
+  }
+  h3 {
+    height: 50px;
+  }
+  .imageEnemy {
+    position: relative;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .imageEnemy img {
+    max-width: 100px;
+    height: 150px;
+  }
+  .imageEnemy span {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 0.5rem;
+    bottom: 0;
+    left: 25%;
+  }
+  .bars {
+    display: flex;
+    flex-direction: column;
   }
 `;
 
 const Enemy = (props: Props) => {
-  const { enemy, attackResult } = props;
+  const { enemy } = props;
   return (
     <EnemyContainer>
       <h3>{enemy?.name}</h3>
       <p>Level : {enemy?.level}</p>
-      <img src={enemy.image} alt={`img of ${enemy.name}`} />
-      <ProgressBar
-        width={100}
-        bgcolor={"green"}
-        current={enemy?.hp.currentHp ?? 0}
-        total={enemy?.hp.fullHp ?? 0}
-      />
-      <p>{attackResult}</p>
+      <div className={`imageEnemy`}>
+        <img src={enemy.image} alt={`img of ${enemy.name}`} />
+        {enemy.imgCred ? <span>Image by {enemy.imgCred}</span> : null}
+      </div>
+      <p>Level : {enemy.level}</p>
+      <div className={`bars`}>
+        <ProgressBar
+          width={80}
+          bgcolor={"green"}
+          current={enemy?.hp.currentHp ?? 0}
+          total={enemy?.hp.fullHp ?? 0}
+        />
+      </div>
     </EnemyContainer>
   );
 };

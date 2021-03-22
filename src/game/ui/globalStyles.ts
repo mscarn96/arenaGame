@@ -20,6 +20,7 @@ background: transparent;
   border: 1px solid ${colors.lighterBlue};
   border-radius: 5px;
   color: ${colors.lighterBlue};
+  cursor:pointer;
 `
  
 const GlobalStyle = createGlobalStyle`

@@ -12,9 +12,12 @@ import {
   getGoldFromWin,
 } from "../../game/battle";
 import { damageChamp } from "../../redux/actions/battleActionCreators";
-import { deleteChamp } from "../../redux/actions/champActionCreators";
+import {
+  defeatTowerBoss,
+  deleteChamp,
+} from "../../redux/actions/champActionCreators";
 import { clearInventory } from "../../redux/actions/itemActionCreators";
-import { displayEnemyToasts, displayPlayerToasts } from "../ui/toasts";
+import { displayEnemyToasts, displayPlayerToasts } from "../../game/ui/toasts";
 
 import Enemy from "./Enemy";
 import Player from "./Player";
@@ -26,15 +29,18 @@ interface BattleScreenProps {
 
 const BattleScreenWrapper = styled.div<BattleScreenProps>`
   background-image: url(${(props) => props.placeImg});
+  box-shadow: 2px 22px 39px 18px rgba(4, 0, 46, 0.4);
   width: 90vw;
   margin-bottom: 250px;
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
 `;
 
 interface Props {
   isBattleOn: boolean;
   toggleBattle: React.Dispatch<React.SetStateAction<boolean>>;
+  towerFight?: boolean;
 }
 
 const BattleScreen = (props: Props) => {
@@ -49,6 +55,8 @@ const BattleScreen = (props: Props) => {
   const { toggleBattle } = props;
   const history = useHistory();
 
+  const goldEarned = getGoldFromWin(enemy.level);
+
   ///use when player loses all HP
   const gameOver = useCallback(() => {
     dispatch(deleteChamp());
@@ -58,9 +66,9 @@ const BattleScreen = (props: Props) => {
 
   const handleDeleteBattle = useCallback(
     (champ: Champion) => {
-      deleteBattle(champ, dispatch, toggleBattle, enemy);
+      deleteBattle(champ, dispatch, toggleBattle, enemy, goldEarned);
     },
-    [dispatch, toggleBattle, enemy]
+    [dispatch, toggleBattle, enemy, goldEarned]
   );
 
   useEffect(() => {
@@ -75,7 +83,7 @@ const BattleScreen = (props: Props) => {
         });
         setBattleResultVisible(true);
       } else if (playerWin) {
-        const goldEarned = getGoldFromWin(enemy.level);
+        if (props.towerFight) dispatch(defeatTowerBoss());
         if (willLvlUp(champ, enemy.expForWin)) {
           setBattleResultInfo({
             playerWon: true,
@@ -93,14 +101,14 @@ const BattleScreen = (props: Props) => {
         }
         setBattleResultVisible(true);
       } else if (!isPlayerTurn) {
-        //if the game is not over enemy attacks player and pass turn
+        //if the fight is not over enemy attacks player and pass turn
         const attackResult = basicAttack(enemy, champ);
         setEnemyAttackResultText(attackResult.statusText);
         displayEnemyToasts(attackResult.statusText);
         dispatch(damageChamp(attackResult.damage));
         setPlayerTurn(true);
       }
-    }, 2000);
+    }, 2500);
     return () => {
       clearTimeout(enemyTurn);
     };
@@ -112,6 +120,8 @@ const BattleScreen = (props: Props) => {
     toggleBattle,
     handleDeleteBattle,
     gameOver,
+    props.towerFight,
+    goldEarned,
   ]);
 
   if (enemy !== undefined) {

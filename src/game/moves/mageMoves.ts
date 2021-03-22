@@ -31,7 +31,7 @@ const iceBlastEffect = (mage:Champion,defender:Enemy):AttackResult => {
 }
 
 const exhaustEffect = (mage:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 100);
+    const randomAttNum = Math.round(Math.random() * 120);
     const randomDefNum = Math.round(Math.random() * 100);
     const {magicDef} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -50,7 +50,7 @@ const exhaustEffect = (mage:Champion,defender:Enemy):TurnResult => {
 }
 
 const magicBarrierEffect = (mage:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 100);
+    const randomAttNum = Math.round(Math.random() * 120);
     const randomDefNum = Math.round(Math.random() * 100);
     const {attackDamage} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -62,7 +62,7 @@ const magicBarrierEffect = (mage:Champion,defender:Enemy):TurnResult => {
          }} 
          else return {
             statusText:`${mage.name} used Magic Barrier! ${defender.name}'s Attack Damage is now ${Math.floor(attackDamage - attackDamage / 3)}!`,
-            effectNumber,
+            effectNumber:Math.floor(attackDamage / 3),
          }
     } else return {statusText:`${mage.name} tried to use Magic Barrier but it failed!`,
     effectNumber:0}

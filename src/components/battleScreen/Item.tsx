@@ -11,7 +11,7 @@ import { getChampionWithEquippedItem } from "../../game/gameVariousFuncs";
 
 import { modifyChamp } from "../../redux/actions/champActionCreators";
 import { addItem, deleteItem } from "../../redux/actions/itemActionCreators";
-import { colors } from "../ui/globalStyles";
+import { colors } from "../../game/ui/globalStyles";
 
 ///checks if the object has this specific property,
 //so typescript will pass the loop through champion properties

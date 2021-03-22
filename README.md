@@ -1,19 +1,18 @@
 ## TODO
 
+-GOLD EARNING BUG
+
 -//TEST NEW SKILLS
 
 -game images:
---mobs
---champs
---backgrounds
+--authors
+--practice bg
 
 -invent and implement skills (5 each class)
 
--skills css
+-potions!
 
 -game result css
-
--css for mobile battle screen
 
 -css for bigger screens
 

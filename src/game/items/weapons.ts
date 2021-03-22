@@ -1,6 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import getIcons from '../../components/ui/getIcons';
-
+import getIcons from '../ui/getIcons';
 const icons = getIcons(require.context( '../../images/items/weaponImages', true, /\.svg$/ ))
 
 export const SheperdsCrook = ():Item => {
@@ -75,7 +74,7 @@ export const PocketBow = ():Item => {
     const id = uuidv4();
     return {
         id,
-        name:'Crystal Wand',
+        name:'Pocket Bow',
         type:'rightHand',
         cost:50,
         value:{

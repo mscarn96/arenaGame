@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector } from "../../redux/customHooks";
-import { colors } from "../ui/globalStyles";
+import { colors } from "../../game/ui/globalStyles";
 import Item from "./Item";
 
 interface Props {
