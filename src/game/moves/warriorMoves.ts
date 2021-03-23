@@ -130,7 +130,7 @@ export const Disarm:EffectSkill = {
 }
 
 export const Shockwave:EffectSkill = {
-    id:214,
+    id:215,
     type:`EFFECT`,
     name:`Shockwave`,
     stat:`dodgeChance`,

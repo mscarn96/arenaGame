@@ -14,8 +14,9 @@ const Navigation = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 10vh;
   font-size: 1.4rem;
-  margin: 0;
+  margin: 5px;
   padding: 0;
   justify-content: space-around;
   list-style: none;
@@ -37,7 +38,7 @@ const Navigation = styled.ul`
 const Main = () => {
   return (
     <Router>
-      <div>
+      <div className="game">
         <Navigation>
           <li>
             <Link to="character">Character</Link>

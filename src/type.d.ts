@@ -33,7 +33,7 @@ interface ItemValue {
 
 type Stat = 'accuracy' | `critChance` |`attackDamage`|`magicPower` | `blockChance` | `armor` |`magicDef` |`dodgeChance`
 
-type ItemType = 'head' | 'body' | 'feet' | 'neck' | 'rightHand' | 'leftHand'
+type ItemType = 'head' | 'body' | 'feet' | 'neck' | 'rightHand' | 'leftHand' | 'potion'
 
 
 type Item = {

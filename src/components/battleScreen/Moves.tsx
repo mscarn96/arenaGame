@@ -7,6 +7,7 @@ import {
   consumeResource,
   damageEnemy,
   affectEnemy,
+  healChamp,
 } from "../../redux/actions/battleActionCreators";
 import { warriorBasicAttack } from "../../game/moves/warriorMoves";
 import { displayPlayerToasts } from "../../game/ui/toasts";
@@ -55,6 +56,43 @@ const UseSkill = (
   }
 };
 
+const consumePotion = (
+  potion: Item,
+  champ: Champion,
+  dispatch: Dispatch<any>,
+  setIsPlayerTurn: React.Dispatch<React.SetStateAction<boolean>>
+) => {
+  switch (potion.name) {
+    case "Health Potion":
+      const hpRecovered = Math.floor(champ.hp.fullHp * 0.2);
+      displayPlayerToasts(
+        `You have used Health Potion and recovered ${hpRecovered} health!`
+      );
+      setIsPlayerTurn(false);
+      dispatch(healChamp(hpRecovered));
+      break;
+    case "Mana Potion":
+      const manaRecovered = Math.floor(champ.res.full * 0.33);
+      displayPlayerToasts(
+        `You have used Mana Potion and recovered ${manaRecovered} mana!`
+      );
+      setIsPlayerTurn(false);
+      dispatch(healChamp(manaRecovered));
+      break;
+    case "Super Health Potion":
+      const hpRecoveredSuper = Math.floor(champ.hp.fullHp * 0.4);
+      displayPlayerToasts(
+        `You have used Super Health Potion and recovered ${hpRecoveredSuper} health!`
+      );
+      setIsPlayerTurn(false);
+      dispatch(healChamp(hpRecoveredSuper));
+      break;
+    default:
+      console.error(`Something went wrong, ${potion.name} is not a potion! `);
+      break;
+  }
+};
+
 const MovesContainer = styled.div`
   height: 30vh;
   width: 200%;
@@ -80,6 +118,9 @@ const Moves = (props: Props) => {
   const dispatch = useDispatch();
   const champ = useSelector((state) => state.battleState.champ);
   const enemy = useSelector((state) => state.battleState.enemy);
+  const potions = useSelector((state) => state.InventoryState.items).filter(
+    (item) => item.type === `potion`
+  );
   const skillset = champ.skillset;
 
   const attack = () => {
@@ -109,6 +150,19 @@ const Moves = (props: Props) => {
           {skill.name}
         </button>
       ))}
+      {potions.length > 0
+        ? potions.map((potion) => (
+            <button
+              key={potion.id}
+              disabled={!props.isPlayerTurn}
+              onClick={() =>
+                consumePotion(potion, champ, dispatch, props.setIsPlayerTurn)
+              }
+            >
+              {potion.name}
+            </button>
+          ))
+        : null}
     </MovesContainer>
   );
 };

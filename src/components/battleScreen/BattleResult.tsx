@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { colors } from "../../game/ui/globalStyles";
 
 interface Props {
   resultInfo: ResultInfo;
@@ -23,15 +24,40 @@ const BattleResultBackground = styled.div`
 
 const BattleResultContainer = styled.div`
   position: fixed;
-  background-color: blue;
-  opacity: 1;
+  background-color: black;
+  opacity: 0.9;
   color: white;
-  width: 70%;
-  height: 45%;
+  width: 90%;
+  height: 50%;
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
   z-index: 2;
+
+  h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 40px 25px;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 30px 20px;
+  }
+
+  button {
+    font-family: "Cormorant Unicase", sans-serif;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: ${colors.white};
+    background-color: ${colors.darkBlue};
+    border: 1px solid ${colors.white};
+    border-radius: 5px;
+  }
 `;
 const closeBattleAndSendInfoToStore = (
   setVisible: React.Dispatch<React.SetStateAction<boolean>>,

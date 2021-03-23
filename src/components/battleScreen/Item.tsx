@@ -57,28 +57,32 @@ const removeStatsFromItem = (champ: Champion, item: Item) => {
 };
 
 const unequipItem = (champ: Champion, item: Item, dispatch: Dispatch) => {
-  const champToReplace = { ...champ };
-  item.isEquipped = false;
-  champToReplace.itemSlots[item.type] = null;
-  removeStatsFromItem(champToReplace, item);
-  dispatch(addItem(item));
-  dispatch(modifyChamp(champToReplace));
+  if (item.type !== `potion`) {
+    const champToReplace = { ...champ };
+    item.isEquipped = false;
+    champToReplace.itemSlots[item.type] = null;
+    removeStatsFromItem(champToReplace, item);
+    dispatch(addItem(item));
+    dispatch(modifyChamp(champToReplace));
+  }
 };
 
 const equipItem = (champ: Champion, item: Item, dispatch: Dispatch) => {
-  const itemToInventory = champ.itemSlots[item.type];
-  let champToReplace = { ...champ };
-  if (itemToInventory !== null) {
-    itemToInventory.isEquipped = false;
-    champToReplace.itemSlots[itemToInventory.type] = null;
-    removeStatsFromItem(champToReplace, itemToInventory);
-    dispatch(addItem(itemToInventory));
+  if (item.type !== `potion`) {
+    const itemToInventory = champ.itemSlots[item.type];
+    let champToReplace = { ...champ };
+    if (itemToInventory !== null && itemToInventory.type !== `potion`) {
+      itemToInventory.isEquipped = false;
+      champToReplace.itemSlots[itemToInventory.type] = null;
+      removeStatsFromItem(champToReplace, itemToInventory);
+      dispatch(addItem(itemToInventory));
+    }
+    item.isEquipped = true;
+    addStatsFromItem(champToReplace, item);
+    champToReplace = getChampionWithEquippedItem(champToReplace, item);
+    dispatch(modifyChamp(champToReplace));
+    dispatch(deleteItem(item));
   }
-  item.isEquipped = true;
-  addStatsFromItem(champToReplace, item);
-  champToReplace = getChampionWithEquippedItem(champToReplace, item);
-  dispatch(modifyChamp(champToReplace));
-  dispatch(deleteItem(item));
 };
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -186,7 +190,7 @@ const ItemInfo = ({
       {buyable ? (
         <button
           onClick={() =>
-            buyItem(gold, item, setShowInfo, dispatch, amountOfItemsInInventory)
+            buyItem(gold, item, dispatch, amountOfItemsInInventory, setShowInfo)
           }
         >
           Buy Item
@@ -197,7 +201,9 @@ const ItemInfo = ({
           Sell Item
         </button>
       ) : null}
-      {wearable ? EquipItemButton(item, champ, dispatch) : null}
+      {wearable && item.type !== `potion`
+        ? EquipItemButton(item, champ, dispatch)
+        : null}
     </ItemInfoContainer>
   );
 };

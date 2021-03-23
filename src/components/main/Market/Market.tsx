@@ -21,7 +21,7 @@ const Navigation = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 15px;
+  margin: 10px;
 `;
 const notify = (text: string) => toast.dark(text);
 
@@ -42,9 +42,9 @@ export const renderItem = (itemF: () => Item, champ: Champion): JSX.Element => {
 export const buyItem = (
   currentGold: number,
   item: Item,
-  setShowInfo: React.Dispatch<React.SetStateAction<boolean>>,
   dispatch: Dispatch<any>,
-  amountOfItemsInInventory: number
+  amountOfItemsInInventory: number,
+  setShowInfo?: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   if (amountOfItemsInInventory >= 12) {
     notify(`You can only have maximum 12 items in Inventory!`);
@@ -58,7 +58,7 @@ export const buyItem = (
     dispatch(addItem(itemToBuy));
     dispatch(spendGold(itemToBuy.cost));
     notify(`You just bought ${itemToBuy.name} for ${itemToBuy.cost} gold!`);
-    setShowInfo(false);
+    if (setShowInfo) setShowInfo(false);
   } else notify(`Not enough gold!`);
 };
 
@@ -67,9 +67,10 @@ export const sellItem = (
   setShowInfo: React.Dispatch<React.SetStateAction<boolean>>,
   dispatch: Dispatch<any>
 ) => {
+  const goldForSell = Math.floor(item.cost / 2);
   dispatch(deleteItem(item));
-  dispatch(addGold(item.cost / 2));
-  notify(`You just sold ${item.name} for ${item.cost / 2} gold!`);
+  dispatch(addGold(goldForSell));
+  notify(`You just sold ${item.name} for ${goldForSell} gold!`);
   setShowInfo(false);
 };
 

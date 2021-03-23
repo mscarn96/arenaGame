@@ -34,9 +34,8 @@ const GlobalStyle = createGlobalStyle`
     overflow:hidden;
   }
   .App {
-    padding:5%;
-    width: 90%;
-    height: 90%;
+    width: 100%;
+    height: 100%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -47,6 +46,10 @@ const GlobalStyle = createGlobalStyle`
     font-size:18px;
     box-shadow: 0px 0px 10px 5px rgba(59, 63, 68, 0.8);
     overflow:hidden;
+  }
+  .game {
+    height:100vh;
+    padding:5% 0;
   }
   .Toastify__toast {
     margin:15px;
