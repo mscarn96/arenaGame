@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector } from "../../redux/customHooks";
 
 import ProgressBar from "../ui/ProgressBar";
-import { expToLvlUp } from "../../game/battle";
+import { expToLvlUp } from "../../game/lvlUp";
 import Item from "../battleScreen/Item";
 import { getResBarColor } from "../battleScreen/Player";
 import { colors } from "../../game/ui/globalStyles";
@@ -49,11 +49,10 @@ const CharacterWrapper = styled.div`
 const EquipmentWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
     ". head neck"
     "left-hand body right-hand"
-    ". legs ."
     ". feet .";
   grid-gap: 10px;
   place-items: center;
@@ -71,9 +70,6 @@ const EquipmentWrapper = styled.div`
   }
   .body {
     grid-area: body;
-  }
-  .legs {
-    grid-area: legs;
   }
   .feet {
     grid-area: feet;
@@ -117,19 +113,6 @@ const ChampionEquipment = (champ: Champion) => {
           />
         ) : (
           "body"
-        )}
-      </div>
-      <div className={`legs`}>
-        {itemSlots.feet ? (
-          <Item
-            champ={champ}
-            item={itemSlots.feet}
-            buyable={false}
-            sellable={false}
-            wearable={true}
-          />
-        ) : (
-          "legs"
         )}
       </div>
       <div className={`feet`}>

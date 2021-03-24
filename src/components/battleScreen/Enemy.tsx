@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { colors } from "../../game/ui/globalStyles";
 
 import ProgressBar from "../ui/ProgressBar";
 
@@ -19,13 +20,15 @@ const EnemyContainer = styled.div`
   }
   .imageEnemy {
     position: relative;
-    margin: 10px;
+    margin: 5px;
     display: flex;
     justify-content: center;
   }
   .imageEnemy img {
     max-width: 100px;
     height: 150px;
+    border: 2px solid ${colors.lightBlue};
+    border-radius: 5px;
   }
   .imageEnemy span {
     background-color: rgba(0, 0, 0, 0.5);
@@ -33,7 +36,8 @@ const EnemyContainer = styled.div`
     font-family: sans-serif;
     font-size: 0.5rem;
     bottom: 0;
-    left: 25%;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .bars {
     display: flex;

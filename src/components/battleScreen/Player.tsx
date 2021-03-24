@@ -5,6 +5,7 @@ import { getChampClass } from "../../game/gameVariousFuncs";
 import Moves from "./Moves";
 import ProgressBar from "../ui/ProgressBar";
 import styled from "styled-components";
+import { colors } from "../../game/ui/globalStyles";
 
 export const getResBarColor = (champ: Champion | null): string => {
   switch (champ?.res.name) {
@@ -38,13 +39,15 @@ const PlayerContainer = styled.div`
   }
   .imageChamp {
     position: relative;
-    margin: 10px;
+    margin: 5px;
     display: flex;
     justify-content: center;
   }
   .imageChamp img {
     max-width: 100px;
     height: 150px;
+    border: 2px solid ${colors.lightBlue};
+    border-radius: 5px;
   }
   .imageChamp span {
     background-color: rgba(0, 0, 0, 0.5);
@@ -52,7 +55,8 @@ const PlayerContainer = styled.div`
     font-family: sans-serif;
     font-size: 0.5rem;
     bottom: 0;
-    right: 0;
+    right: 50%;
+    transform: translateX(50%);
   }
 
   .bars {

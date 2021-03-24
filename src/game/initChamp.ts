@@ -1,5 +1,6 @@
 import * as mageMoves from './moves/mageMoves'
 import * as warriorMoves from './moves/warriorMoves'
+import * as hunterMoves from './moves/hunterMoves'
 
 import hunterImg from '../images/champs/HunterImg.jpg'
 import mageImg from '../images/champs/MageImg.jpg'
@@ -41,7 +42,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 dodgeChance:5,
                 expForWin:0,
                 image:warriorImg,
-                skillset:[warriorMoves.Execution,warriorMoves.ThreeHitCombo,warriorMoves.Disarm,warriorMoves.Shockwave,warriorMoves.WeaponThrow]}
+                skillset:[warriorMoves.WeaponThrow]}
         case 1:
             return {
                 id:0,
@@ -76,7 +77,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 dodgeChance:8,
                 expForWin:0,
                 image:mageImg,
-                skillset:[mageMoves.Fireball,mageMoves.Exhaust,mageMoves.IceBlast,mageMoves.LightningBolt,mageMoves.MagicBarrier]
+                skillset:[mageMoves.Fireball]
             }
         case 2:
                 return {
@@ -113,7 +114,7 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     expForWin:0,
                     image:hunterImg,
                     imgCred:`Sicarius8`,
-                    skillset:[]
+                    skillset:[hunterMoves.QuickAttack]
                 }    
         default:
             throw new Error(`champion class of id${champClass} doesn't exist!`);

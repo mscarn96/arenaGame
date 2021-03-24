@@ -1,16 +1,12 @@
 ## TODO
 
--GOLD EARNING BUG!!!!!
+-TEST AND TEST COMBAT
 
--//TEST NEW SKILLS
+-info user about getting new spell
 
 -game images:
 --authors
 --practice bg and market
-
--skills when lvl up
-
--invent and implement skills (5 each class)
 
 -css for bigger screens,tablets
 -improve css on battle screen mobile

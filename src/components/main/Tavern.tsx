@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/customHooks";
 import { modifyChamp } from "../../redux/actions/champActionCreators";
 import { addGold, spendGold } from "../../redux/actions/itemActionCreators";
-import { addExpAndcheckLvlUp } from "../../game/battle";
+import { addExpAndcheckLvlUp } from "../../game/lvlUp";
 import { buyItem } from "./Market/Market";
 import styled from "styled-components";
 import { ButtonStyles } from "../../game/ui/globalStyles";

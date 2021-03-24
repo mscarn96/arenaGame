@@ -5,12 +5,8 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/customHooks";
 import { Prompt, useHistory } from "react-router-dom";
 
-import {
-  basicAttack,
-  deleteBattle,
-  willLvlUp,
-  getGoldFromWin,
-} from "../../game/battle";
+import { basicAttack, deleteBattle } from "../../game/battle";
+import { willLvlUp, getGoldFromWin } from "../../game/lvlUp";
 import { damageChamp } from "../../redux/actions/battleActionCreators";
 import {
   defeatTowerBoss,
@@ -22,6 +18,7 @@ import { displayEnemyToasts, displayPlayerToasts } from "../../game/ui/toasts";
 import Enemy from "./Enemy";
 import Player from "./Player";
 import BattleResult from "./BattleResult";
+import { colors } from "../../game/ui/globalStyles";
 
 interface BattleScreenProps {
   placeImg: string;
@@ -29,12 +26,15 @@ interface BattleScreenProps {
 
 const BattleScreenWrapper = styled.div<BattleScreenProps>`
   background-image: url(${(props) => props.placeImg});
-  box-shadow: 2px 22px 39px 18px rgba(4, 0, 46, 0.4);
-  width: 90vw;
+  background-size: cover;
+  background-position: center;
+  border-top: 3px solid ${colors.lighterBlue};
+  width: 100vw;
   margin-bottom: 250px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
+  box-shadow: inset 0px 0px 50px 50px rgba(30, 30, 30, 0.89);
 `;
 
 interface Props {
@@ -52,10 +52,9 @@ const BattleScreen = (props: Props) => {
   const champ = useSelector((state) => state.battleState.champ);
   const enemy = useSelector((state) => state.battleState.enemy);
   const place = useSelector((state) => state.battleState.place);
+  const [goldEarned, setGoldEarned] = useState<number>();
   const { toggleBattle } = props;
   const history = useHistory();
-
-  const goldEarned = getGoldFromWin(enemy.level);
 
   ///use when player loses all HP
   const gameOver = useCallback(() => {
@@ -63,6 +62,10 @@ const BattleScreen = (props: Props) => {
     dispatch(clearInventory());
     history.push("/");
   }, [dispatch, history]);
+
+  useEffect(() => {
+    setGoldEarned(getGoldFromWin(enemy.level));
+  }, [enemy.level]);
 
   const handleDeleteBattle = useCallback(
     (champ: Champion) => {
@@ -108,7 +111,7 @@ const BattleScreen = (props: Props) => {
         dispatch(damageChamp(attackResult.damage));
         setPlayerTurn(true);
       }
-    }, 2500);
+    }, 3000);
     return () => {
       clearTimeout(enemyTurn);
     };

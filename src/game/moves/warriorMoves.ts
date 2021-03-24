@@ -43,7 +43,7 @@ const executionEffect = (warrior:Champion,defender:Enemy):AttackResult => {
 }
 
 const weaponThrowEffect = (warrior:Champion,defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 120);
+    const randomAttNum = Math.round(Math.random() * 140);
     const randomDefNum = Math.round(Math.random() * 100);
     let damage = (warrior.magicPower * randomAttNum) / 40 - (defender.armor * randomDefNum) / 5;
     damage = Math.floor(damage)

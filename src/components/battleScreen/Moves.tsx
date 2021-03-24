@@ -99,6 +99,7 @@ const MovesContainer = styled.div`
   background: rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   button {
+    font-family: "Cormorant Unicase", sans-serif;
     background: transparent;
     margin: 15px 10px 5px;
     border: 2px solid ${colors.lightBlue};
