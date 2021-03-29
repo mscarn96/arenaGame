@@ -23,6 +23,8 @@ const StartMenuWrapper = styled.div`
   h1 {
     font-size: 1.8rem;
     text-align: center;
+    font-family: "Cormorant Unicase", sans-serif;
+    margin-top: 50px;
   }
 `;
 
@@ -71,6 +73,7 @@ const StartMenu = () => {
     event.preventDefault();
     if (isCharSelected) {
       dispatch(createChamp(name, classPicked));
+      setName("");
     } else {
       if (name.length <= 3) {
         toast.error("Name must contain at least 3 characters");

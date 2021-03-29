@@ -16,27 +16,29 @@ interface Props {
 }
 
 const CreateCharContainer = styled.div`
+  font-family: "Cormorant Unicase", sans-serif;
+
   input {
     background-color: ${colors.darkBlue};
     border: 1px solid ${colors.lighterBlue};
     color: ${colors.white};
-    font-family: "Redressed", serif;
     font-size: 1.2rem;
     border-radius: 5px;
+    font-family: "Cormorant Unicase", sans-serif;
   }
   form select {
     margin: 5px;
     background-color: ${colors.darkBlue};
     color: ${colors.lightBlue};
-    font-family: "Redressed", serif;
     font-size: 1rem;
     border-radius: 5px;
+    font-family: "Cormorant Unicase", sans-serif;
   }
   form button {
     ${ButtonStyles};
-    marginL5px;
+    margin: 5px;
     font-size: 1rem;
-    font-family: "Cormorant Unicase",sans-serif;
+    font-family: "Cormorant Unicase", sans-serif;
   }
 `;
 

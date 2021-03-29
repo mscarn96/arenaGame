@@ -11,6 +11,7 @@ import { damageChamp } from "../../redux/actions/battleActionCreators";
 import {
   defeatTowerBoss,
   deleteChamp,
+  modifyChamp,
 } from "../../redux/actions/champActionCreators";
 import { clearInventory } from "../../redux/actions/itemActionCreators";
 import { displayEnemyToasts, displayPlayerToasts } from "../../game/ui/toasts";
@@ -35,12 +36,23 @@ const BattleScreenWrapper = styled.div<BattleScreenProps>`
   grid-template-columns: 1fr 1fr;
   overflow: hidden;
   box-shadow: inset 0px 0px 50px 50px rgba(30, 30, 30, 0.89);
+
+  span.bg-author {
+    opacity:0.7;
+    position: absolute;
+    font-family: sans-serif;
+    font-size: 0.5rem;
+    bottom: 0;
+    right: 0%;
+  }
+  }
 `;
 
 interface Props {
   isBattleOn: boolean;
   toggleBattle: React.Dispatch<React.SetStateAction<boolean>>;
   towerFight?: boolean;
+  practiceFight?: boolean;
 }
 
 const BattleScreen = (props: Props) => {
@@ -56,12 +68,19 @@ const BattleScreen = (props: Props) => {
   const { toggleBattle } = props;
   const history = useHistory();
 
-  ///use when player loses all HP
+  ///Use when player loses all HP
   const gameOver = useCallback(() => {
+    if (props.practiceFight) {
+      const champToReplace = { ...champ };
+      champToReplace.hp.currentHp = 50;
+      dispatch(modifyChamp(champToReplace));
+      history.push("/tavern");
+      return;
+    }
     dispatch(deleteChamp());
     dispatch(clearInventory());
     history.push("/");
-  }, [dispatch, history]);
+  }, [dispatch, history, props.practiceFight, champ]);
 
   useEffect(() => {
     setGoldEarned(getGoldFromWin(enemy.level));
@@ -74,11 +93,18 @@ const BattleScreen = (props: Props) => {
     [dispatch, toggleBattle, enemy, goldEarned]
   );
 
+  const waitForPlayerTurn = (champ: Champion, incomingDamage: number): void => {
+    //Check if attack kills player and then wait for toast to disappear
+    if (champ.hp.currentHp > incomingDamage) {
+      setTimeout(() => setPlayerTurn(true), 1900);
+    }
+  };
+
   useEffect(() => {
     const enemyTurn = setTimeout(() => {
       const playerWin = enemy.hp.currentHp <= 0;
       const enemyWin = champ.hp.currentHp <= 0;
-      ///first game checks if the fight is over
+      ///Game checks if the fight is over
       if (enemyWin) {
         setBattleResultInfo({
           playerWon: false,
@@ -104,14 +130,14 @@ const BattleScreen = (props: Props) => {
         }
         setBattleResultVisible(true);
       } else if (!isPlayerTurn) {
-        //if the fight is not over enemy attacks player and pass turn
+        //If the fight is not over enemy attacks player and pass turn
         const attackResult = basicAttack(enemy, champ);
         setEnemyAttackResultText(attackResult.statusText);
         displayEnemyToasts(attackResult.statusText);
         dispatch(damageChamp(attackResult.damage));
-        setPlayerTurn(true);
+        waitForPlayerTurn(champ, attackResult.damage);
       }
-    }, 3000);
+    }, 2000);
     return () => {
       clearTimeout(enemyTurn);
     };
@@ -139,6 +165,7 @@ const BattleScreen = (props: Props) => {
             champ={champ}
             expForWin={enemy.expForWin}
             toggleBattle={toggleBattle}
+            practiceFight={props.practiceFight}
           />
         ) : null}
         <BattleScreenWrapper placeImg={place.image}>
@@ -152,6 +179,11 @@ const BattleScreen = (props: Props) => {
                 displayToast={displayPlayerToasts}
               />
               <Enemy enemy={enemy} attackResult={enemyAttackResultText} />
+              {place.imgCred ? (
+                <span className={`bg-author`}>
+                  Background image by {place.imgCred}
+                </span>
+              ) : null}
             </>
           ) : null}
         </BattleScreenWrapper>

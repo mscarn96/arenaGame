@@ -1,37 +1,37 @@
 const fireBallEffect = (mage:Champion, defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 120);
+    const randomAttNum = Math.round(Math.random() * 190);
     const randomDefNum = Math.round(Math.random() * 100);
-    let damage = (mage.magicPower * randomAttNum) / 40 - (defender.magicDef * randomDefNum) / 5;
+    let damage = (mage.magicPower * randomAttNum) / 50 - (defender.magicDef * randomDefNum) / 5;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
-    const statusText = `${mage.name} used Fireball! It dealt ${isDamagePositive ? damage : 1} damage!`
+    const statusText = `${mage.name} used Fireball${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
     if (isDamagePositive) {return {
         statusText,
         damage
     }} else return {
         statusText,
-        damage:1
+        damage:0
     }
 }
 
 const iceBlastEffect = (mage:Champion,defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 130);
+    const randomAttNum = Math.round(Math.random() * 200);
     const randomDefNum = Math.round(Math.random() * 100);
-    let damage = (mage.magicPower * randomAttNum) / 25 - (defender.magicDef * randomDefNum) / 50;
+    let damage = (mage.magicPower * randomAttNum) / 30 - (defender.magicDef * randomDefNum) / 50;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
-    const statusText = `${mage.name} used Ice Blast! It dealt ${isDamagePositive ? damage : 1} damage!`
+    const statusText = `${mage.name} used Ice Blast${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
     if (isDamagePositive) {return {
         statusText,
         damage
     }} else return {
         statusText,
-        damage:1
+        damage:0
     }
 }
 
 const exhaustEffect = (mage:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 120);
+    const randomAttNum = Math.round(Math.random() * 200);
     const randomDefNum = Math.round(Math.random() * 100);
     const {magicDef} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -50,7 +50,7 @@ const exhaustEffect = (mage:Champion,defender:Enemy):TurnResult => {
 }
 
 const magicBarrierEffect = (mage:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 120);
+    const randomAttNum = Math.round(Math.random() * 200);
     const randomDefNum = Math.round(Math.random() * 100);
     const {attackDamage} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -69,18 +69,18 @@ const magicBarrierEffect = (mage:Champion,defender:Enemy):TurnResult => {
 }
 
 const lightningBoltEffect = (mage:Champion,defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 160);
+    const randomAttNum = Math.round(Math.random() * 230);
     const randomDefNum = Math.round(Math.random() * 100);
     let damage = (mage.magicPower * randomAttNum) / 25 - (defender.magicDef * randomDefNum) / 50;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
-    const statusText = `${mage.name} used Lightning Bolt! It dealt ${isDamagePositive ? damage : 1} damage!`
+    const statusText = `${mage.name} used Lightning Bolt${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
     if (isDamagePositive) {return {
         statusText,
         damage
     }} else return {
         statusText,
-        damage:1
+        damage:0
     }
 }
 

@@ -1,14 +1,6 @@
 ## TODO
 
--TEST AND TEST COMBAT
-
--info user about getting new spell
-
--game images:
---authors
---practice bg and market
-
+-heal after lvl up
 -css for bigger screens,tablets
--improve css on battle screen mobile
 
 ## THATS IT FOR NOW

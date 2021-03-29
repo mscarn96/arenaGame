@@ -67,6 +67,7 @@ const add1000Gold = (dispatch: Dispatch<any>) => {
 const TavernContainer = styled.div`
   background-image: url(${TavernBackground});
   background-size: cover;
+  background-position: center;
   padding: 10px;
   height: 90vh;
   position: relative;
@@ -76,7 +77,7 @@ const TavernContainer = styled.div`
     position: absolute;
     font-family: sans-serif;
     font-size: 0.5rem;
-    bottom: 8%;
+    bottom: 9%;
     left: 0;
   }
 `;
@@ -85,12 +86,14 @@ const ServiceContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: column;
+  align-items: center;
   p {
     margin: 12px;
   }
   button {
     ${ButtonStyles}
     padding: 5px;
+    width: 50%;
   }
 `;
 

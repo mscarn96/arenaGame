@@ -13,6 +13,7 @@ import { warriorBasicAttack } from "../../game/moves/warriorMoves";
 import { displayPlayerToasts } from "../../game/ui/toasts";
 import styled from "styled-components";
 import { colors } from "../../game/ui/globalStyles";
+import { deleteItem } from "../../redux/actions/itemActionCreators";
 
 enum ChampClass {
   Warrior = 0,
@@ -60,7 +61,8 @@ const consumePotion = (
   potion: Item,
   champ: Champion,
   dispatch: Dispatch<any>,
-  setIsPlayerTurn: React.Dispatch<React.SetStateAction<boolean>>
+  setIsPlayerTurn: React.Dispatch<React.SetStateAction<boolean>>,
+  inventory: Item[]
 ) => {
   switch (potion.name) {
     case "Health Potion":
@@ -91,6 +93,8 @@ const consumePotion = (
       console.error(`Something went wrong, ${potion.name} is not a potion! `);
       break;
   }
+
+  dispatch(deleteItem(potion));
 };
 
 const MovesContainer = styled.div`
@@ -119,9 +123,8 @@ const Moves = (props: Props) => {
   const dispatch = useDispatch();
   const champ = useSelector((state) => state.battleState.champ);
   const enemy = useSelector((state) => state.battleState.enemy);
-  const potions = useSelector((state) => state.InventoryState.items).filter(
-    (item) => item.type === `potion`
-  );
+  const inventory = useSelector((state) => state.InventoryState.items);
+  const potions = inventory.filter((item) => item.type === `potion`);
   const skillset = champ.skillset;
 
   const attack = () => {
@@ -157,7 +160,13 @@ const Moves = (props: Props) => {
               key={potion.id}
               disabled={!props.isPlayerTurn}
               onClick={() =>
-                consumePotion(potion, champ, dispatch, props.setIsPlayerTurn)
+                consumePotion(
+                  potion,
+                  champ,
+                  dispatch,
+                  props.setIsPlayerTurn,
+                  inventory
+                )
               }
             >
               {potion.name}

@@ -49,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
   }
   .game {
     height:100vh;
-    padding:5% 0;
+    padding:2% 0;
   }
   .Toastify__toast {
     margin:15px;

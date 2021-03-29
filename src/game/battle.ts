@@ -20,7 +20,7 @@ export const basicAttack = (attacker:Champion | Enemy, defender:Champion | Enemy
         statusText:``,
     };
 
-    const randomAttNum = Math.round(Math.random() * 100);
+    const randomAttNum = Math.round(Math.random() * 120);
     const randomDefNum = Math.round(Math.random() * 100);
 
     if (randomDefNum < defender.blockChance) {

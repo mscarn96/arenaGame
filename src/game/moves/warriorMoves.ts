@@ -14,7 +14,7 @@ const warriorGainRes = (warrior:Champion,number:number,dispatch:Dispatch):void =
 export const warriorBasicAttack = (warrior:Champion, defender:Enemy,dispatch:Dispatch):AttackResult => {
     const result = basicAttack(warrior,defender);
     if (result.damage > 0) {
-        warriorGainRes(warrior,10,dispatch)
+        warriorGainRes(warrior,20,dispatch)
     }
     return result;
 }
@@ -43,23 +43,23 @@ const executionEffect = (warrior:Champion,defender:Enemy):AttackResult => {
 }
 
 const weaponThrowEffect = (warrior:Champion,defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 140);
+    const randomAttNum = Math.round(Math.random() * 250);
     const randomDefNum = Math.round(Math.random() * 100);
     let damage = (warrior.magicPower * randomAttNum) / 40 - (defender.armor * randomDefNum) / 5;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
-    const statusText = `${warrior.name} used Weapon Throw! It dealt ${isDamagePositive ? damage : 1} damage!`
+    const statusText = `${warrior.name} used Weapon Throw${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
     if (isDamagePositive) {return {
         statusText,
         damage
     }} else return {
         statusText,
-        damage:1
+        damage:0
     }
 }
 
 const disarmEffect = (warrior:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 130);
+    const randomAttNum = Math.round(Math.random() * 150);
     const randomDefNum = Math.round(Math.random() * 100);
     const {blockChance} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -78,7 +78,7 @@ const disarmEffect = (warrior:Champion,defender:Enemy):TurnResult => {
 }
 
 const shockwaveEffect = (warrior:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 130);
+    const randomAttNum = Math.round(Math.random() * 150);
     const randomDefNum = Math.round(Math.random() * 100);
     const {dodgeChance} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -101,7 +101,7 @@ export const ThreeHitCombo:AttackSkill = {
     type:`DAMAGE`,
     name:`Three Hit Combo`,
     effect:threeHitComboEffect,
-    cost:40,
+    cost:50,
 }
 
 export const Execution:AttackSkill = {
@@ -109,7 +109,7 @@ export const Execution:AttackSkill = {
     type:`DAMAGE`,
     name:`Execution`,
     effect:executionEffect,
-    cost:70
+    cost:60
 }
 
 export const WeaponThrow:AttackSkill = {

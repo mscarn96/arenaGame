@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { isLearingSkill, getNextLearnedSkillName } from "../../game/lvlUp";
 import { colors } from "../../game/ui/globalStyles";
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
   champ: Champion;
   expForWin: number;
   toggleBattle: React.Dispatch<React.SetStateAction<boolean>>;
+  practiceFight?: boolean;
 }
 
 const BattleResultBackground = styled.div`
@@ -38,6 +40,10 @@ const BattleResultContainer = styled.div`
     text-align: center;
     font-size: 1.8rem;
     margin: 40px 25px;
+  }
+
+  h2 {
+    text-align: center;
   }
 
   h3 {
@@ -94,13 +100,28 @@ const BattleResult = (props: Props) => {
     <>
       <BattleResultBackground />
       <BattleResultContainer>
-        <h1>{resultInfo.playerWon ? `You Win! ` : `You Lose. Game Over`}</h1>
+        <h1>
+          {resultInfo.playerWon
+            ? `You Win! `
+            : props.practiceFight
+            ? `You got beat up so badly bad you wake up in tavern...`
+            : `You Lose. Game Over`}
+        </h1>
+
         {resultInfo.didLevelUp ? (
-          <h2>{`Level up! You're now level ${champ.level + 1}`}</h2>
+          <div>
+            <h2>{`Level up! You're now level ${champ.level + 1}`}</h2>
+            {isLearingSkill(champ) ? (
+              <p>
+                You have learned a new skill: {getNextLearnedSkillName(champ)}
+              </p>
+            ) : null}
+          </div>
         ) : null}
         {resultInfo.goldEarned ? (
           <h3>{`You earned ${resultInfo.goldEarned} gold from win.`}</h3>
         ) : null}
+
         <button
           onClick={() =>
             closeBattleAndSendInfoToStore(
@@ -113,7 +134,11 @@ const BattleResult = (props: Props) => {
             )
           }
         >
-          {resultInfo.playerWon ? `End battle` : `Go to main menu`}
+          {resultInfo.playerWon
+            ? `End battle`
+            : props.practiceFight
+            ? `Go to tavern`
+            : `Go to main menu`}
         </button>
       </BattleResultContainer>
     </>

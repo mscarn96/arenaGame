@@ -1,12 +1,12 @@
-import UndeadLionImg from '../../images/mobs/graveyard/UndeadLionImg.jpg'
+import ZombieImg from '../../images/mobs/graveyard/ZombieImg.jpg'
 import SkeletonMageImg from '../../images/mobs/graveyard/SkeletonMageImg.jpg'
 import SkeletonKnightImg from '../../images/mobs/graveyard/SkeletonKnightImg.jpg'
 import GrimReaperImg from '../../images/mobs/graveyard/GrimReaperImg.jpg'
 
 
-const UndeadLion:Character =
+const Zombie:Character =
 {id:101,
-    name:'Undead Lion',
+    name:'Zombie',
     level: 1,
     hp: {
         currentHp:120,
@@ -22,7 +22,8 @@ const UndeadLion:Character =
     dodgeChance:10,
     expForWin:20,
     skillset:[],
-    image:UndeadLionImg,
+    image:ZombieImg,
+    imgCred:`Red_Rabbit`
     }
 
 const SkeletonKnight:Character =
@@ -92,6 +93,6 @@ const GrimReaper:Character =
     imgCred:`Anton Fort`
     }
 
-const graveyardMobs = [UndeadLion,SkeletonKnight,SkeletonMage,GrimReaper]
+const graveyardMobs = [Zombie,SkeletonKnight,SkeletonMage,GrimReaper]
 
 export default graveyardMobs;

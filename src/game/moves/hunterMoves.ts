@@ -3,13 +3,13 @@ const headShotEffect = (hunter:Champion, defender:Enemy):AttackResult => {
     let damage = (hunter.attackDamage * randomAttNum) / 5 - defender.armor 
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
-    const statusText = `${hunter.name} used Headshot! It dealt ${isDamagePositive ? damage : 1} damage!`
+    const statusText = `${hunter.name} used Headshot${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
     if (isDamagePositive) {return {
         statusText,
         damage
     }} else return {
         statusText,
-        damage:1
+        damage:0
     }
 }
 
@@ -19,13 +19,13 @@ const arrowRainEffect = (hunter:Champion, defender:Enemy):AttackResult => {
     let damage = (hunter.attackDamage * randomAttNum) / 20 - (defender.armor * randomDefNum) / 10;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
-    const statusText = `${hunter.name} used Arrow Rain! It dealt ${isDamagePositive ? damage : 1} damage!`
+    const statusText = `${hunter.name} used Arrow Rain${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
     if (isDamagePositive) {return {
         statusText,
         damage
     }} else return {
         statusText,
-        damage:1
+        damage:0
     }
 }
 
@@ -35,21 +35,21 @@ const arrowRainEffect = (hunter:Champion, defender:Enemy):AttackResult => {
 const quickAttackEffect = (hunter:Champion, defender:Enemy):AttackResult => {
     const randomAttNum = Math.round(Math.random() * 150);
     const randomDefNum = Math.round(Math.random() * 100);
-    let damage = (hunter.attackDamage * randomAttNum) / 40 - (defender.armor * randomDefNum) / 5;
+    let damage = (hunter.attackDamage * randomAttNum) / 40 - (defender.armor * randomDefNum) / 10;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
-    const statusText = `${hunter.name} used Quick Attack! It dealt ${isDamagePositive ? damage : 1} damage!`
+    const statusText = `${hunter.name} used Quick Attack${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
     if (isDamagePositive) {return {
         statusText,
         damage
     }} else return {
         statusText,
-        damage:1
+        damage:0
     }
 }
 
 const smokeGranadeEffect = (hunter:Champion, defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 120);
+    const randomAttNum = Math.round(Math.random() * 150);
     const randomDefNum = Math.round(Math.random() * 100);
     const {accuracy} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -69,7 +69,7 @@ const smokeGranadeEffect = (hunter:Champion, defender:Enemy):TurnResult => {
 
 
 const preparationEffect = (hunter:Champion, defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 120);
+    const randomAttNum = Math.round(Math.random() * 150);
     const randomDefNum = Math.round(Math.random() * 100);
     const {armor} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -83,7 +83,7 @@ const preparationEffect = (hunter:Champion, defender:Enemy):TurnResult => {
             statusText:`${hunter.name} used Preparation! ${defender.name}'s Armor is now ${armor - effectNumber}!`,
             effectNumber,
          }
-    } else return {statusText:`${hunter.name} tried to use Smoke Granade but it failed!`,
+    } else return {statusText:`${hunter.name} tried to use Preparation but it failed!`,
     effectNumber:0}
 }
 

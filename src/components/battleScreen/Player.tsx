@@ -1,7 +1,5 @@
 import React from "react";
 
-import { getChampClass } from "../../game/gameVariousFuncs";
-
 import Moves from "./Moves";
 import ProgressBar from "../ui/ProgressBar";
 import styled from "styled-components";
@@ -70,7 +68,6 @@ const Player = (props: Props) => {
   return (
     <PlayerContainer>
       <h3>{champ.name}</h3>
-      <p>{getChampClass(champ.champClass)}</p>
       <div className={`imageChamp`}>
         <img src={champ.image} alt={`img of ${champ.name}`} />
         {champ.imgCred ? <span>Image by {champ.imgCred}</span> : null}

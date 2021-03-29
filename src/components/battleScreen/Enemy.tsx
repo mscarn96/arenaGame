@@ -50,7 +50,6 @@ const Enemy = (props: Props) => {
   return (
     <EnemyContainer>
       <h3>{enemy?.name}</h3>
-      <p>Level : {enemy?.level}</p>
       <div className={`imageEnemy`}>
         <img src={enemy.image} alt={`img of ${enemy.name}`} />
         {enemy.imgCred ? <span>Image by {enemy.imgCred}</span> : null}

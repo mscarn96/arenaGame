@@ -20,6 +20,7 @@ const CharacterWrapper = styled.div`
     "stats inventory";
   margin-bottom: 5px;
   height: 80vh;
+  padding: 5px 15px;
 
   h1 {
     grid-area: name;
@@ -171,9 +172,10 @@ const ChampionEquipment = (champ: Champion) => {
   );
 };
 
-const Stats = (champ: Champion) => {
+const Stats = (champ: Champion, gold: number) => {
   return (
     <div>
+      <h3>Gold: {gold}</h3>
       <b>Class : {getChampClass(champ.champClass)}</b>
       <p>Level: {champ.level}</p>
       <p>Health points: {champ.hp.fullHp}</p>
@@ -192,6 +194,7 @@ const Stats = (champ: Champion) => {
 const Character = () => {
   const champ = useSelector((state) => state.champion.currentChamp);
   const inventory = useSelector((state) => state.InventoryState);
+  const gold = useSelector((state) => state.InventoryState.gold);
 
   return (
     <CharacterWrapper>
@@ -221,7 +224,7 @@ const Character = () => {
         />
       </div>
       {ChampionEquipment(champ)}
-      {Stats(champ)}
+      {Stats(champ, gold)}
       <Inventory inventory={inventory} />
     </CharacterWrapper>
   );
