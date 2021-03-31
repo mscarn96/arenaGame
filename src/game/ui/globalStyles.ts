@@ -24,6 +24,13 @@ background: transparent;
 `
  
 const GlobalStyle = createGlobalStyle`
+ * {
+   font-size:1rem;
+ }
+
+ html {
+   font-size:16px;
+ }
   body {
     margin: 0;
     padding: 0;
@@ -55,6 +62,41 @@ const GlobalStyle = createGlobalStyle`
     margin:15px;
     width:75%;
   }
+
+  @media (min-width:768px) {
+
+    html {
+      font-size:18px;
+    }
+
+    .App {
+      width:75%;
+    }
+
+    .Toastify__toast-container {
+      width:90%;
+      height:15%;
+    }
+
+    .Toastify__toast-body {
+      font-size:24px;
+    }
+  }
+
+  @media (min-width:1024px) {
+    html {
+      font-size:22px;
+    }
+    .App {
+      width:60%;
+    }
+
+    .Toastify__toast-body {
+      font-size:30px;
+    }
+  }
+
+  
 `;
  
 export default GlobalStyle;

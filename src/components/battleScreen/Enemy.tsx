@@ -43,6 +43,19 @@ const EnemyContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media (min-width: 768px) {
+    .imageEnemy img {
+      max-width: 150px;
+      height: 200px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .imageEnemy img {
+      max-width: 180px;
+      height: 250px;
+    }
+  }
 `;
 
 const Enemy = (props: Props) => {

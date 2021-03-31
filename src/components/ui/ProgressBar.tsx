@@ -24,6 +24,13 @@ const Container = styled.div<ContainterProps>`
   border: 1px solid black;
   border-radius: 50px;
   margin: 10px;
+
+  @media (min-width: 768px) {
+    height: 25px;
+  }
+  @media (min-width: 1024px) {
+    height: 30px;
+  }
 `;
 const Label = styled.span`
   padding: 5px;

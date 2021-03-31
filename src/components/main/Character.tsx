@@ -64,6 +64,21 @@ const EquipmentWrapper = styled.div`
     border: 1px solid black;
     font-size: 0.9rem;
     background-color: ${colors.darkBlue};
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    div {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    div {
+      width: 90px;
+      height: 90px;
+    }
   }
 
   .head {

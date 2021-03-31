@@ -19,6 +19,9 @@ const InventoryContainer = styled.div`
   grid-gap: 5px;
   margin-top: 15px;
   border: 2px solid ${colors.darkBlue};
+  justify-items: center;
+  align-items: center;
+  position: relative;
 `;
 
 const ItemContainer = styled.div`
@@ -27,6 +30,16 @@ const ItemContainer = styled.div`
   border: 1px solid black;
   font-size: 0.9rem;
   background-color: ${colors.darkBlue};
+
+  @media (min-width: 768px) {
+    width: 70px;
+    height: 70px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 90px;
+    height: 90px;
+  }
 `;
 
 const generateEmptyContainers = (n: number) => {

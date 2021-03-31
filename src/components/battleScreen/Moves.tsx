@@ -98,7 +98,7 @@ const consumePotion = (
 };
 
 const MovesContainer = styled.div`
-  height: 30vh;
+  height: 100%;
   width: 200%;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 5px;

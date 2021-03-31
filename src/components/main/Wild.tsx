@@ -36,6 +36,8 @@ const WildContainer = styled.div`
 
   button {
     background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     font-size: 1.3rem;
     font-family: "Cormorant Unicase", sans-serif;
     border: 3px solid ${colors.lightBlue};

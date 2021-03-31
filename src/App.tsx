@@ -10,18 +10,18 @@ function App() {
       <div className="App">
         <GlobalStyle />
         <StartMenu />
+        <ToastContainer
+          position="bottom-left"
+          autoClose={1500}
+          hideProgressBar
+          closeOnClick={false}
+          closeButton={false}
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover
+        />
       </div>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={1500}
-        hideProgressBar
-        closeOnClick={false}
-        closeButton={false}
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable={false}
-        pauseOnHover
-      />
     </>
   );
 }

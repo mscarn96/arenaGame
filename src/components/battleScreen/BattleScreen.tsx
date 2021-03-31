@@ -30,7 +30,8 @@ const BattleScreenWrapper = styled.div<BattleScreenProps>`
   background-size: cover;
   background-position: center;
   border-top: 3px solid ${colors.lighterBlue};
-  width: 100vw;
+  height: 85vh;
+  width: 100%;
   margin-bottom: 250px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -38,13 +39,12 @@ const BattleScreenWrapper = styled.div<BattleScreenProps>`
   box-shadow: inset 0px 0px 50px 50px rgba(30, 30, 30, 0.89);
 
   span.bg-author {
-    opacity:0.7;
+    opacity: 0.7;
     position: absolute;
     font-family: sans-serif;
     font-size: 0.5rem;
     bottom: 0;
     right: 0%;
-  }
   }
 `;
 

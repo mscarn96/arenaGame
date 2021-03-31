@@ -31,11 +31,18 @@ const NavigationContainer = styled.ul<NavigationProps>`
   margin-bottom: 20px;
   padding: 0;
   justify-content: space-around;
+  align-items: center;
   list-style: none;
   text-decoration: none;
   color: ${colors.lighterBlue};
 
+  li {
+    flex-basis: 30%;
+    text-align: center;
+  }
+
   li a {
+    font-size: 1.3rem;
     color: ${colors.lighterBlue};
     text-decoration: none;
     margin: 5px;
@@ -49,7 +56,7 @@ const NavigationContainer = styled.ul<NavigationProps>`
   li.${(props) => props.currLocation} a {
     color: ${colors.white};
     padding: 5px;
-    border: 1px solid ${colors.white};
+    border-bottom: 1px solid ${colors.white};
     border-radius: 5px;
     transform: scale(1.2);
     transition: 0.2s;
@@ -67,7 +74,6 @@ const Navigation = (): JSX.Element => {
 
   return (
     <NavigationContainer currLocation={currLocation}>
-      <p></p>
       <li className={`character`}>
         <Link to="character">Character</Link>
       </li>

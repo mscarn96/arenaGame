@@ -61,6 +61,19 @@ const PlayerContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media (min-width: 768px) {
+    .imageChamp img {
+      max-width: 150px;
+      height: 200px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .imageChamp img {
+      max-width: 180px;
+      height: 250px;
+    }
+  }
 `;
 
 const Player = (props: Props) => {

@@ -107,12 +107,32 @@ const ItemContainer = styled.div<{ imgPath: string }>`
   width: 50px;
   height: 50px;
   display: inline-block;
+
+  @media (min-width: 768px) {
+    width: 70px;
+    height: 70px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 90px;
+    height: 90px;
+  }
 `;
 const ItemButton = styled.button`
   width: 50px;
   height: 50px;
   cursor: pointer;
   background: transparent;
+
+  @media (min-width: 768px) {
+    width: 70px;
+    height: 70px;
+  }
+
+  @media (min-width: 1024px) {
+    width: 90px;
+    height: 90px;
+  }
 
   &:active {
     border: 2px solid ${colors.lighterBlue};
