@@ -8,6 +8,7 @@ import {
   damageEnemy,
   affectEnemy,
   healChamp,
+  gainResource,
 } from "../../redux/actions/battleActionCreators";
 import { warriorBasicAttack } from "../../game/moves/warriorMoves";
 import { displayPlayerToasts } from "../../game/ui/toasts";
@@ -70,7 +71,6 @@ const consumePotion = (
       displayPlayerToasts(
         `You have used Health Potion and recovered ${hpRecovered} health!`
       );
-      setIsPlayerTurn(false);
       dispatch(healChamp(hpRecovered));
       break;
     case "Mana Potion":
@@ -78,22 +78,20 @@ const consumePotion = (
       displayPlayerToasts(
         `You have used Mana Potion and recovered ${manaRecovered} mana!`
       );
-      setIsPlayerTurn(false);
-      dispatch(healChamp(manaRecovered));
+      dispatch(gainResource(manaRecovered));
       break;
     case "Super Health Potion":
       const hpRecoveredSuper = Math.floor(champ.hp.fullHp * 0.4);
       displayPlayerToasts(
         `You have used Super Health Potion and recovered ${hpRecoveredSuper} health!`
       );
-      setIsPlayerTurn(false);
       dispatch(healChamp(hpRecoveredSuper));
       break;
     default:
       console.error(`Something went wrong, ${potion.name} is not a potion! `);
       break;
   }
-
+  setIsPlayerTurn(false);
   dispatch(deleteItem(potion));
 };
 
@@ -119,12 +117,47 @@ const MovesContainer = styled.div`
   }
 `;
 
+const PotionButton = (
+  potions: Item[],
+  isPlayerTurn: boolean,
+  champ: Champion,
+  dispatch: Dispatch,
+  setIsPlayerTurn: React.Dispatch<React.SetStateAction<boolean>>,
+  inventory: Item[]
+): JSX.Element => (
+  <button
+    key={potions[0].id}
+    disabled={!isPlayerTurn}
+    onClick={() =>
+      consumePotion(
+        potions[potions.length - 1],
+        champ,
+        dispatch,
+        setIsPlayerTurn,
+        inventory
+      )
+    }
+  >
+    {`use ${potions[0].name} (${potions.length})`}
+  </button>
+);
+
 const Moves = (props: Props) => {
   const dispatch = useDispatch();
   const champ = useSelector((state) => state.battleState.champ);
   const enemy = useSelector((state) => state.battleState.enemy);
   const inventory = useSelector((state) => state.InventoryState.items);
+
+  const { isPlayerTurn, setIsPlayerTurn } = props;
+
   const potions = inventory.filter((item) => item.type === `potion`);
+
+  const hpPotions = potions.filter((potion) => potion.name === "Health Potion");
+  const superHpPotions = potions.filter(
+    (potion) => potion.name === "Super Health Potion"
+  );
+  const manaPotions = potions.filter((potion) => potion.name === "Mana Potion");
+
   const skillset = champ.skillset;
 
   const attack = () => {
@@ -140,38 +173,49 @@ const Moves = (props: Props) => {
   };
   return (
     <MovesContainer>
-      <button disabled={!props.isPlayerTurn} onClick={() => attack()}>
+      <button disabled={!isPlayerTurn} onClick={() => attack()}>
         Basic Attack
       </button>
       {skillset.map((skill) => (
         <button
           key={skill.id}
-          disabled={champ.res.current < skill.cost || !props.isPlayerTurn}
+          disabled={champ.res.current < skill.cost || !isPlayerTurn}
           onClick={() =>
-            UseSkill(champ, enemy, skill, dispatch, props.setIsPlayerTurn)
+            UseSkill(champ, enemy, skill, dispatch, setIsPlayerTurn)
           }
         >
           {skill.name}
         </button>
       ))}
-      {potions.length > 0
-        ? potions.map((potion) => (
-            <button
-              key={potion.id}
-              disabled={!props.isPlayerTurn}
-              onClick={() =>
-                consumePotion(
-                  potion,
-                  champ,
-                  dispatch,
-                  props.setIsPlayerTurn,
-                  inventory
-                )
-              }
-            >
-              {potion.name}
-            </button>
-          ))
+      {hpPotions.length > 0
+        ? PotionButton(
+            hpPotions,
+            isPlayerTurn,
+            champ,
+            dispatch,
+            setIsPlayerTurn,
+            inventory
+          )
+        : null}
+      {superHpPotions.length > 0
+        ? PotionButton(
+            superHpPotions,
+            isPlayerTurn,
+            champ,
+            dispatch,
+            setIsPlayerTurn,
+            inventory
+          )
+        : null}
+      {manaPotions.length > 0
+        ? PotionButton(
+            manaPotions,
+            isPlayerTurn,
+            champ,
+            dispatch,
+            setIsPlayerTurn,
+            inventory
+          )
         : null}
     </MovesContainer>
   );

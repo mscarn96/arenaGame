@@ -20,15 +20,15 @@ export const basicAttack = (attacker:Champion | Enemy, defender:Champion | Enemy
         statusText:``,
     };
 
-    const randomAttNum = Math.round(Math.random() * 120);
+    const randomAttNum = Math.round(Math.random() * 110);
     const randomDefNum = Math.round(Math.random() * 100);
 
-    if (randomDefNum < defender.blockChance) {
+    if (randomAttNum < defender.blockChance / 2) {
         result.statusText = 'Attack blocked!'
         return result
     }
 
-    if (randomAttNum + attacker.accuracy < randomDefNum + defender.dodgeChance) {
+    if (randomAttNum + attacker.accuracy < randomDefNum + defender.dodgeChance / 2) {
         result.statusText = 'Attack missed!'
         return result
     }
@@ -65,9 +65,11 @@ export const deleteBattle = (
     enemy:Enemy,
     goldEarned?:number): void => {
     const champToReplace = {...champ}
+    //Warior gets his rage reset after every fight
     if (champToReplace.champClass === ChampClass.Warrior){
         champToReplace.res.current = 0;
     }
+    //Hunter recovers 100% energy after every fight
     if (champToReplace.champClass === ChampClass.Hunter) {
         champToReplace.res.current = champToReplace.res.full;
     }

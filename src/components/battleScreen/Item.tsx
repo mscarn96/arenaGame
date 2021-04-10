@@ -152,6 +152,7 @@ const ItemInfoContainer = styled.div<{ visible: boolean }>`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 999;
 
   button {
     margin: 15px;
@@ -167,11 +168,12 @@ const ItemInfoContainer = styled.div<{ visible: boolean }>`
     top: 0%;
     right: 5%;
   }
-  h1 {
-    margin: 10px;
-  }
-  p {
-    margin: 10px;
+
+  @media (min-width: 768px) {
+    & {
+      width: 300px !important;
+      height: 300px !important;
+    }
   }
 `;
 

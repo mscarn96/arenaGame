@@ -15,8 +15,8 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 champClass,
                 level: 1,
                 hp:{
-                    currentHp:300,
-                    fullHp:300
+                    currentHp:350,
+                    fullHp:350,
                 },
                 res:{
                     name:'rage',
@@ -50,8 +50,8 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                 champClass,
                 level: 1,
                 hp:{
-                    currentHp:240,
-                    fullHp:240
+                    currentHp:280,
+                    fullHp:280
                 },
                 res:{
                     name:'mana',
@@ -86,8 +86,8 @@ const initChamp = (name:string, champClass:ChampClass):Champion => {
                     champClass,
                     level: 1,
                     hp:{
-                        currentHp:260,
-                        fullHp:260,
+                        currentHp:300,
+                        fullHp:300,
                     },
                     res:{
                         name:'focus',

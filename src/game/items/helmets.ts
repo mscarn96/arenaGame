@@ -11,9 +11,9 @@ export const BrodieHelmet = ():Item => {
         cost:120,
         value:{
             armor:5,
-            magicDef:3
+            blockChance:3
         },
-        description:'Basic head item. Armor +5, Magic Defence +3',
+        description:'Basic head item. Armor +5, Block Chance +3',
         isEquipped:false,
         imgPath:icons[2],
     }}

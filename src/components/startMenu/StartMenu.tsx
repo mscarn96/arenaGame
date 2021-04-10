@@ -53,10 +53,8 @@ const StartMenu = () => {
 
   const handleClassChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setClassPicked(Number(event.target.value));
-    if (name.length >= 3 && name.length <= 15 && classPicked !== -1) {
+    if (name.length >= 3 && name.length <= 15) {
       setIsCharSelected(true);
-    } else {
-      setIsCharSelected(false);
     }
   };
 
@@ -79,7 +77,7 @@ const StartMenu = () => {
         toast.error("Name must contain at least 3 characters");
       } else if (name.length > 15) {
         toast.error(`Too long name! Maximum 15 characters`);
-      } else {
+      } else if (classPicked === -1) {
         toast.error("Please choose class!");
       }
     }

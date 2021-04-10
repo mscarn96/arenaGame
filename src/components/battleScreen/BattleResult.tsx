@@ -51,8 +51,12 @@ const BattleResultContainer = styled.div`
     font-size: 1.2rem;
     margin: 30px 20px;
   }
+  p {
+    text-align: center;
+  }
 
   button {
+    margin-top: 10px;
     font-family: "Cormorant Unicase", sans-serif;
     font-size: 1rem;
     position: absolute;

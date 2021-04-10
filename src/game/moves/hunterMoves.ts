@@ -16,7 +16,7 @@ const headShotEffect = (hunter:Champion, defender:Enemy):AttackResult => {
 const arrowRainEffect = (hunter:Champion, defender:Enemy):AttackResult => {
     const randomAttNum = Math.round(Math.random() * 170);
     const randomDefNum = Math.round(Math.random() * 100);
-    let damage = (hunter.attackDamage * randomAttNum) / 20 - (defender.armor * randomDefNum) / 10;
+    let damage = (hunter.attackDamage * randomAttNum) / 15 - (defender.armor * randomDefNum) / 10;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
     const statusText = `${hunter.name} used Arrow Rain${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
@@ -33,9 +33,9 @@ const arrowRainEffect = (hunter:Champion, defender:Enemy):AttackResult => {
 
 
 const quickAttackEffect = (hunter:Champion, defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 150);
+    const randomAttNum = Math.round(Math.random() * 140);
     const randomDefNum = Math.round(Math.random() * 100);
-    let damage = (hunter.attackDamage * randomAttNum) / 40 - (defender.armor * randomDefNum) / 10;
+    let damage = (hunter.attackDamage * randomAttNum) / 22 - (defender.armor * randomDefNum) / 10;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
     const statusText = `${hunter.name} used Quick Attack${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`

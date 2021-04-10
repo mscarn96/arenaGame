@@ -17,7 +17,8 @@ const InventoryContainer = styled.div`
   grid-template-rows: repeat(4, 1fr);
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
-  margin-top: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   border: 2px solid ${colors.darkBlue};
   justify-items: center;
   align-items: center;

@@ -82,7 +82,7 @@ const lvlUpChamp = (champ:Champion,expToLvlUp:number):Champion => {
     switch(champToReplace.champClass){
         case ChampClass.Warrior:
             addWarriorSkill(champToReplace);
-            champToReplace.hp.currentHp = champ.hp.currentHp + 50;
+            champToReplace.hp.currentHp = champ.hp.fullHp + 50;
             champToReplace.hp.fullHp = champ.hp.fullHp + 50;
             champToReplace.exp = champ.exp - expToLvlUp;
             champToReplace.accuracy = champ.accuracy + 2;
@@ -95,7 +95,7 @@ const lvlUpChamp = (champ:Champion,expToLvlUp:number):Champion => {
             return champToReplace
         case ChampClass.Hunter:
             addHunterSkill(champToReplace);
-            champToReplace.hp.currentHp = champ.hp.currentHp + 30;
+            champToReplace.hp.currentHp = champ.hp.fullHp + 30;
             champToReplace.hp.fullHp = champ.hp.fullHp + 30;
             champToReplace.exp = champ.exp - expToLvlUp;
             champToReplace.magicPower = champ.magicPower + 5;
@@ -109,11 +109,12 @@ const lvlUpChamp = (champ:Champion,expToLvlUp:number):Champion => {
             return champToReplace
         case ChampClass.Mage:
             addMageSkill(champToReplace);
-            champToReplace.hp.currentHp = champ.hp.currentHp + 30;
+            champToReplace.hp.currentHp = champ.hp.fullHp + 30;
             champToReplace.hp.fullHp = champ.hp.fullHp + 30;
             champToReplace.exp = champ.exp - expToLvlUp;
             champToReplace.magicPower = champ.magicPower + 15;
             champToReplace.res.full = champ.res.full + 25;
+            champToReplace.res.current = champ.res.full;
             champToReplace.accuracy = champ.accuracy + 1;
             champToReplace.critChance = champ.critChance + 2;
             champToReplace.attackDamage = champ.attackDamage + 5;
@@ -142,7 +143,7 @@ export const addExpAndcheckLvlUp = (champ:Champion,expFromWin:number):Champion =
 }
 
 export const getGoldFromWin = (enemyLevel:number):number => {
-    return enemyLevel * Math.round(Math.random() * 25)
+    return (enemyLevel * 3) * Math.round(Math.random() * 15)
 }
 
 export const isLearingSkill = (champ:Champion):boolean => {

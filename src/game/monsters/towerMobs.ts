@@ -9,8 +9,8 @@ const ThunderLord:Character =
         name:'Nysenth The Thunder Lord',
         level: 10,
         hp: {
-            currentHp:800,
-            fullHp:800,
+            currentHp:1000,
+            fullHp:1000,
         },
         accuracy:70,
         critChance:30,
@@ -31,8 +31,8 @@ const DarkKnight:Character =
         name:'Dalzrir The Dark Knight',
         level: 10,
         hp: {
-            currentHp:900,
-            fullHp:900,
+            currentHp:1500,
+            fullHp:1500,
         },
         accuracy:60,
         critChance:40,
@@ -54,8 +54,8 @@ const Archangel:Character =
         name:'Asteraoth The Archangel',
         level: 10,
         hp: {
-            currentHp:1000,
-            fullHp:1000,
+            currentHp:2000,
+            fullHp:2000,
         },
         accuracy:80,
         critChance:50,

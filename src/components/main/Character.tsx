@@ -64,7 +64,6 @@ const EquipmentWrapper = styled.div`
     border: 1px solid black;
     font-size: 0.9rem;
     background-color: ${colors.darkBlue};
-    text-align: center;
   }
 
   @media (min-width: 768px) {
@@ -115,7 +114,7 @@ const ChampionEquipment = (champ: Champion) => {
             sellable={false}
           />
         ) : (
-          "head"
+          ``
         )}
       </div>
       <div className={`body`}>
@@ -128,7 +127,7 @@ const ChampionEquipment = (champ: Champion) => {
             wearable={true}
           />
         ) : (
-          "body"
+          ``
         )}
       </div>
       <div className={`feet`}>
@@ -141,7 +140,7 @@ const ChampionEquipment = (champ: Champion) => {
             wearable={true}
           />
         ) : (
-          "feet"
+          ``
         )}
       </div>
       <div className={`neck`}>
@@ -154,7 +153,7 @@ const ChampionEquipment = (champ: Champion) => {
             wearable={true}
           />
         ) : (
-          "neck"
+          ``
         )}
       </div>
       <div className={`right-hand`}>
@@ -167,7 +166,7 @@ const ChampionEquipment = (champ: Champion) => {
             wearable={true}
           />
         ) : (
-          "right hand"
+          ``
         )}
       </div>
       <div className={`left-hand`}>
@@ -180,7 +179,7 @@ const ChampionEquipment = (champ: Champion) => {
             wearable={true}
           />
         ) : (
-          "left hand"
+          ``
         )}
       </div>
     </EquipmentWrapper>

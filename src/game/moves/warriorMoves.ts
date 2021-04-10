@@ -43,9 +43,9 @@ const executionEffect = (warrior:Champion,defender:Enemy):AttackResult => {
 }
 
 const weaponThrowEffect = (warrior:Champion,defender:Enemy):AttackResult => {
-    const randomAttNum = Math.round(Math.random() * 250);
+    const randomAttNum = Math.round(Math.random() * 180);
     const randomDefNum = Math.round(Math.random() * 100);
-    let damage = (warrior.magicPower * randomAttNum) / 40 - (defender.armor * randomDefNum) / 5;
+    let damage = (warrior.attackDamage * randomAttNum) / 50 - (defender.armor * randomDefNum) / 5;
     damage = Math.floor(damage)
     const isDamagePositive = damage > 1;
     const statusText = `${warrior.name} used Weapon Throw${isDamagePositive ? `! It dealt ${damage} damage!` : `, but it missed!`}`
@@ -59,7 +59,7 @@ const weaponThrowEffect = (warrior:Champion,defender:Enemy):AttackResult => {
 }
 
 const disarmEffect = (warrior:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 150);
+    const randomAttNum = Math.round(Math.random() * 200);
     const randomDefNum = Math.round(Math.random() * 100);
     const {blockChance} = defender;
     const effectNumber = randomAttNum - randomDefNum
@@ -78,7 +78,7 @@ const disarmEffect = (warrior:Champion,defender:Enemy):TurnResult => {
 }
 
 const shockwaveEffect = (warrior:Champion,defender:Enemy):TurnResult => {
-    const randomAttNum = Math.round(Math.random() * 150);
+    const randomAttNum = Math.round(Math.random() * 200);
     const randomDefNum = Math.round(Math.random() * 100);
     const {dodgeChance} = defender;
     const effectNumber = randomAttNum - randomDefNum

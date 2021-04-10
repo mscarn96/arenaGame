@@ -63,6 +63,19 @@ const GlobalStyle = createGlobalStyle`
     width:75%;
   }
 
+  #info h1 {
+    margin: 25px 10px 10px;
+  }
+
+  #info p {
+    font-size: 0.8rem;
+    margin: 25px 10px 10px;
+  }
+
+  #info button {
+    font-size: 0.8rem;
+  }
+
   @media (min-width:768px) {
 
     html {
