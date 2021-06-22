@@ -3,7 +3,7 @@
 
 ![](1.png)
 
-![](2png)
+![](2.png)
 
 ## Development setup
 
