@@ -1,4 +1,4 @@
-import PracticeDummyImg from '../../images/mobs/PracticeDummyImg.jpg'
+import PracticeDummyImg from '../../images/mobs/PracticeDummyImg.webp'
 
 
 const PracticeDummy = (level:number):Character =>

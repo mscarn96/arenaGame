@@ -1,7 +1,7 @@
-import ZombieImg from '../../images/mobs/graveyard/ZombieImg.jpg'
-import SkeletonMageImg from '../../images/mobs/graveyard/SkeletonMageImg.jpg'
-import SkeletonKnightImg from '../../images/mobs/graveyard/SkeletonKnightImg.jpg'
-import GrimReaperImg from '../../images/mobs/graveyard/GrimReaperImg.jpg'
+import ZombieImg from '../../images/mobs/graveyard/ZombieImg.webp'
+import SkeletonMageImg from '../../images/mobs/graveyard/SkeletonMageImg.webp'
+import SkeletonKnightImg from '../../images/mobs/graveyard/SkeletonKnightImg.webp'
+import GrimReaperImg from '../../images/mobs/graveyard/GrimReaperImg.webp'
 
 
 const Zombie:Character =

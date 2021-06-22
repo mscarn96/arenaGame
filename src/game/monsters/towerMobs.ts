@@ -1,6 +1,6 @@
-import ThunderLordImg from '../../images/mobs/arena/ThunderlordImg.jpg'
-import DarkKnightImg from '../../images/mobs/arena/DarkKnightImg.jpg'
-import ArchangelImg from '../../images/mobs/arena/ArchangelImg.jpg'
+import ThunderLordImg from '../../images/mobs/arena/ThunderlordImg.webp'
+import DarkKnightImg from '../../images/mobs/arena/DarkKnightImg.webp'
+import ArchangelImg from '../../images/mobs/arena/ArchangelImg.webp'
 
 
 const ThunderLord:Character =

@@ -1,7 +1,7 @@
-import ForestWolfImg from '../../images/mobs/forest/ForestWolfImg.jpg'
-import GoldenDeerImg from '../../images/mobs/forest/GoldenDeerImg.jpg'
-import ForestProtectorImg from '../../images/mobs/forest/ForestProtectorImg.jpg'
-import ForestLordImg from '../../images/mobs/forest/ForestLordImg.jpg'
+import ForestWolfImg from '../../images/mobs/forest/ForestWolfImg.webp'
+import GoldenDeerImg from '../../images/mobs/forest/GoldenDeerImg.webp'
+import ForestProtectorImg from '../../images/mobs/forest/ForestProtectorImg.webp'
+import ForestLordImg from '../../images/mobs/forest/ForestLordImg.webp'
 
 
 

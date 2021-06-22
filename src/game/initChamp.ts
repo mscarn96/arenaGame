@@ -2,9 +2,9 @@ import * as mageMoves from './moves/mageMoves'
 import * as warriorMoves from './moves/warriorMoves'
 import * as hunterMoves from './moves/hunterMoves'
 
-import hunterImg from '../images/champs/HunterImg.jpg'
-import mageImg from '../images/champs/MageImg.jpg'
-import warriorImg from '../images/champs/WarriorImg.jpg'
+import hunterImg from '../images/champs/HunterImg.webp'
+import mageImg from '../images/champs/MageImg.webp'
+import warriorImg from '../images/champs/WarriorImg.webp'
 
 const initChamp = (name:string, champClass:ChampClass):Champion => {
     switch (champClass) {

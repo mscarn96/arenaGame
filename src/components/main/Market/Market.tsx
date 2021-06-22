@@ -17,7 +17,7 @@ import {
 } from "../../../redux/actions/itemActionCreators";
 import { useSelector } from "../../../redux/customHooks";
 
-import backgroundImg from "../../../images/marketBackground.jpg";
+import backgroundImg from "../../../images/marketBackground.webp";
 import { colors } from "../../../game/ui/globalStyles";
 import { useState } from "react";
 

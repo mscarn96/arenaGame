@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import backgroundImg from "../../images/background.jpg";
+import backgroundImg from "../../images/background.webp";
 
 const gray = "#3B3F44";
 const lighterBlue = "#90B4AC";

@@ -10,7 +10,7 @@ import styled from "styled-components";
 import { ButtonStyles } from "../../game/ui/globalStyles";
 
 import * as potions from "../../game/items/potions";
-import TavernBackground from "../../images/tavernBackground.jpg";
+import TavernBackground from "../../images/tavernBackground.webp";
 import { toast } from "react-toastify";
 
 enum ChampClass {

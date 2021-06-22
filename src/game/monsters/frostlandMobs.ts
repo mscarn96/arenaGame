@@ -1,7 +1,7 @@
-import FrostWormImg from '../../images/mobs/frostland/FrostWormImg.jpg'
-import FrostWolfImg from '../../images/mobs/frostland/FrostWolfImg.jpg'
-import FrostQueenImg from '../../images/mobs/frostland/FrostQueenImg.jpg'
-import FrostDragonImg from '../../images/mobs/frostland/FrostDragonImg.jpg'
+import FrostWormImg from '../../images/mobs/frostland/FrostWormImg.webp'
+import FrostWolfImg from '../../images/mobs/frostland/FrostWolfImg.webp'
+import FrostQueenImg from '../../images/mobs/frostland/FrostQueenImg.webp'
+import FrostDragonImg from '../../images/mobs/frostland/FrostDragonImg.webp'
 
 
 
