@@ -59,9 +59,9 @@ const ItemContainerElement = (props: ItemProps): JSX.Element => {
       {item !== undefined ? (
         <Item
           item={item}
-          buyable={false}
-          sellable={true}
-          wearable={true}
+          isBuyable={false}
+          isSellable={true}
+          isWearable={true}
           champ={champ}
         />
       ) : null}

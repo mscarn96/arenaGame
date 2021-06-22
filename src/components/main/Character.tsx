@@ -107,11 +107,11 @@ const ChampionEquipment = (champ: Champion) => {
       <div className={`head`}>
         {itemSlots.head ? (
           <Item
-            wearable={true}
+            isWearable={true}
             champ={champ}
             item={itemSlots.head}
-            buyable={false}
-            sellable={false}
+            isBuyable={false}
+            isSellable={false}
           />
         ) : (
           ``
@@ -122,9 +122,9 @@ const ChampionEquipment = (champ: Champion) => {
           <Item
             champ={champ}
             item={itemSlots.body}
-            buyable={false}
-            sellable={false}
-            wearable={true}
+            isBuyable={false}
+            isSellable={false}
+            isWearable={true}
           />
         ) : (
           ``
@@ -135,9 +135,9 @@ const ChampionEquipment = (champ: Champion) => {
           <Item
             champ={champ}
             item={itemSlots.feet}
-            buyable={false}
-            sellable={false}
-            wearable={true}
+            isBuyable={false}
+            isSellable={false}
+            isWearable={true}
           />
         ) : (
           ``
@@ -148,9 +148,9 @@ const ChampionEquipment = (champ: Champion) => {
           <Item
             champ={champ}
             item={itemSlots.neck}
-            buyable={false}
-            sellable={false}
-            wearable={true}
+            isBuyable={false}
+            isSellable={false}
+            isWearable={true}
           />
         ) : (
           ``
@@ -161,9 +161,9 @@ const ChampionEquipment = (champ: Champion) => {
           <Item
             champ={champ}
             item={itemSlots.rightHand}
-            buyable={false}
-            sellable={false}
-            wearable={true}
+            isBuyable={false}
+            isSellable={false}
+            isWearable={true}
           />
         ) : (
           ``
@@ -174,9 +174,9 @@ const ChampionEquipment = (champ: Champion) => {
           <Item
             champ={champ}
             item={itemSlots.leftHand}
-            buyable={false}
-            sellable={false}
-            wearable={true}
+            isBuyable={false}
+            isSellable={false}
+            isWearable={true}
           />
         ) : (
           ``

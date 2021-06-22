@@ -87,9 +87,9 @@ const equipItem = (champ: Champion, item: Item, dispatch: Dispatch) => {
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   item: Item;
-  buyable: boolean;
-  sellable: boolean;
-  wearable: boolean;
+  isBuyable: boolean;
+  isSellable: boolean;
+  isWearable: boolean;
   champ: Champion;
 }
 
@@ -231,7 +231,7 @@ const ItemInfo = ({
 };
 
 const Item = (props: Props) => {
-  const { item, buyable, sellable, wearable } = props;
+  const { item, isBuyable, isSellable, isWearable } = props;
   const [showInfo, setShowInfo] = useState(false);
   const itemRef = useRef<HTMLDivElement>(null);
 
@@ -265,9 +265,9 @@ const Item = (props: Props) => {
       <ItemButton onClick={(e) => setShowInfo((prev) => !prev)} />
       <ItemInfo
         item={item}
-        buyable={buyable}
-        sellable={sellable}
-        wearable={wearable}
+        buyable={isBuyable}
+        sellable={isSellable}
+        wearable={isWearable}
         showInfo={showInfo}
         setShowInfo={setShowInfo}
       />

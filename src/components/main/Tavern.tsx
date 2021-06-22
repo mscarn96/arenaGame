@@ -4,8 +4,7 @@ import { Dispatch } from "redux";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../redux/customHooks";
 import { modifyChamp } from "../../redux/actions/champActionCreators";
-import { addGold, spendGold } from "../../redux/actions/itemActionCreators";
-import { addExpAndcheckLvlUp } from "../../game/lvlUp";
+import { spendGold } from "../../redux/actions/itemActionCreators";
 import { buyItem } from "./Market/Market";
 import styled from "styled-components";
 import { ButtonStyles } from "../../game/ui/globalStyles";
@@ -60,9 +59,6 @@ const manaRefill = (
   } else notify(`Not enough gold!`);
 };
 
-const add1000Gold = (dispatch: Dispatch<any>) => {
-  dispatch(addGold(1000));
-};
 
 const TavernContainer = styled.div`
   background-image: url(${TavernBackground});
@@ -105,12 +101,6 @@ const Tavern = () => {
 
   return (
     <TavernContainer>
-      <button onClick={() => add1000Gold(dispatch)}>Add 1000 gold</button>
-      <button
-        onClick={() => dispatch(modifyChamp(addExpAndcheckLvlUp(champ, 1000)))}
-      >
-        add 1000 exp
-      </button>
 
       <ServiceContainer>
         <p>Full heal - cost 20 gold (immediately recover 100% hp)</p>

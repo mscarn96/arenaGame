@@ -100,9 +100,9 @@ export const renderItem = (itemF: () => Item, champ: Champion): JSX.Element => {
       key={item.id}
       champ={champ}
       item={item}
-      buyable={true}
-      sellable={false}
-      wearable={false}
+      isBuyable={true}
+      isSellable={false}
+      isWearable={false}
     />
   );
 };
